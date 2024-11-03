@@ -52,6 +52,17 @@ footer .padding .footer-tercera .contenedordos{
     width: 30%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 15px;
+
+}
+
+footer .padding .footer-tercera .contenedortres{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-left: 30px;
+    padding-right: 30px;
+    align-items: baseline;
 
 }
 @media (max-width: 990px) {
@@ -97,6 +108,17 @@ footer .padding .footer-tercera .contenedordos{
         width: 20%;
         margin-left: auto;
         margin-right: auto;
+        padding-bottom: 30px;
+    }
+
+    footer .padding .footer-tercera .contenedortres{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding-left: 30px;
+        padding-right: 30px;
+        align-items:center;
+    
     }
   }
 
