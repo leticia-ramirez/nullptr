@@ -1,4 +1,5 @@
 /* base.html */
+/* hay 3 estilos definidos globalmente, ojo si van a cambiarlos */
 *{
     padding: 0;
     margin: 0;
@@ -7,6 +8,14 @@
 
 body{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
+    background-image: url(../img/fondo_temporal.png);
+    gap: 4em;
 }
 
 h6 {
@@ -15,6 +24,7 @@ h6 {
 
 .wrapper {
     position: fixed;
+    padding: 0;
 }
 .borde-size{
     margin: 0px 20px 0px 0px;
@@ -23,7 +33,11 @@ h6 {
 .container-fluid img {
     margin-right: 10px;
 }
-
+footer {
+    background-color: white;
+    padding-top: 15px;
+    border-top: 1px solid rgb(56, 56, 56);
+}
 footer .padding .footer-primera{
     padding-left: 40px;
 }
@@ -122,3 +136,76 @@ footer .padding .footer-tercera .contenedortres{
     }
   }
 
+/* Le añadi un hover a los botones del footer */
+
+footer .padding .footer-primera a:hover, footer .padding .footer-segunda a:hover {
+    color: red;
+}
+
+/* CSS para reporte.html */
+
+/* Recomiendo poner el contenido de los templates en un div con id="content" */
+
+#content {
+    margin-top: 10vh;
+    margin-left: 10vw;
+    min-width: 30%;
+    max-width: 600px;
+    align-self: flex-start;
+    background-color: white;
+    border: 1px solid rgb(25, 135, 84);
+    border-radius: 1.5%;
+}
+#content > h2 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: rgb(25, 135, 84);
+    background-color: rgba(25, 135, 84, 0.05);
+    padding: 0.8em 0.5em;
+    border-bottom: 1px solid rgb(25, 135, 84);
+}
+
+fieldset {
+    border: 2px groove black;
+    padding: 0em 3em 1em 3em;
+    font-size: 1em;
+    margin: 0 0.8em 0.5em 0.8em;
+}
+fieldset > div {
+    padding: 0.3em 0;
+}
+legend {
+    font-size: 1.2em;
+    float: none;
+    width: auto;
+    margin-left: -2em;
+}
+.seccion_reporte{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0.5em;
+}
+.seccion_reporte > input,select {
+    max-width: 70%;
+}
+.seccion_reporte > input,select,textarea {
+    padding: 0.3em;
+}
+.seccion_reporte > label {
+    align-content: center;
+    text-align: right;
+}
+#seccion_submit{
+    background-color: rgba(25, 135, 84, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 0.8em 0.5em;
+    border-top: 1px solid rgb(25, 135, 84);
+}
+#seccion_submit > input {
+    background-color: white;
+}
+#seccion_submit > input:hover {
+    background-color: rgb(25, 135, 84);
+}
