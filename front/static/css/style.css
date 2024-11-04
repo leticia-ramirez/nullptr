@@ -79,7 +79,35 @@ footer .padding .footer-tercera .contenedortres{
     align-items: baseline;
 
 }
+/* misReportes.html */
+.padding-top{
+    padding-top: 90px;
+}
+.flex-inline{
+    display: flex;
+    flex-direction: row;
+}
+
+section .grids{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: auto;
+    row-gap: 40px;
+    padding: 30px 10px 50px 10px;
+}
+
+section .grids .hijo{
+    justify-self: center;
+}
+
+section .grids .hijo img{
+    padding-right: 30px;
+    width: fit-content;
+}
+
+
 @media (max-width: 990px) {
+    /* base.html */
     .justify-content-end{
         width: 100%;
         display: flex;
@@ -134,6 +162,24 @@ footer .padding .footer-tercera .contenedortres{
         align-items:center;
     
     }
+    /* misReportes.html */
+    section .grids{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        row-gap: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    section .grids .hijo{
+        justify-self: center;
+    }
+    
+    section .grids .hijo img{
+        padding-right: 30px;
+    }
+    
   }
 
 /* Le añadi un hover a los botones del footer */
