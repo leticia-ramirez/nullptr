@@ -1,3 +1,5 @@
+### Consigna del TP, a cambiar.
+
 # Trabajo Práctico IDS - GRUPO: nullptr
 
 ## Trabajo Práctico: Introducción al Desarrollo de Software
