@@ -282,3 +282,33 @@ legend {
 #seccion_submit > input:hover {
     background-color: rgb(25, 135, 84);
 }
+
+/* CSS para download.html */
+
+#content_jumbotron {
+    margin-top: 13vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 300px;
+    min-width: 30%;
+    max-width: 96%;
+    width: 990px;
+    align-self: center;
+    background-color: white;
+    border: 1px solid rgb(25, 135, 84);
+    border-radius: 1.5%;
+}
+
+.imgicono {
+    margin-top: 2vh;
+}
+
+.instrucciones {
+    background-color: rgba(130, 130, 130, 0.2);
+    max-width: 97%;
+    align-self: center;
+    border-radius: 1.5%;
+    text-align: justify;
+    font-weight: 500;
+    color: black;
+}
