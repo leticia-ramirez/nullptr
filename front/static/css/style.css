@@ -95,19 +95,87 @@ section .grids{
     grid-template-columns: 2fr 2fr;
     grid-template-rows: auto;
     row-gap: 40px;
+    column-gap: 20px;
     padding: 0;
     padding: 30px 10px 0px 10px;
+    overflow: hidden;
+    width: 100%;
 }
 
 section .grids .hijo{
     justify-self: center;
+    border: 2px solid rgb(173, 173, 173);
+    border-radius: 20px;
+    padding: 30px;
+    background-color: aliceblue;
 }
 
 section .grids .hijo img{
     padding-right: 30px;
     width: fit-content;
 }
-@media (max-width:680px) {
+@media (max-width:320px) {
+    /* misReportes.html */
+    section .grids{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        row-gap: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+        justify-content: space-around;
+        align-items: center;
+        width:100%;
+    }
+    
+    section .grids .hijo{
+        display: block !important;
+    }
+    
+    section .grids .hijo img{
+        padding: 0;
+        width: 100% !important;
+        height: 150px;
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-bottom: 20px;
+        
+    }
+
+    .footer .padding{ 
+        width: 100%;
+        display: unset !important;
+    }
+
+    .footer .padding .footer-primera{
+        padding: 0px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+    .footer .padding .footer-segunda{
+        padding-bottom: 20px;
+
+    }
+    
+    .footer .padding .footer-tercera .contenedordos{
+        width: 26% !important;
+    }
+    
+    .footer .padding .footer-tercera .inline{
+        padding-bottom: 10px;
+    }
+
+    footer .padding .footer-tercera .contenedortres{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding-left: 30px;
+        padding-right: 30px;
+        align-items:center;
+    
+    }
+}
+@media (max-width:768px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -162,7 +230,7 @@ section .grids .hijo img{
     }
 }
 
-@media (max-width: 990px) {
+@media (max-width: 1024px) {
     /* base.html */
     .justify-content-end{
         width: 100%;
