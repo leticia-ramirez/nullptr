@@ -371,10 +371,11 @@ legend {
     margin-top: 13vh;
     margin-left: 1vw;
     margin-right: 1vw;
-    height: 300px;
+    height: 335px;
     min-width: 30%;
-    max-width: 96%;
+    max-width: 100%;
     width: 990px;
+    display: flex;
     align-self: center;
     background-color: white;
     border: 1px solid rgb(25, 135, 84);
@@ -382,8 +383,29 @@ legend {
 }
 
 .imgicono {
-    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.imgcelular {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.imgderecha {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.imgizq {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
 
 .instrucciones {
     background-color: rgba(130, 130, 130, 0.2);
