@@ -492,3 +492,61 @@ legend {
     background-color: rgb(25, 135, 84);
 }
 
+/*
+ *
+ *
+ * CSS para home.html
+ *
+ *
+ */
+ #filtrar-zona{
+    margin-top: 13vh;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ .filtrar-items{
+    margin-right: 10px;
+    border-radius: 10px;
+ }
+ .listado-tarjetas{
+    max-width: 40%;
+    margin-left: 10px;
+ }
+ .tarjetas{
+    margin-bottom: 10px;
+    background-color: aliceblue;
+    border: 2px;
+    border-color: gray;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+ }
+ .margin-10{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+ }
+ #resultado-busqueda{
+    padding: 10px;
+    display: flex;
+ }
+ #tarjetas-horizontales{
+    display: flex;
+ }
+ #preg-frecuentes{
+    text-align: center;    
+ }
+#slt-preg-frec{
+    width: 70%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.btn-int{
+    border-radius: 10px;
+    border: 2px solid #ddd;
+}
