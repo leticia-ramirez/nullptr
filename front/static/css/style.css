@@ -114,6 +114,135 @@ section .grids .hijo img{
     padding-right: 30px;
     width: fit-content;
 }
+
+.accordion{
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 2% ;
+}
+
+.fondo{
+    width: 90%;
+    background-color: aliceblue;
+}
+.container-grids{
+    display: unset !important;
+    display: grid !important;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    'seccionCero seccionCero seccionCero seccionCero'
+    'seccionUno seccionUno seccionUno seccionUno'
+    'seccionDos seccionDos seccionTres SeccionTres'
+    'seccionCuatro seccionCuatro seccionCuatro seccionCuatro'
+    'seccionCinco seccionCinco seccionCinco seccionCinco'
+    'FAQ FAQ FAQ FAQ'
+    'Footer Footer Footer Footer';
+    width: 100% !important;
+    gap: 0;
+    justify-content: center;
+    align-content: space-around;
+    justify-items: center;
+    row-gap: 20px;
+}
+
+.background-section-animated{
+    grid-area: seccionCero;
+    width: 100%;
+    height: 100vh;
+    justify-self: flex-start;
+    align-self: center;
+    animation-name: BackgroundColor;
+    animation-iteration-count:initial;
+    animation-timing-function: ease-in-out;
+    animation-duration: 7s;
+    background-color:aliceblue;
+}
+
+@keyframes BackgroundColor {
+    0%{
+        background-color: rgb(175, 34, 34);
+    }
+
+    25%{
+        background-color: rgb(218, 235, 250);
+    }
+
+    50%{
+        background-color: rgb(175, 34, 34);
+    }
+
+    100%{
+        background-color: aliceblue;
+    }
+
+}
+.busqueda{
+    grid-area: seccionUno;
+    width: 100%;
+    align-self: center;
+    justify-self:stretch; 
+}
+.Reportes{
+    grid-area: seccionDos;
+    width: 100% !important;
+}
+.mapa {
+    grid-area: seccionTres;
+}
+.ReportesNovedades{
+    grid-area: seccionCuatro;
+}
+.section-app {
+    grid-area: seccionCinco;
+}
+.sectionFAQ{
+    grid-area: FAQ;
+}
+.footer{
+    grid-area: Footer;
+    width: 100% !important;
+}
+
+.text{
+    margin-top: 45vh;
+    font-size:100px;
+    font-weight:700;
+    animation-name: sic-sac;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-duration: 5s;
+    animation-delay: unset;
+    filter: drop-shadow(1px 1px 20px rgb(207, 188, 16));
+    color: rgb(235, 88, 88);
+}
+
+
+
+@keyframes sic-sac {
+    0%{
+        transform: scale(1.1);
+        color: rgb(255, 255, 255);
+    }
+    25%{
+        transform: scale(0.98);
+        color: rgb(175, 34, 34);
+    }
+
+    50%{
+        transform: scale(1.1);
+        color: red;
+    }
+    75%{
+        transform: scale(0.98);
+        color: rgb(175, 34, 34);
+        transition: all 1s ease-in-out;
+    }
+    100%{
+        transform: scale(1.1);
+        color: rgb(255, 255, 255);
+    }
+}
 @media (max-width:320px) {
     /* misReportes.html */
     section .grids{
@@ -522,7 +651,6 @@ legend {
  *
  */
  #filtrar-zona{
-    margin-top: 13vh;
     width: 100%;
     max-width: 800px;
     display: flex;
@@ -553,10 +681,7 @@ legend {
     margin-left: 10px;
     margin-right: 10px;
  }
- #resultado-busqueda{
-    padding: 10px;
-    display: flex;
- }
+
  #tarjetas-horizontales{
     display: flex;
  }
