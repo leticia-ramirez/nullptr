@@ -125,15 +125,15 @@ section .grids .hijo img{
     width: 90%;
     background-color: aliceblue;
 }
+
 .container-grids{
-    display: unset !important;
     display: grid !important;
     grid-template-columns: 2fr 2fr 2fr 2fr;
     grid-template-rows: auto;
     grid-template-areas: 
     'seccionCero seccionCero seccionCero seccionCero'
     'seccionUno seccionUno seccionUno seccionUno'
-    'seccionDos seccionDos seccionTres SeccionTres'
+    'seccionDos seccionDos seccionDos seccionDos'
     'seccionCuatro seccionCuatro seccionCuatro seccionCuatro'
     'seccionCinco seccionCinco seccionCinco seccionCinco'
     'FAQ FAQ FAQ FAQ'
@@ -144,6 +144,7 @@ section .grids .hijo img{
     align-content: space-around;
     justify-items: center;
     row-gap: 20px;
+    overflow-x: hidden;
 }
 
 .background-section-animated{
@@ -157,6 +158,7 @@ section .grids .hijo img{
     animation-timing-function: ease-in-out;
     animation-duration: 7s;
     background-color:aliceblue;
+    overflow: hidden;
 }
 
 @keyframes BackgroundColor {
@@ -177,27 +179,42 @@ section .grids .hijo img{
     }
 
 }
-.busqueda{
-    grid-area: seccionUno;
-    width: 100%;
-    align-self: center;
-    justify-self:stretch; 
-}
-.Reportes{
+.seccionBusqueda{
     grid-area: seccionDos;
-    width: 100% !important;
+    display: unset !important;
+    display: grid !important;
+    grid-template-areas: 
+    'busqueda busqueda busqueda busqueda'
+    'reportes reportes mapa mapa';
+    row-gap: 20px;
+    column-gap: 10px;
+    height: 100vh;
+    margin-left: 1%;
+    margin-right: 1%;
 }
-.mapa {
-    grid-area: seccionTres;
+.seccionBusqueda .busqueda{
+    grid-area: busqueda;
+}
+
+.seccionBusqueda .Reportes{
+    grid-area: reportes;
+    width: 100% !important;
+    overflow-y: scroll;
+}
+
+.seccionBusqueda .mapa{
+    grid-area: mapa;
 }
 .ReportesNovedades{
     grid-area: seccionCuatro;
 }
+
 .section-app {
     grid-area: seccionCinco;
 }
 .sectionFAQ{
     grid-area: FAQ;
+    width: 100%;
 }
 .footer{
     grid-area: Footer;
@@ -497,7 +514,8 @@ legend {
  */
 
 #content_jumbotron {
-    margin-top: 13vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     margin-left: 1vw;
     margin-right: 1vw;
     height: 335px;
@@ -663,7 +681,6 @@ legend {
     border-radius: 10px;
  }
  .listado-tarjetas{
-    max-width: 40%;
     margin-left: 10px;
  }
  .tarjetas{
