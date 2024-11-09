@@ -58,12 +58,53 @@
 
 
 <!-- BLOQUE DE FLASK -->
-
+<section>
     <div id="formulario-centrado">
         <h2>Contactanos</h2>
         <form action="" method="post" class="reporte">
             <div>
-                <p>Gracias por mostrar interes en querer contactarnos, por desgracia, para atender tu consulta, necesitamos que completes el siguiente formulario. Pronto nos pondremos en contacto contigo :)</p>
+                <p class="text-justify">Gracias por mostrar interes en querer contactarnos, por desgracia, para atender tu consulta, necesitamos que completes el siguiente formulario. Pronto nos pondremos en contacto contigo :)</p>
+            </div>
+            <fieldset>
+                <legend> Formulario de contacto </legend>
+                    <div class="seccion_contacto">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Escriba aqui ..." required>
+                    </div>
+                    <div class="seccion_contacto">
+                        <label for="correo">Mail</label>
+                        <input type="correo" name="correo" id="correo" placeholder="Escriba aqui ..." required>
+                    </div>
+                    <div class="seccion_contacto">
+                        <label for="telefono">Telefono</label>
+                        <input type="telefono" name="telefono" pattern="11[0-9]{8}" id="telefono" placeholder="Escriba aqui ..." required>
+                    </div>
+                    <div class="seccion_contacto">
+                        <label for="incidencia">Motivo de contacto</label>
+                        <select name="incidencia" id="incidencia" required>
+                            <option value="">Elegir opciones aqui ... </option>
+                            <option value="">Reporte mal cargado</option>
+                            <option value="">La aplicacion no funciona</option>
+                            <option value="">No puedo ver el mapa en mi zona</option>
+                            <option value="">Otros</option>
+                        </select>
+                    </div>
+                    <div class="seccion_contacto">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea rows="5" name="mensaje" id="mensaje" placeholder="Escriba aqui ... [opcional]" required></textarea>
+                    </div>
+            </fieldset>
+        <div id="seccion_submit">
+            <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
+        </div>
+        </form>
+    </div>
+</section>
+    <div id="formulario-centrado">
+        <h2>Contactanos</h2>
+        <form action="" method="post" class="reporte">
+            <div>
+                <p class="text-justify">Gracias por mostrar interes en querer contactarnos, por desgracia, para atender tu consulta, necesitamos que completes el siguiente formulario. Pronto nos pondremos en contacto contigo :)</p>
             </div>
             <fieldset>
                 <legend> Formulario de contacto </legend>
