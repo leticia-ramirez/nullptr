@@ -393,7 +393,7 @@ section .grids .hijo img{
     }
     
 }
-@media (min-width:382px) and (max-width:768px) {
+@media (min-width:382px) and (max-width:862px) {
     /* misReportes.html */
     section .grids{
         display: grid;
