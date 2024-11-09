@@ -183,6 +183,7 @@ section .grids .hijo img{
     grid-area: seccionDos;
     display: unset !important;
     display: grid !important;
+    grid-template-columns: 2fr 2fr;
     grid-template-areas: 
     'busqueda busqueda busqueda busqueda'
     'reportes reportes mapa mapa';
@@ -207,6 +208,7 @@ section .grids .hijo img{
 }
 .ReportesNovedades{
     grid-area: seccionCuatro;
+    margin-left: 1%;
 }
 
 .section-app {
@@ -260,7 +262,7 @@ section .grids .hijo img{
         color: rgb(255, 255, 255);
     }
 }
-@media (max-width:320px) {
+@media (max-width:412px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -320,8 +322,78 @@ section .grids .hijo img{
         align-items:center;
     
     }
+    .text{
+        font-size:40px;
+        font-weight:300;
+    }
+    .seccionBusqueda{
+        display: unset;
+        display: grid !important;
+        grid-template-columns: 2fr;
+        grid-row: auto;
+        grid-template-areas: 
+        'busqueda'
+        'mapa'
+        'reportes';
+        row-gap: 20px;
+        height: 120vh;
+        width: 100% !important;
+        margin-left: 2%;
+        margin-right: 2%;
+        justify-content: center;
+        justify-items: center;
+    }
+    .seccionBusqueda .busqueda{
+        grid-area: busqueda;
+        width: 50%;
+    }
+    
+    .seccionBusqueda .Reportes{
+        grid-area: reportes;
+        width: 100% !important;
+        overflow: hidden;
+    }
+    
+    .seccionBusqueda .mapa{
+        grid-area: mapa;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+    .seccionBusqueda .Reportes .listado-tarjetas{
+        grid-area: reportes;
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        padding-top: 40px;
+        padding-bottom: 60px;
+    }
+    .seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
+        padding-top: 40px;
+        padding-bottom: 60px;
+        width: 80% !important;
+        height: auto;
+    }
+    .seccionBusqueda .busqueda #filtrar-zona{
+        display: none !important;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 100% !important;
+    }
+
+    .seccionBusqueda .busqueda #filtrar-zona .filtrar-items{
+        width: 60%;
+    }
+    
 }
-@media (max-width:768px) {
+@media (min-width:382px) and (max-width:768px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -374,6 +446,83 @@ section .grids .hijo img{
         align-items:center;
     
     }
+    .text{
+        font-size:70px;
+        font-weight:400;
+    }
+    .seccionBusqueda{
+        display: unset;
+        display: grid !important;
+        grid-template-columns: 2fr 2fr 2fr 2fr;
+        grid-row: auto;
+        grid-template-areas: 
+        'busqueda busqueda busqueda busqueda'
+        'mapa mapa mapa mapa'
+        'reportes reportes reportes reportes';
+        row-gap: 20px;
+        height: auto;
+        margin-left: 2%;
+        margin-right: 2%;
+        justify-content: center;
+        justify-items: center;
+        width: 100% !important;
+    }
+    .seccionBusqueda .busqueda{
+        grid-area: busqueda;
+    }
+    .seccionBusqueda .busqueda #filtrar-zona{
+        display: none !important;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 100% !important;
+    }
+
+    .seccionBusqueda .busqueda #filtrar-zona .filtrar-items{
+        width: 60%;
+    }
+    
+    .seccionBusqueda .Reportes{
+        grid-area: reportes;
+        width: 100% !important;
+        overflow: hidden;
+    }
+    
+    .seccionBusqueda .mapa{
+        grid-area: mapa;
+        height: auto;
+        margin: auto !important;
+    }
+    .seccionBusqueda .Reportes .listado-tarjetas{
+        grid-area: reportes;
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        padding-top: 40px;
+        padding-bottom: 60px;
+        height: auto;
+    }
+    .section-app {
+        width: 95%;
+    }
+    .section-app div{
+        height: auto !important;
+        margin: auto;
+        padding-top: 5px;
+    }
+
+    .ReportesNovedades div #tarjetas-horizontales{
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .ReportesNovedades div #tarjetas-horizontales .tarjetas{
+        padding: 20px;
+        
+    }
 }
 
 @media (max-width: 1024px) {
@@ -419,7 +568,6 @@ section .grids .hijo img{
         width: 35%;
         padding-bottom: 30px;
     }
-    
     
   }
 
@@ -528,13 +676,6 @@ legend {
     border: 1px solid rgb(25, 135, 84);
     border-radius: 1.5%;
 }
-
-.imgicono {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .imgcelular {
     display: flex;
     justify-content: right;
