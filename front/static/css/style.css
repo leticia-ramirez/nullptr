@@ -262,7 +262,7 @@ section .grids .hijo img{
         color: rgb(255, 255, 255);
     }
 }
-@media (max-width:412px) {
+@media (max-width:480px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -329,23 +329,23 @@ section .grids .hijo img{
     .seccionBusqueda{
         display: unset;
         display: grid !important;
-        grid-template-columns: 2fr;
+        grid-template-columns: 2fr 2fr 2fr 2fr;
         grid-row: auto;
         grid-template-areas: 
-        'busqueda'
-        'mapa'
-        'reportes';
+        'busqueda busqueda busqueda busqueda'
+        'mapa mapa mapa mapa'
+        'reportes reportes reportes reportes';
         row-gap: 20px;
-        height: 120vh;
-        width: 100% !important;
+        height: auto;
         margin-left: 2%;
         margin-right: 2%;
         justify-content: center;
         justify-items: center;
+        width: 100% !important;
     }
     .seccionBusqueda .busqueda{
         grid-area: busqueda;
-        width: 50%;
+        width: 100%;
     }
     
     .seccionBusqueda .Reportes{
@@ -354,46 +354,73 @@ section .grids .hijo img{
         overflow: hidden;
     }
     
-    .seccionBusqueda .mapa{
+    .seccionBusqueda .mapa img{
         grid-area: mapa;
         margin: auto;
         padding-left: 20px;
         padding-right: 20px;
+        width: 100%;
 
     }
     .seccionBusqueda .Reportes .listado-tarjetas{
         grid-area: reportes;
-        width: 100% !important;
+        width: 280% !important;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        overflow-x: scroll;
         padding-top: 40px;
-        padding-bottom: 60px;
+        padding-bottom: 0px;
+        overflow-x: scroll;
     }
     .seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
         padding-top: 40px;
-        padding-bottom: 60px;
-        width: 80% !important;
+        padding-bottom: 0px;
         height: auto;
     }
     .seccionBusqueda .busqueda #filtrar-zona{
         display: none !important;
         display: flex !important;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 10px;
         align-items: center;
         justify-content: center;
-        width: 100% !important;
+        width: 100%;
     }
 
     .seccionBusqueda .busqueda #filtrar-zona .filtrar-items{
-        width: 60%;
+        width: 80%;
+    }
+    .ReportesNovedades div #tarjetas-horizontales{
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .ReportesNovedades div #tarjetas-horizontales .tarjetas{
+        padding: 30px;
+        margin-top: 10px;
+        
+    }
+    .section-app #content_jumbotron .rows{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column !important;
+        justify-items: center;
+        width: 90%;
+        margin: auto;
+        
+    }
+    .section-app {
+        width: 95%;
+    }
+    .section-app div{
+        height: auto !important;
+        margin: auto;
+        padding-top: 5px;
     }
     
 }
-@media (min-width:382px) and (max-width:862px) {
+@media (min-width:480px) and (max-width:862px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -512,6 +539,18 @@ section .grids .hijo img{
         height: auto !important;
         margin: auto;
         padding-top: 5px;
+    }
+
+    .section-app #content_jumbotron .rows{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        justify-items: center;
+        width: 90%;
+        margin: auto;
+        
     }
 
     .ReportesNovedades div #tarjetas-horizontales{
