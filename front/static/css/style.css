@@ -114,7 +114,175 @@ section .grids .hijo img{
     padding-right: 30px;
     width: fit-content;
 }
-@media (max-width:320px) {
+
+.accordion{
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 2% ;
+}
+
+.fondo{
+    width: 90%;
+    background-color: aliceblue;
+}
+
+.container-grids{
+    display: grid !important;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    'seccionCero seccionCero seccionCero seccionCero'
+    'seccionUno seccionUno seccionUno seccionUno'
+    'seccionDos seccionDos seccionDos seccionDos'
+    'seccionCuatro seccionCuatro seccionCuatro seccionCuatro'
+    'seccionCinco seccionCinco seccionCinco seccionCinco'
+    'FAQ FAQ FAQ FAQ'
+    'Footer Footer Footer Footer';
+    width: 100% !important;
+    gap: 0;
+    justify-content: center;
+    align-content: space-around;
+    justify-items: center;
+    row-gap: 20px;
+    overflow-x: hidden;
+}
+
+.background-section-animated{
+    grid-area: seccionCero;
+    width: 100%;
+    height: 100vh;
+    justify-self: flex-start;
+    align-self: center;
+    animation-name: BackgroundColor;
+    animation-iteration-count:initial;
+    animation-timing-function: ease-in-out;
+    animation-duration: 7s;
+    background-color:aliceblue;
+    overflow: hidden;
+}
+
+@keyframes BackgroundColor {
+    0%{
+        background-color: rgb(175, 34, 34);
+    }
+
+    25%{
+        background-color: rgb(218, 235, 250);
+    }
+
+    50%{
+        background-color: rgb(175, 34, 34);
+    }
+
+    100%{
+        background-color: aliceblue;
+    }
+
+}
+.seccionBusqueda{
+    grid-area: seccionDos;
+    display: unset !important;
+    display: grid !important;
+    grid-template-columns: 2fr 2fr;
+    grid-template-areas: 
+    'busqueda busqueda busqueda busqueda'
+    'reportes reportes mapa mapa';
+    row-gap: 20px;
+    column-gap: 10px;
+    height: 100vh;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.seccionBusqueda .busqueda{
+    grid-area: busqueda;
+}
+
+.seccionBusqueda .Reportes{
+    grid-area: reportes;
+    width: 100% !important;
+    overflow-y: scroll;
+}
+
+.seccionBusqueda .mapa{
+    grid-area: mapa;
+}
+.ReportesNovedades{
+    grid-area: seccionCuatro;
+    margin-left: 1%;
+}
+
+.section-app {
+    grid-area: seccionCinco;
+    width: 95%;
+}
+.sectionFAQ{
+    grid-area: FAQ;
+    width: 100%;
+}
+.footer{
+    grid-area: Footer;
+    width: 100% !important;
+}
+
+.text{
+    margin-top: 45vh;
+    font-size:100px;
+    font-weight:700;
+    animation-name: sic-sac;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-duration: 5s;
+    animation-delay: unset;
+    filter: drop-shadow(1px 1px 20px rgb(207, 188, 16));
+    color: rgb(235, 88, 88);
+}
+.section-app div{
+    height: auto;
+    margin: auto;
+    padding-top: 5px;
+}
+
+.section-app #content_jumbotron .rows{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    justify-items: center;
+    width: 90%;
+    
+}
+.margin{
+    margin-top: 7vh;
+    margin-left: 2vh;
+}
+
+
+@keyframes sic-sac {
+    0%{
+        transform: scale(1.1);
+        color: rgb(255, 255, 255);
+    }
+    25%{
+        transform: scale(0.98);
+        color: rgb(175, 34, 34);
+    }
+
+    50%{
+        transform: scale(1.1);
+        color: red;
+    }
+    75%{
+        transform: scale(0.98);
+        color: rgb(175, 34, 34);
+        transition: all 1s ease-in-out;
+    }
+    100%{
+        transform: scale(1.1);
+        color: rgb(255, 255, 255);
+    }
+}
+@media (max-width:480px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -174,8 +342,105 @@ section .grids .hijo img{
         align-items:center;
     
     }
+    .text{
+        font-size:40px;
+        font-weight:300;
+    }
+    .seccionBusqueda{
+        display: unset;
+        display: grid !important;
+        grid-template-columns: 2fr 2fr 2fr 2fr;
+        grid-row: auto;
+        grid-template-areas: 
+        'busqueda busqueda busqueda busqueda'
+        'mapa mapa mapa mapa'
+        'reportes reportes reportes reportes';
+        row-gap: 20px;
+        height: auto;
+        margin-left: 2%;
+        margin-right: 2%;
+        justify-content: center;
+        justify-items: center;
+        width: 100% !important;
+    }
+    .seccionBusqueda .busqueda{
+        grid-area: busqueda;
+        width: 100%;
+    }
+    
+    .seccionBusqueda .Reportes{
+        grid-area: reportes;
+        width: 100% !important;
+        overflow: hidden;
+    }
+    
+    .seccionBusqueda .mapa img{
+        grid-area: mapa;
+        margin: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+
+    }
+    .seccionBusqueda .Reportes .listado-tarjetas{
+        grid-area: reportes;
+        width: 280% !important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-top: 40px;
+        padding-bottom: 0px;
+        overflow-x: scroll;
+    }
+    .seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
+        padding-top: 40px;
+        padding-bottom: 0px;
+        height: auto;
+    }
+    .seccionBusqueda .busqueda #filtrar-zona{
+        display: none !important;
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .seccionBusqueda .busqueda #filtrar-zona .filtrar-items{
+        width: 80%;
+    }
+    .ReportesNovedades div #tarjetas-horizontales{
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .ReportesNovedades div #tarjetas-horizontales .tarjetas{
+        padding: 30px;
+        margin-top: 10px;
+        
+    }
+    .section-app #content_jumbotron .rows{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column !important;
+        justify-items: center;
+        width: 90%;
+        margin: auto;
+        
+    }
+    .section-app {
+        width: 95%;
+    }
+    .section-app div{
+        height: auto !important;
+        margin: auto;
+        padding-top: 5px;
+    }
+    
 }
-@media (max-width:768px) {
+@media (min-width:480px) and (max-width:862px) {
     /* misReportes.html */
     section .grids{
         display: grid;
@@ -206,8 +471,26 @@ section .grids .hijo img{
         padding-bottom: 20px;
         text-align: center;
     }
-    .footer .padding .footer-segunda{
-        padding-bottom: 20px;
+    .footer .padding .footer-segunda{.section-app {
+        width: 95%;
+    }
+    .section-app div{
+        height: auto !important;
+        margin: auto;
+        padding-top: 5px;
+    }
+
+    .section-app #content_jumbotron .rows{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        justify-items: center;
+        width: 90%;
+        margin: auto;
+        
+    }
 
     }
     
@@ -227,6 +510,96 @@ section .grids .hijo img{
         padding-right: 30px;
         align-items:center;
     
+    }
+    .text{
+        font-size:70px;
+        font-weight:400;
+    }
+    .seccionBusqueda{
+        display: unset;
+        display: grid !important;
+        grid-template-columns: 2fr 2fr 2fr 2fr;
+        grid-row: auto;
+        grid-template-areas: 
+        'busqueda busqueda busqueda busqueda'
+        'mapa mapa mapa mapa'
+        'reportes reportes reportes reportes';
+        row-gap: 20px;
+        height: auto;
+        margin-left: 2%;
+        margin-right: 2%;
+        justify-content: center;
+        justify-items: center;
+        width: 100% !important;
+    }
+    .seccionBusqueda .busqueda{
+        grid-area: busqueda;
+    }
+    .seccionBusqueda .busqueda #filtrar-zona{
+        display: none !important;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 100% !important;
+    }
+
+    .seccionBusqueda .busqueda #filtrar-zona .filtrar-items{
+        width: 60%;
+    }
+    
+    .seccionBusqueda .Reportes{
+        grid-area: reportes;
+        width: 100% !important;
+        overflow: hidden;
+    }
+    
+    .seccionBusqueda .mapa{
+        grid-area: mapa;
+        height: auto;
+        margin: auto !important;
+    }
+    .seccionBusqueda .Reportes .listado-tarjetas{
+        grid-area: reportes;
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        padding-top: 40px;
+        padding-bottom: 60px;
+        height: auto;
+    }
+    .section-app {
+        width: 95%;
+    }
+    .section-app div{
+        height: auto !important;
+        margin: auto;
+        padding-top: 5px;
+    }
+
+    .section-app #content_jumbotron .rows{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        justify-items: center;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    .ReportesNovedades div #tarjetas-horizontales{
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .ReportesNovedades div #tarjetas-horizontales .tarjetas{
+        padding: 20px;
+        
     }
 }
 
@@ -274,7 +647,6 @@ section .grids .hijo img{
         padding-bottom: 30px;
     }
     
-    
   }
 
 /* Le añadi un hover a los botones del footer */
@@ -296,9 +668,10 @@ footer .padding .footer-primera a:hover, footer .padding .footer-segunda a:hover
 
 #content {
     margin-top: 10vh;
-    margin-left: 10vw;
+    margin-left: auto;
+    margin-right: auto;
     min-width: 30%;
-    max-width: 600px;
+    max-width: 90%;
     align-self: flex-start;
     background-color: white;
     border: 1px solid rgb(25, 135, 84);
@@ -368,22 +741,38 @@ legend {
  */
 
 #content_jumbotron {
-    margin-top: 13vh;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    height: 300px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    height: 335px;
     min-width: 30%;
-    max-width: 96%;
+    max-width: 100%;
     width: 990px;
+    display: flex;
     align-self: center;
     background-color: white;
     border: 1px solid rgb(25, 135, 84);
     border-radius: 1.5%;
 }
-
-.imgicono {
-    margin-top: 2vh;
+.imgcelular {
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
+
+.imgderecha {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.imgizq {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
 
 .instrucciones {
     background-color: rgba(130, 130, 130, 0.2);
@@ -406,7 +795,7 @@ legend {
 
 #formulario-centrado {
     margin-top: 10vh;
-    width: 100%;
+    width: 90%;
     max-width: 800px;
     background-color: white;
     border: 1px solid rgb(25, 135, 84);
@@ -492,3 +881,56 @@ legend {
     background-color: rgb(25, 135, 84);
 }
 
+/*
+ *
+ *
+ * CSS para home.html
+ *
+ *
+ */
+ #filtrar-zona{
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ .filtrar-items{
+    margin-right: 10px;
+    border-radius: 10px;
+ }
+ .listado-tarjetas{
+    margin-left: 10px;
+ }
+ .tarjetas{
+    margin-bottom: 10px;
+    background-color: aliceblue;
+    border: 2px;
+    border-color: gray;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+ }
+ .margin-10{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+ }
+
+ #tarjetas-horizontales{
+    display: flex;
+ }
+ #preg-frecuentes{
+    text-align: center;    
+ }
+#slt-preg-frec{
+    width: 70%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.btn-int{
+    border-radius: 10px;
+    border: 2px solid #ddd;
+}
