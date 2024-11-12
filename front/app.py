@@ -14,9 +14,9 @@ def reporte():
 def mreporte():
     return render_template("MisReportes.html")
 
-@app.route("/app")
+@app.route("/download")
 def descarga():
-    return render_template("/descarga.html")
+    return render_template("/download.html")
 
 @app.route("/contacto")
 def contacto():
