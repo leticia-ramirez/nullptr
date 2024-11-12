@@ -126,29 +126,7 @@ section .grids .hijo img{
     background-color: aliceblue;
 }
 
-.container-grids{
-    display: grid !important;
-    grid-template-columns: 2fr 2fr 2fr 2fr;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    'seccionCero seccionCero seccionCero seccionCero'
-    'seccionUno seccionUno seccionUno seccionUno'
-    'seccionDos seccionDos seccionDos seccionDos'
-    'seccionCuatro seccionCuatro seccionCuatro seccionCuatro'
-    'seccionCinco seccionCinco seccionCinco seccionCinco'
-    'FAQ FAQ FAQ FAQ'
-    'Footer Footer Footer Footer';
-    width: 100% !important;
-    gap: 0;
-    justify-content: center;
-    align-content: space-around;
-    justify-items: center;
-    row-gap: 20px;
-    overflow-x: hidden;
-}
-
 .background-section-animated{
-    grid-area: seccionCero;
     width: 100%;
     height: 100vh;
     justify-self: flex-start;
@@ -180,7 +158,6 @@ section .grids .hijo img{
 
 }
 .seccionBusqueda{
-    grid-area: seccionDos;
     display: unset !important;
     display: grid !important;
     grid-template-columns: 2fr 2fr;
@@ -207,20 +184,16 @@ section .grids .hijo img{
     grid-area: mapa;
 }
 .ReportesNovedades{
-    grid-area: seccionCuatro;
     margin-left: 1%;
 }
 
 .section-app {
-    grid-area: seccionCinco;
     width: 95%;
 }
 .sectionFAQ{
-    grid-area: FAQ;
     width: 100%;
 }
 .footer{
-    grid-area: Footer;
     width: 100% !important;
 }
 
