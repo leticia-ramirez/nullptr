@@ -907,3 +907,8 @@ legend {
     border-radius: 10px;
     border: 2px solid #ddd;
 }
+
+#mapa {
+    height: 500px;
+    width: 100%;
+}
