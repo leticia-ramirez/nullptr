@@ -61,13 +61,14 @@
             </div>
         </div>
     </div>
-    <div class="mapa" id="mapa">
-        <!-- <img src="{{url_for('static', filename='img/mapa_api.jpeg')}}" alt="api-foto"> -->
-        <script src="{{url_for('static', filename='js/script_mapa.js')}}"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciar_mapa"></script>
-    </div>
 </section>
 
+<section class="mapa-seccion">
+    <div class="map" id="map"></div>
+</section>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciar_mapa" async defer></script>
+<script src="{{ url_for('static', filename='js/script_mapa.js') }}"></script>
 
 <!-- PASAR A BLOQUE PARA REUTILIZAR -->
 <section class="ReportesNovedades">
