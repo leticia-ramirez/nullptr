@@ -31,7 +31,7 @@ CREATE TABLE reportes (
     ID_usuario INT,
     PRIMARY KEY (ID_reporte),
     FOREIGN KEY (ID_incidente) REFERENCES incidentes(ID_incidente),
-    FOREIGN KEY (ID_usario) REFERENCES usuarios(ID_usuario)
+    FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_usuario)
 );
 
 
