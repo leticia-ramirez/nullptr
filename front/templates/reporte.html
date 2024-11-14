@@ -4,7 +4,7 @@
 
 <div id="content">
 <h2>Nuevo Reporte</h2>
-<form action="" method="post" class="reporte">
+<form action="{{url_for('reporte')}}" method="post" class="reporte">
     <fieldset><legend>Contacto</legend>
     <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
     <div class="seccion_reporte"><label for="email">Mail</label><input type="email" name="email" id="email" required></div>
@@ -13,18 +13,20 @@
     <fieldset><legend>Reporte</legend>
     <div class="seccion_reporte"><label for="ciudad">Ciudad</label><select name="ciudad" id="ciudad" required>
             <option value="">Eliga una ciudad. </option>
+            <option value="CABA">CABA</option>
         </select></div>
     <div class="seccion_reporte"><label for="localidad">Localidad</label><select name="localidad" id="localidad" required>
             <option value="">Eliga una localidad. </option>
+            <option value="San Telmo">San Telmo</option>
         </select></div>
     <!-- Las ciudades y localidades disponibles hay que hardcorearlas o 
  pasarlas como parametro usando flask, por ahora lo deje vacio. -->
     <div class="seccion_reporte"><label for="incidencia">Tipo de incidencia</label><select name="incidencia" id="incidencia" required>
             <option value="">Eliga un tipo de incidente.</option>
-            <option value="">Robo</option>
-            <option value="">Secuestro</option>
-            <option value="">Violencia</option>
-            <option value="">Asesinato</option>
+            <option value="robo">Robo</option>
+            <option value="secuestro">Secuestro</option>
+            <option value="violencia">Violencia</option>
+            <option value="homicidio">Asesinato</option>
         </select></div>
     <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
     <div class="seccion_reporte"><label for="direccion">Direccion del reporte</label><input type="text" name="direccion" id="direccion" required></div>

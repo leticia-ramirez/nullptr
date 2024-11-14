@@ -7,30 +7,31 @@
     <h1 class="text-center text">ZonaRoja</h1>
 </section>
 <section class="seccionBusqueda">
-    <div class="busqueda">
+    <form action="{{url_for('home')}}" method="post" class="busqueda">
         <div id="filtrar-zona">
-            <select class="filtrar-items">
+            <select class="filtrar-items" name="provincia">
                 <option disabled selected>Provincia</option>
-                <option>Provincia 1</option>
-                <option>Provincia 2</option>
-                <option>Provincia 3</option>
+                <option value = "provincia1">Provincia 1</option>
+                <option value = "provincia2">Provincia 2</option>
+                <option value = "provincia3">Provincia 3</option>
             </select>
-            <select class="filtrar-items">
-                <option disabled selected>Comuna</option>
-                <option>Comuna 1</option>
-                <option>Comuna 2</option>
-                <option>Comuna 3</option>
+            <select class="filtrar-items" name="localidad">
+                <option disabled selected>Localidad</option>
+                <option value = "localidad1">Localidad 1</option>
+                <option value = "localidad2">Localidad 2</option>
+                <option value = "localidad3">Localidad 3</option>
             </select>
-            <select class="filtrar-items">
+            <select class="filtrar-items" name="incidencia">
                 <option disabled selected>Tipo de incidente</option>
-                <option>Tipo 1</option>
-                <option>Tipo 2</option>
-                <option>Tipo 3</option>
+                <option value="robo">Robo</option>
+                <option value="secuestro">Secuestro</option>
+                <option value="violencia">Violencia</option>
+                <option value="homicidio">Asesinato</option>
             </select>
             <input class="filtrar-items" type="search" placeholder="Palabra clave">
-            <button class="btn btn-outline-success borde-size" type="submit">Buscar</button>
+            <input class="btn btn-outline-success borde-size" type="submit">Buscar</input>
         </div>
-    </div>
+    </form>
 
     <!-- PASAR A BLOQUE PARA REUTILIZAR -->
     <div class="Reportes">
