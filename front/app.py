@@ -67,8 +67,8 @@ def reportes():
         response.append({'ID': row[0], 'ubicacion': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'id_user': row[5]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/<int:ID>', methods=['GET'])   #Endpoint: /reportes/porID
-def reporte(ID):    #metodo reporte
+@app.route('/api/v1/reportes/id/<int:ID>', methods=['GET'])   #Endpoint: /reportes/porID
+def reporte_ID(ID):    #metodo reporte_ID
     try:
         conn = Session()
         result = conn.execute(text(QUERY_REPORTE), {'ID': ID}).fetchall()
@@ -83,7 +83,7 @@ def reporte(ID):    #metodo reporte
     result = result[0]
     return jsonify({'ID': result[0], 'ubicacion': result[1], 'descripcion': result[2], 'tipo_reporte': result[3], 'fecha_reporte': result[4], 'id_user': result[5]}), 200
 
-@app.route('/api/v1/reportes/<fecha_reporte>', methods=['GET'])   #Endpoint: /reportes/porFecha
+@app.route('/api/v1/reportes/fecha/<fecha_reporte>', methods=['GET'])   #Endpoint: /reportes/porFecha
 def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
     try:
         conn = Session()
@@ -99,7 +99,7 @@ def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
     result = result[0]
     return jsonify({'ID': result[0], 'ubicacion': result[1], 'descripcion': result[2], 'tipo_reporte': result[3], 'fecha_reporte': result[4], 'id_user': result[5]}), 200
 
-@app.route('/api/v1/reportes/<tipo_reporte>', methods=['GET'])   #Endpoint: /reportes/porTipoDeReporte
+@app.route('/api/v1/reportes/tipo/<tipo_reporte>', methods=['GET'])   #Endpoint: /reportes/porTipoDeReporte
 def reporte_tipo(tipo_reporte):    #metodo reporte_tipo
     try:
         conn = Session()
