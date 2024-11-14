@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, jsonify
+from flask import Flask, render_template, request, redirect, jsonify, url_for
 import requests
 
 app = Flask(__name__)
@@ -49,12 +49,24 @@ def mreporte():
     try:
         response = requests.get(API_URL+'reportes')
         response.raise_for_status()
-        datos = response.json()
+        reportes = response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
-        datos = []
+        reportes = []
 
-        return render_template("MisReportes.html", datos = datos)
+    return render_template("MisReportes.html", reportes = reportes)
+
+
+@app.route("/elimacion/<int:id>")
+def eliminar_reporte(id):
+    try:
+        response = requests.delete(API_URL+'reportes/'+str(id))
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+    return redirect(url_for("mreporte"))
+
+
 
 @app.route("/misreportes/<id>")
 def mreporte_id(id):

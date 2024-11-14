@@ -4,131 +4,24 @@
 <section class="padding-top-bottom">
     <h6 class="text-center">Reportes</h6>
     <div class="grids">
+        {% for reporte in reportes %}
         <div class="d-flex hijo">
             <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
             
                 <div>
-                    <h6>Tipo incidente</h6>
-                    <p>direccion: </p>
-                    <p>horario estimado: </p>
-                    <p class="text-justify">descripcion: </p>
+                    <h6>Tipo incidente: {{reporte.tipo_reporte}}</h6>
+                    <p>direccion: {{reporte.ubicacion}}</p>
+                    <p>horario estimado: {{reporte.fecha_reporte}}</p>
+                    <p class="text-justify">descripcion: {{reporte.descripcion}}</p>
                     <div class="flex-inline">
                         <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                        <button class="btn btn-danger borde-size" type="submit">Eliminar</button>    
+                        <button class="btn btn-danger borde-size" type="submit"><a href="{{ url_for('eliminar_reporte',id=reporte.ID,_external=True) }}">Eliminar</a></button>    
     
                     </div>
                 </div>
 
         </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-        </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-        </div>
-        <div class="d-flex hijo">
-            <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
-
-            <div>
-                <h6>Tipo incidente</h6>
-                <p>direccion: </p>
-                <p>horario estimado: </p>
-                <p>descripcion: </p>
-                <div class="flex-inline">
-                    <button class="btn btn-success borde-size" type="submit">Modificar</button>
-                    <button class="btn btn-danger borde-size" type="submit">Eliminar</button>
-
-                </div>
-            </div>
-        </div>
+        {% endfor %}
 
     </div>
 </section>
