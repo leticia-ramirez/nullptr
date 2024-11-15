@@ -195,9 +195,9 @@ def usuarios():
         return jsonify({'error': str(e)}), 500
     conn.close()
 
-    response = []
+    response=[]
     for row in result:
-        response.append({'nombre_usuario': row[0], 'nombre': row[1], 'apellido': row[2], 'email': row[3], 'telefono': row[4], 'ID_usuario': row[5]})
+        response.append({'ID_usuario': row[0],'nombre_usuario': row[1], 'nombre': row[2], 'apellido': row[3], 'email': row[4], 'telefono': row[5]})
     return jsonify(response), 200
 
 
@@ -214,15 +214,15 @@ def usuario(ID_usuario):    #metodo usuario
     if not result:
         return jsonify({'message': f"No se puede encontrar el usuario con ID {ID_usuario}"}), 404
     
-    result = result[0]
-    return jsonify({'nombre_usuario': result[0], 'nombre': result[1], 'apellido': result[2], 'email': result[3], 'telefono': result[4], 'ID_usuario': result[5]}), 200
-
+    response=[]
+    for row in result:
+        response.append({'ID_usuario': row[0],'nombre_usuario': row[1], 'nombre': row[2], 'apellido': row[3], 'email': row[4], 'telefono': row[5]})
+    return jsonify(response), 200
 
 @app.route('/api/v1/usuarios', methods=['POST'])   #Endpoint: /usuarios
 def ingresar_usuario():    #metodo ingresar
     nuevo_usuario = request.get_json()
-
-    keys = ('ID_usuario', 'nombre_usuario', 'nombre', 'apellido' 'email', 'telefono')
+    keys = ('ID_usuario', 'nombre_usuario', 'nombre', 'apellido', 'email', 'telefono')
     for key in keys:
         if key not in nuevo_usuario:
             return jsonify({'message': f"Falta el dato {key}"}), 400
