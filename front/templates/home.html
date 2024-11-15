@@ -29,7 +29,7 @@
                 <option value="homicidio">Asesinato</option>
             </select>
             <input class="filtrar-items" type="search" placeholder="Palabra clave">
-            <input class="btn btn-outline-success borde-size" type="submit">Buscar</input>
+            <button class="btn btn-outline-success borde-size" type="submit">Buscar</button>
         </div>
     </form>
 
@@ -62,14 +62,10 @@
             </div>
         </div>
     </div>
+    <div class="mapa-section">
+        <div class="map" id="map"></div>
+    </div>
 </section>
-
-<section class="mapa-seccion">
-    <div class="map" id="map"></div>
-</section>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciar_mapa" async defer></script>
-<script src="{{ url_for('static', filename='js/script_mapa.js') }}"></script>
 
 <!-- PASAR A BLOQUE PARA REUTILIZAR -->
 <section class="ReportesNovedades">

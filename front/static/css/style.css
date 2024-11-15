@@ -161,17 +161,20 @@ section .grids .hijo img{
     display: unset !important;
     display: grid !important;
     grid-template-columns: 2fr 2fr;
+    grid-template-rows: auto;
     grid-template-areas: 
-    'busqueda busqueda busqueda busqueda'
-    'reportes reportes mapa mapa';
+    'busqueda busqueda'
+    'mapa mapa'
+    'reportes reportes'
+    ;
     row-gap: 20px;
-    column-gap: 10px;
-    height: 100vh;
     margin-left: 1%;
     margin-right: 1%;
 }
 .seccionBusqueda .busqueda{
     grid-area: busqueda;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .seccionBusqueda .Reportes{
@@ -180,16 +183,42 @@ section .grids .hijo img{
     overflow-y: scroll;
 }
 
-.seccionBusqueda .mapa{
+.seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
+    border: 2px solid rgb(118, 163, 202);
+}
+
+.seccionBusqueda .mapa-section {
     grid-area: mapa;
 }
+.seccionBusqueda .mapa-section #map {
+    height: 500px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .ReportesNovedades{
     margin-left: 1%;
 }
 
+.ReportesNovedades div #tarjetas-horizontales .tarjetas{
+    border: 2px solid rgb(118, 163, 202);
+}
+
+.ReportesNovedades div #tarjetas-horizontales{
+    margin-top: 20px;
+}
+
 .section-app {
     width: 95%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.section-app #content_jumbotron {
+    padding-left: 5%;
+}
+
 .sectionFAQ{
     width: 100%;
 }
@@ -319,57 +348,7 @@ section .grids .hijo img{
         font-size:40px;
         font-weight:300;
     }
-    .seccionBusqueda{
-        display: unset;
-        display: grid !important;
-        grid-template-columns: 2fr 2fr 2fr 2fr;
-        grid-row: auto;
-        grid-template-areas: 
-        'busqueda busqueda busqueda busqueda'
-        'mapa mapa mapa mapa'
-        'reportes reportes reportes reportes';
-        row-gap: 20px;
-        height: auto;
-        margin-left: 2%;
-        margin-right: 2%;
-        justify-content: center;
-        justify-items: center;
-        width: 100% !important;
-    }
-    .seccionBusqueda .busqueda{
-        grid-area: busqueda;
-        width: 100%;
-    }
     
-    .seccionBusqueda .Reportes{
-        grid-area: reportes;
-        width: 100% !important;
-        overflow: hidden;
-    }
-    
-    .seccionBusqueda .mapa img{
-        grid-area: mapa;
-        margin: auto;
-        padding-left: 20px;
-        padding-right: 20px;
-        width: 100%;
-
-    }
-    .seccionBusqueda .Reportes .listado-tarjetas{
-        grid-area: reportes;
-        width: 280% !important;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        padding-top: 40px;
-        padding-bottom: 0px;
-        overflow-x: scroll;
-    }
-    .seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
-        padding-top: 40px;
-        padding-bottom: 0px;
-        height: auto;
-    }
     .seccionBusqueda .busqueda #filtrar-zona{
         display: none !important;
         display: flex !important;
@@ -410,6 +389,11 @@ section .grids .hijo img{
         height: auto !important;
         margin: auto;
         padding-top: 5px;
+    }
+    .seccionBusqueda .Reportes{
+        grid-area: reportes;
+        width: 100% !important;
+        overflow-y: hidden;
     }
     
 }
@@ -488,26 +472,7 @@ section .grids .hijo img{
         font-size:70px;
         font-weight:400;
     }
-    .seccionBusqueda{
-        display: unset;
-        display: grid !important;
-        grid-template-columns: 2fr 2fr 2fr 2fr;
-        grid-row: auto;
-        grid-template-areas: 
-        'busqueda busqueda busqueda busqueda'
-        'mapa mapa mapa mapa'
-        'reportes reportes reportes reportes';
-        row-gap: 20px;
-        height: auto;
-        margin-left: 2%;
-        margin-right: 2%;
-        justify-content: center;
-        justify-items: center;
-        width: 100% !important;
-    }
-    .seccionBusqueda .busqueda{
-        grid-area: busqueda;
-    }
+
     .seccionBusqueda .busqueda #filtrar-zona{
         display: none !important;
         display: flex !important;
@@ -523,26 +488,6 @@ section .grids .hijo img{
         width: 60%;
     }
     
-    .seccionBusqueda .Reportes{
-        grid-area: reportes;
-        width: 100% !important;
-        overflow: hidden;
-    }
-    
-    .seccionBusqueda .mapa{
-        grid-area: mapa;
-        height: auto;
-        margin: auto !important;
-    }
-    .seccionBusqueda .Reportes .listado-tarjetas{
-        grid-area: reportes;
-        width: 100% !important;
-        display: flex;
-        flex-direction: row;
-        padding-top: 40px;
-        padding-bottom: 60px;
-        height: auto;
-    }
     .section-app {
         width: 95%;
     }
@@ -575,7 +520,6 @@ section .grids .hijo img{
         
     }
 }
-
 @media (max-width: 1024px) {
     /* base.html */
     .justify-content-end{
@@ -621,6 +565,9 @@ section .grids .hijo img{
     }
     
   }
+
+
+
 
 /* Le añadi un hover a los botones del footer */
 
@@ -906,9 +853,4 @@ legend {
 .btn-int{
     border-radius: 10px;
     border: 2px solid #ddd;
-}
-
-#map {
-    height: 500px;
-    width: 100%;
 }
