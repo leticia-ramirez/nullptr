@@ -4,13 +4,14 @@
 <section class="padding-top-bottom">
     <h6 class="text-center">Reportes</h6>
     <div class="grids">
+        
         {% for reporte in reportes %}
         <div class="d-flex hijo">
             <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
             
                 <div>
                     <h6>Tipo incidente: {{reporte.tipo_reporte}}</h6>
-                    <p>direccion: {{reporte.ubicacion}}</p>
+                    <p>direccion: {{reporte.direccion_reporte}}</p>
                     <p>horario estimado: {{reporte.fecha_reporte}}</p>
                     <p class="text-justify">descripcion: {{reporte.descripcion}}</p>
                     <div class="flex-inline">
@@ -22,6 +23,7 @@
 
         </div>
         {% endfor %}
+        
 
     </div>
 </section>

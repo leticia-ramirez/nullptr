@@ -11,6 +11,15 @@ FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario"""
 
+QUERY_TODOS_LOS_REPORTES = """
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+FROM reportes R
+INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
+INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
+ORDER BY R.fecha_reporte ASC
+LIMIT 3
+"""
+
 QUERY_REPORTE = """
 SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
 FROM reportes R
@@ -50,7 +59,7 @@ QUERY_ACTUALIZAR_USUARIO = "UPDATE usuarios SET nombre_usuario = :nombre_usuario
 QUERY_ELIMINAR_USUARIO = "DELETE FROM usuarios WHERE ID_usuario = :ID_usuario"
 
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
-engine = create_engine("mysql+mysqlconnector://root:root@localhost:3306/TP_IDS")
+engine = create_engine("mysql://root:root@localhost:3306/TP_IDS")
 
 Session = scoped_session(sessionmaker(bind=engine)) #para empezar a tomar consultas
 
@@ -60,6 +69,20 @@ app = Flask(__name__)
 #ENDPOINTS REPORTES
 @app.route('/api/v1/reportes', methods=['GET'])     #Endpoint: /reportes
 def reportes():
+    try: 
+        conn = Session()
+        result = conn.execute(text(QUERY_TODOS_LOS_REPORTES)).fetchall()
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    conn.close()
+
+    response = []
+    for row in result:
+        response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
+    return jsonify(response), 200
+
+@app.route('/api/v1/reportesNovedades', methods=['GET'])     #Endpoint: /reportes
+def reportesNovedades():
     try: 
         conn = Session()
         result = conn.execute(text(QUERY_TODOS_LOS_REPORTES)).fetchall()

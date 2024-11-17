@@ -72,30 +72,16 @@
     <div>
         <h3 class="text-center">Reportes y novedades</h3><!-- EN EL FUTURO SUMAR CAROUSEL -->
         <div id="tarjetas-horizontales">
+
+        {% for reporte in reportes %}
             <div class="tarjetas">
-                <h5>Incidencia 1</h5>
-                <p>Dirección: Julian Alvarez 912</p>
-                <p>Horario estimado: 18:12</p>
-                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <h5>Incidencia: {{reporte.tipo_reporte}}</h5>
+                <p>Fecha de reporte: {{reporte.fecha_reporte}}</p>
+                <p>Dirección: {{reporte.direccion_reporte}}</p>
+                <p>Descripción: {{reporte.descripcion}}</p>
                 <button class="btn btn-outline-success borde-size">Mas información</button>
             </div>
-            <div class="tarjetas">
-                <h5>Incidencia 2</h5>
-                <p>Dirección: Julian Alvarez 912</p>
-                <p>Horario estimado: 18:12</p>
-                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                <button class="btn btn-outline-success borde-size">Mas información</button>
-            </div>
-            <div class="tarjetas">
-                <h5>Incidencia 3</h5>
-                <p>Dirección: Julian Alvarez 912</p>
-                <p>Horario estimado: 18:12</p>
-                <p>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                <button class="btn btn-outline-success borde-size">Mas información</button>
-            </div>
+        {% endfor %}
         </div>
     </div>
 </section>
