@@ -61,6 +61,26 @@ def mreporte():
 
     return render_template("MisReportes.html", reportes = reportes)
 
+@app.route('/modificar/<int:id>', methods=['GET','POST'])
+def modificar(id):
+    datos= requests.get(API_URL+'reportes/id/'+str(id)).json()
+    if request.method == "POST":
+        data = {
+            "ID_reporte" : request.form.get('id_reporte'),
+            "ID_usuario": request.form.get('id_usuario'),
+            "direccion_reporte": request.form.get("direccion_reporte"),
+            "descripcion" : request.form.get("descripcion"),
+            "tipo_reporte" : request.form.get("tipo_reporte"),
+            "fecha_reporte" : request.form.get("fecha_reporte")
+        }
+        try:
+            response = requests.put(API_URL+'reportes/'+str(id), data = data)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f"Error pushing data: {e}")
+
+            return render_template("modificar.html", datos=datos[0])
+    return render_template('modificar.html', datos=datos[0])
 
 @app.route("/elimacion/<int:id>")
 def eliminar_reporte(id):
@@ -70,8 +90,6 @@ def eliminar_reporte(id):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
     return redirect(url_for("mreporte"))
-
-
 
 @app.route("/misreportes/<id>")
 def mreporte_id(id):

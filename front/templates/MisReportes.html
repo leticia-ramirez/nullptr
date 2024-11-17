@@ -15,7 +15,7 @@
                     <p>horario estimado: {{reporte.fecha_reporte}}</p>
                     <p class="text-justify">descripcion: {{reporte.descripcion}}</p>
                     <div class="flex-inline">
-                        <button class="btn btn-success borde-size" type="submit">Modificar</button>
+                        <button class="btn btn-success borde-size" type="submit"><a href="{{ url_for('modificar',id=reporte.ID,_external=True) }}">Modificar</a></button>
                         <button class="btn btn-danger borde-size" type="submit"><a href="{{ url_for('eliminar_reporte',id=reporte.ID,_external=True) }}">Eliminar</a></button>    
     
                     </div>

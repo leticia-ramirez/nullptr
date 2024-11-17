@@ -11,7 +11,14 @@ FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario"""
 
-QUERY_TODOS_LOS_REPORTES = """
+QUERY_TODOS_LOS_REPORTES_BY_ID="""
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+FROM reportes R
+INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
+INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
+WHERE R.ID_reporte= :ID_reporte"""
+
+QUERY_TODOS_LOS_REPORTESNOVEDADES = """
 SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
@@ -43,8 +50,18 @@ WHERE I.tipo_reporte = :tipo_reporte """
 
 QUERY_INGRESAR_REPORTE = "INSERT INTO reportes (ID_reporte, direccion_reporte, descripcion, tipo_reporte, fecha_reporte, ID_usuario) VALUES (:ID_reporte, :direccion_reporte, :descripcion, :tipo_reporte, :fecha_reporte, :ID_usuario)"
 
-QUERY_ACTUALIZAR_REPORTE = "UPDATE reportes SET ID_reporte = :ID_reporte, direccion_reporte = :direccion_reporte, descripcion = :descripcion, tipo_reporte = :tipo_reporte, fecha_reporte = :fecha_reporte, ID_usuario = :ID_usuario WHERE ID_reporte = :ID_reporte"
-
+QUERY_ACTUALIZAR_REPORTE = """
+UPDATE reportes R
+INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
+SET
+R.ID_reporte = :ID_reporte, 
+R.fecha_reporte = :fecha_reporte, 
+R.ID_usuario = :ID_usuario ,
+I.direccion_reporte = :direccion_reporte,
+I.descripcion = :descripcion, 
+I.tipo_reporte = :tipo_reporte
+WHERE R.ID_reporte = :ID_reporte
+"""
 QUERY_ELIMINAR_REPORTE = "DELETE FROM reportes WHERE ID_reporte = :ID_reporte"
 
 #QUERY USUARIOS
@@ -59,7 +76,7 @@ QUERY_ACTUALIZAR_USUARIO = "UPDATE usuarios SET nombre_usuario = :nombre_usuario
 QUERY_ELIMINAR_USUARIO = "DELETE FROM usuarios WHERE ID_usuario = :ID_usuario"
 
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
-engine = create_engine("mysql://root:root@localhost:3306/TP_IDS")
+engine = create_engine("mysql+mysqlconnector://root:tupassword@localhost:3306/TP_IDS")
 
 Session = scoped_session(sessionmaker(bind=engine)) #para empezar a tomar consultas
 
@@ -81,11 +98,11 @@ def reportes():
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportesNovedades', methods=['GET'])     #Endpoint: /reportes
+@app.route('/api/v1/reportesNovedades', methods=['GET'])     #Endpoint: /reportes Novedades
 def reportesNovedades():
     try: 
         conn = Session()
-        result = conn.execute(text(QUERY_TODOS_LOS_REPORTES)).fetchall()
+        result = conn.execute(text(QUERY_TODOS_LOS_REPORTESNOVEDADES)).fetchall()
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     conn.close()
@@ -95,22 +112,20 @@ def reportesNovedades():
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/ID/<int:ID>', methods=['GET'])   #Endpoint: /reportes/porID
-def reporte_ID(ID):    #metodo reporte_ID
-    try:
+@app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['GET'])   #Endpoint: /reportes/porID
+def reporte_ID(ID_reporte):    #metodo reporte_ID
+    try: 
         conn = Session()
-        result = conn.execute(text(QUERY_REPORTE), {'ID': ID}).fetchall()
+        result = conn.execute(text(QUERY_TODOS_LOS_REPORTES_BY_ID), {'ID_reporte':ID_reporte}).fetchall()
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
     conn.close()
 
-    if len(result) == 0:
-        return jsonify({'message': f"No se encontró el reporte nro {ID}"}), 404
+    response = []
+    for row in result:
+        response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
+    return jsonify(response), 200
     
-    result = result[0]
-    return jsonify({'ID': result[0], 'direccion_reporte': result[1], 'descripcion': result[2], 'tipo_reporte': result[3], 'fecha_reporte': result[4], 'ID_usuario': result[5]}), 200
-
 @app.route('/api/v1/reportes/fecha/<fecha_reporte>', methods=['GET'])   #Endpoint: /reportes/porFecha
 def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
     try:
@@ -172,16 +187,16 @@ def ingresar_reporte():    #metodo ingresar
 def actualizar_reporte(ID_reporte):    #metodo actualizar
     data = request.get_json()
 
-    keys = ('ID_reporte', 'direccion_reporte', 'descripcion', 'tipo_reporte', 'fecha_reporte', 'ID_usuario')
+    keys = ('ID', 'ID_usuario', 'descripcion', 'direccion_reporte', 'fecha_reporte', 'tipo_reporte')
     for key in keys:
         if key not in data:
             return jsonify({'message': f"Falta el dato {key}"}), 400
 
     try:
         conn = Session()
-        result = conn.execute(text(QUERY_REPORTE), {'ID_report': ID_reporte}).fetchall()
+        result = conn.execute(text(QUERY_REPORTE), {'ID_reporte': ID_reporte}).fetchall()
         if not result:
-            return jsonify({'error': 'No se encontro el reporte'}), 400
+            return jsonify({'error': 'No se encontro el usuario'}), 400
         conn.execute(text(QUERY_ACTUALIZAR_REPORTE), params={'ID_reporte': ID_reporte, **data})
         conn.commit()
     except Exception as e:

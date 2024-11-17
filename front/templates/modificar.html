@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block tab %}Reporte{% endblock %}
+{% block body %}
+
+<div id="content">
+<h2>Nuevo Reporte</h2>
+<form action="{{url_for('modificar', id= datos.ID)}}" method="post" class="reporte">
+    <fieldset><legend>Reporte</legend>
+    <div class="seccion_reporte">
+        <label for="id_reporte">ID Reporte</label>
+        <input type="text" name="id_reporte" id="id_reporte" value="{{datos.ID}}" disabled>
+    </div>
+    <div class="seccion_reporte">
+        <label for="id_usuario">ID Usuario</label>
+        <input type="text" name="id_usuario" id="id_usuario" value="{{datos.ID_usuario}}" disabled>
+    </div>
+    <div class="seccion_reporte">
+        <label for="incidencia">Tipo de incidencia</label>
+        <select name="incidencia" id="incidencia" required>
+            <option value="">Eliga un tipo de incidente.</option>
+            <option value="robo">Robo</option>
+            <option value="secuestro">Secuestro</option>
+            <option value="violencia">Violencia</option>
+            <option value="homicidio">Asesinato</option>
+        </select>
+    </div>
+    <div class="seccion_reporte"><label for="direccion_reporte">Direccion del reporte</label><input type="text" name="direccion_reporte" id="direccion_reporte"  value="{{datos.direccion_reporte}}" required></div>
+    <div class="seccion_reporte"><label for="fecha_reporte">Fecha</label><input type="date" name="fecha_reporte" id="fecha_reporte"  value="{{datos.fecha_reporte}}" required></div>
+    <div class="seccion_reporte"><label for="descripcion">Mensaje</label><textarea rows="5" name="descripcion" id="descripcion" placeholder="Detallenos el incidente..." required></textarea></div>
+    </fieldset>
+    <div id="seccion_submit">
+        <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
+    </div>
+</form>
+</div>
+
+{% endblock %}
