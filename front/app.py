@@ -20,7 +20,12 @@ def home():
             datos = []
 
             return render_template("home.html", datos = datos)
-    return render_template("home.html")
+    
+    response = requests.get(API_URL+'reportesNovedades')
+    response.raise_for_status()
+    reportes = response.json()
+
+    return render_template("home.html", reportes = reportes)
 
 @app.route("/reporte", methods=['GET','POST'])
 def reporte():
