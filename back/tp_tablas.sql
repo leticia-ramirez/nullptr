@@ -6,7 +6,7 @@ CREATE TABLE incidentes (
 	ID_incidente INT NOT NULL AUTO_INCREMENT,
     tipo_reporte VARCHAR(50) NOT NULL,
     direccion_reporte VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(1000) NOT NULL,
 	PRIMARY KEY (ID_incidente)
 );
 
@@ -24,7 +24,6 @@ CREATE TABLE usuarios (
 -- TABLA DE REPORTES - Se comunica con la tabla INCIDETES y la tabla USUARIOS
 CREATE TABLE reportes (
 	ID_reporte INT NOT NULL AUTO_INCREMENT,
-    ciudad VARCHAR(100) NOT NULL,
     localidad VARCHAR(100) NOT NULL,
     fecha_reporte DATE NOT NULL,
     horario_reporte TIME NOT NULL,

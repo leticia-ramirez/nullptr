@@ -75,6 +75,18 @@ QUERY_ACTUALIZAR_USUARIO = "UPDATE usuarios SET nombre_usuario = :nombre_usuario
 
 QUERY_ELIMINAR_USUARIO = "DELETE FROM usuarios WHERE ID_usuario = :ID_usuario"
 
+QUERY_LOCALIDAD="""SELECT R.ID_reporte, R.localidad, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+FROM reportes R
+INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
+INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
+"""
+
+QUERY_BY_LOCALIDAD="""SELECT R.ID_reporte, R.localidad, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+FROM reportes R
+INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
+INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
+WHERE R.localidad=:localidad"""
+
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
 engine = create_engine("mysql+mysqlconnector://root:tupassword@localhost:3306/TP_IDS")
 
@@ -125,7 +137,35 @@ def reporte_ID(ID_reporte):    #metodo reporte_ID
     for row in result:
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
     return jsonify(response), 200
-    
+
+@app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/localidades
+def reporte_localidad():    #metodo reporte_todas_localidad
+    try: 
+        conn = Session()
+        result = conn.execute(text(QUERY_LOCALIDAD)).fetchall()
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    conn.close()
+
+    response = []
+    for row in result:
+        response.append({'ID': row[0], 'localidad':row[1], 'direccion_reporte': row[2], 'descripcion': row[3], 'tipo_reporte': row[4], 'fecha_reporte': row[5], 'ID_usuario': row[6]})
+    return jsonify(response), 200
+
+@app.route('/api/v1/reportes/localidad/<localidad>', methods=['GET'])   #Endpoint: /reportes/localidades
+def reporte_by_localidad(localidad):    #metodo reporte_todas_localidad
+    try: 
+        conn = Session()
+        result = conn.execute(text(QUERY_BY_LOCALIDAD), {'localidad':localidad}).fetchall()
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    conn.close()
+
+    response = []
+    for row in result:
+        response.append({'ID': row[0], 'localidad':row[1], 'direccion_reporte': row[2], 'descripcion': row[3], 'tipo_reporte': row[4], 'fecha_reporte': row[5], 'ID_usuario': row[6]})
+    return jsonify(response), 200
+
 @app.route('/api/v1/reportes/fecha/<fecha_reporte>', methods=['GET'])   #Endpoint: /reportes/porFecha
 def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
     try:
@@ -183,11 +223,11 @@ def ingresar_reporte():    #metodo ingresar
     return jsonify(nuevo_reporte), 201
 
 
-@app.route('/api/v1/reportes/<int:ID_reporte>', methods=['PUT'])   #Endpoint: /reportes
+@app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['PUT'])   #Endpoint: /reportes
 def actualizar_reporte(ID_reporte):    #metodo actualizar
     data = request.get_json()
 
-    keys = ('ID', 'ID_usuario', 'descripcion', 'direccion_reporte', 'fecha_reporte', 'tipo_reporte')
+    keys = ('ID_reporte', 'ID_usuario', 'descripcion', 'direccion_reporte', 'fecha_reporte', 'tipo_reporte')
     for key in keys:
         if key not in data:
             return jsonify({'message': f"Falta el dato {key}"}), 400
