@@ -9,17 +9,15 @@
 <section class="seccionBusqueda">
     <form action="{{url_for('home')}}" method="post" class="busqueda">
         <div id="filtrar-zona">
-            <select class="filtrar-items" name="provincia">
-                <option disabled selected>Provincia</option>
-                <option value = "provincia1">Provincia 1</option>
-                <option value = "provincia2">Provincia 2</option>
-                <option value = "provincia3">Provincia 3</option>
+
+            <select class="filtrar-items" name="provincia" id="provincia">
+                <option disabled selected>Elige una provincia</option>
             </select>
-            <select class="filtrar-items" name="localidad">
-                <option disabled selected>Localidad</option>
-                <option value = "localidad1">Localidad 1</option>
-                <option value = "localidad2">Localidad 2</option>
-                <option value = "localidad3">Localidad 3</option>
+            <select class="filtrar-items" name="municipio" id="municipio">
+                <option disabled selected>Elige un municipio</option>
+            </select>
+            <select class="filtrar-items" name="localidad" id="localidad">
+                <option disabled selected>localidad</option>
             </select>
             <select class="filtrar-items" name="incidencia">
                 <option disabled selected>Tipo de incidente</option>
@@ -28,7 +26,6 @@
                 <option value="violencia">Violencia</option>
                 <option value="homicidio">Asesinato</option>
             </select>
-            <input class="filtrar-items" type="search" placeholder="Palabra clave">
             <button class="btn btn-outline-success borde-size" type="submit">Buscar</button>
         </div>
     </form>
