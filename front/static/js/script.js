@@ -21,7 +21,7 @@ function municipio(provincia){
     .then(res=> res.ok ? res.json() : Promise.reject(res))
     .then(json=>{
         let options=`<option value="Elige un municipio">Elige un municipio</option>`;
-        json.municipios.forEach(el => options +=`<option value="${el.id}">${el.nombre}</option>`);
+        json.municipios.forEach(el => options +=`<option value="${el.nombre}">${el.nombre}</option>`);
         selectMunicipios.innerHTML= options;
     })
 }
@@ -36,7 +36,7 @@ function localidad(municipio){
     .then(json=>{
         let options=`<option value="Elige una localidad">Elige una localidad</option>`;
         
-        json.localidades.forEach(el => options +=`<option value="${el.id}">${el.nombre}</option>`);
+        json.localidades.forEach(el => options +=`<option value="${el.nombre}">${el.nombre}</option>`);
         selectLocalidades.innerHTML= options;
     })
 }

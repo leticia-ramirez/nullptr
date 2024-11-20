@@ -162,7 +162,8 @@ section .grids .hijo img{
     display: grid !important;
     grid-template-columns: 2fr 2fr;
     grid-template-rows: auto;
-    grid-template-areas: 
+    grid-template-areas:
+    'title title' 
     'busqueda busqueda'
     'mapa mapa'
     'reportes reportes'
@@ -170,11 +171,25 @@ section .grids .hijo img{
     row-gap: 20px;
     margin-left: 1%;
     margin-right: 1%;
+    width: 100%;
+    overflow: hidden;
 }
+
+.seccionBusqueda .title{
+    grid-area: title;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
 .seccionBusqueda .busqueda{
     grid-area: busqueda;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.seccionBusqueda .busqueda #filtrar-zona .filtrar-items{
+    width: 80%;
+    padding-left: 10px;
 }
 
 .seccionBusqueda .Reportes{

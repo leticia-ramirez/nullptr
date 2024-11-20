@@ -6,63 +6,6 @@
 <section class="background-section-animated">
     <h1 class="text-center text">ZonaRoja</h1>
 </section>
-<section class="seccionBusqueda">
-    <form action="{{url_for('home')}}" method="post" class="busqueda">
-        <div id="filtrar-zona">
-
-            <select class="filtrar-items" name="provincia" id="provincia">
-                <option disabled selected>Elige una provincia</option>
-            </select>
-            <select class="filtrar-items" name="municipio" id="municipio">
-                <option disabled selected>Elige un municipio</option>
-            </select>
-            <select class="filtrar-items" name="localidad" id="localidad">
-                <option disabled selected>localidad</option>
-            </select>
-            <select class="filtrar-items" name="incidencia">
-                <option disabled selected>Tipo de incidente</option>
-                <option value="robo">Robo</option>
-                <option value="secuestro">Secuestro</option>
-                <option value="violencia">Violencia</option>
-                <option value="homicidio">Asesinato</option>
-            </select>
-            <button class="btn btn-outline-success borde-size" type="submit">Buscar</button>
-        </div>
-    </form>
-
-    <!-- PASAR A BLOQUE PARA REUTILIZAR -->
-    <div class="Reportes">
-        <div class="listado-tarjetas">
-            <div class="tarjetas">
-                <h5>Incidencia 1</h5>
-                <p>Dirección: Julian Alvarez 912</p>
-                <p>Horario estimado: 18:12</p>
-                <p class="text-justify">Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                <button class="btn btn-outline-success borde-size">Mas información</button>
-            </div>
-            <div class="tarjetas">
-                <h5>Incidencia 2</h5>
-                <p>Dirección: Julian Alvarez 912</p>
-                <p>Horario estimado: 18:12</p>
-                <p class="text-justify">Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                <button class="btn btn-outline-success borde-size">Mas información</button>
-            </div>
-            <div class="tarjetas">
-                <h5>Incidencia 3</h5>
-                <p>Dirección: Julian Alvarez 912</p>
-                <p>Horario estimado: 18:12</p>
-                <p class="text-justify">Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                <button class="btn btn-outline-success borde-size">Mas información</button>
-            </div>
-        </div>
-    </div>
-    <div class="mapa-section">
-        <div class="map" id="map"></div>
-    </div>
-</section>
 
 <!-- PASAR A BLOQUE PARA REUTILIZAR -->
 <section class="ReportesNovedades">

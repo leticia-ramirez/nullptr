@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block tab %}Buscar Zona{% endblock %}
+{% block body %}
+    <section class="seccionBusqueda">
+        <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
+        <form action="{{url_for('buscar')}}" method="get" class="busqueda">
+            <div id="filtrar-zona">
+                <select class="filtrar-items" name="provincia" id="provincia">
+                    <option disabled selected>Elige una provincia</option>
+                </select>
+                <select class="filtrar-items" name="municipio" id="municipio">
+                    <option disabled selected>Elige un municipio</option>
+                </select>
+                <select class="filtrar-items" name="localidad" id="localidad">
+                    <option disabled selected>localidad</option>
+                </select>
+                <select class="filtrar-items" name="incidencia">
+                    <option disabled selected>Tipo de incidente</option>
+                    <option value="robo">Robo</option>
+                    <option value="secuestro">Secuestro</option>
+                    <option value="violencia">Violencia</option>
+                    <option value="homicidio">Asesinato</option>
+                </select>
+                <input type="text" name="busqueda" placeholder="Buscar" class="filtrar-items">
+                <input class="btn btn-outline-success borde-size" type="submit" value="Buscar">
+            </div>
+        </form>
+
+        <!-- PASAR A BLOQUE PARA REUTILIZAR -->
+        <div class="Reportes">
+            <div class="listado-tarjetas">
+                {% for value in data %}
+                <div class="tarjetas">
+                    <h5>Incidencia :{{value.tipo_reporte}}</h5>
+                    <p>Localidad {{value.localidad}}</p>
+                    <p>Dirección: {{value.direccion_reporte}}</p>
+                    <p>Horario estimado: {{value.fecha_reporte}}</p>
+                    <p class="text-justify">Descripción: {{value.descripcion}}</p>
+                    <button class="btn btn-outline-success borde-size">Mas información</button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mapa-section">
+            <div class="map" id="map"></div>
+        </div>
+    </section>
+{% endblock %}

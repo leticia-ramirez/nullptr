@@ -1,31 +1,48 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 import requests
-
+import pprint
 app = Flask(__name__)
 
 API_URL = "http://127.0.0.1:5000/api/v1/"
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    if request.method == "POST":
-        data = {
-            "tipo_reporte" : request.form.get("incidencia"),
-        }
-        try:
-            response = requests.get(API_URL+'reportes/tipo/' + data["tipo_reporte"])
-            response.raise_for_status()
-            datos = response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Error pushing data: {e}")
-            datos = []
-
-            return render_template("home.html", datos = datos)
-    
-    response = requests.get(API_URL+'reportesNovedades')
-    response.raise_for_status()
-    reportes = response.json()
+    try:
+        response = requests.get(API_URL+'reportesNovedades')
+        response.raise_for_status()
+        reportes = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error traer data: {e}")
+        reportes = []
 
     return render_template("home.html", reportes = reportes)
+
+@app.route("/buscarzona", methods=["GET", "POST"])
+def buscar():
+    # response = f"{API_URL}reportes/localidad"
+    # busqueda=request.args.get('busqueda')
+    # if busqueda:
+    #     url = f"{response}/{busqueda}"
+    #     response = requests.get(url)
+
+    # if response.status_code != 200:
+    #     return 400
+    
+    # if request.method =="GET":
+    #     data = {
+    #         "tipo_reporte" : request.form.get("incidencia"),
+    #     }
+    #     try:
+    #         response = requests.get(API_URL+'reportes/tipo/' + data["tipo_reporte"])
+    #         response.raise_for_status()
+          
+    #     except requests.exceptions.RequestException as e:
+    #         print(f"Error pushing data: {e}")
+
+    #         return render_template("buscar_zona.html")
+
+    return render_template("buscar_zona.html")
+
 
 @app.route("/reporte", methods=['GET','POST'])
 def reporte():
@@ -64,25 +81,36 @@ def mreporte():
 def modificar(id):
     datos= requests.get(API_URL+'reportes/id/'+str(id)).json()
     datos=datos[0]
+    if request.method=='POST':
+        ID_reporte = request.form['ID_reporte']
+        ID_usuario= request.form['ID_usuario']
+        localidad= request.form['localidad']
+        direccion_reporte= request.form['direccion_reporte']
+        descripcion = request.form['descripcion']
+        tipo_reporte = request.form['tipo_reporte']
+        fecha_reporte = request.form['fecha_reporte']
+    
+    response = f"{API_URL}reportes/id/{id}"
+    params = None
 
-    if request.method == "POST":
-        data={
-            "ID_reporte" : datos['ID'],
-            "ID_usuario": datos['ID_usuario'],
-            "direccion_reporte": request.form.get("direccion_reporte"),
-            "descripcion" : request.form.get("descripcion"),
-            "tipo_reporte" : datos['tipo_reporte'],
-            "fecha_reporte" : request.form.get("fecha_reporte")
-        }
-        try:
-            response = requests.put(API_URL+'reportes/id/'+str(id), data=data)
-            response.raise_for_status()
+    if localidad is not None:
+        params = { 
+            'ID_reporte' :ID_reporte,
+            'ID_usuario':ID_usuario,
+            'localidad': localidad,
+            'direccion_reporte': direccion_reporte,
+            'descripcion' : descripcion,
+            'tipo_reporte' : tipo_reporte,
+            'fecha_reporte' : fecha_reporte
+         }
+    try:
+        response = requests.put(response, params=params) #url?name:character_name la funcion agrega el ?
+        response.raise_for_status()
             
-        except requests.exceptions.RequestException as e:
-            print(f"Error pushing data: {e}")
-            return redirect(url_for('mreporte'))
+    except requests.exceptions.RequestException as e:
+        print(f"Error pushing data: {e}")
         
-    return render_template('modificar.html', datos=datos)
+    return render_template('modificar.html')
 
 @app.route("/elimacion/<int:id>")
 def eliminar_reporte(id):
