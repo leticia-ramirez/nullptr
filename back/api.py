@@ -101,7 +101,7 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.localidad=:localidad"""
 
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
-engine = create_engine("mysql+mysqlconnector://root:root@localhost:3306/TP_IDS")
+engine = create_engine("mysql+mysqlconnector://root:tucontraseña@localhost:3306/TP_IDS")
 
 Session = scoped_session(sessionmaker(bind=engine)) #para empezar a tomar consultas
 
@@ -389,4 +389,4 @@ def eliminar_usuario(ID_usuario):    #metodo eliminar
     return jsonify({'nombre_usuario': result[0], 'nombre': result[1], 'apellido': result[2], 'email': result[3], 'telefono': result[4], 'ID_usuario': result[5]}), 200
 
 if __name__ == "__main__":
-    app.run("127.0.0.1", port="5002", debug=True)
+    app.run("127.0.0.1", port="5000", debug=True)

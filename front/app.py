@@ -3,7 +3,7 @@ import requests
 import pprint
 app = Flask(__name__)
 
-API_URL = "http://127.0.0.1:5002/api/v1/"
+API_URL = "http://127.0.0.1:5000/api/v1/"
 API_ARG = "https://apis.datos.gob.ar/georef/api/"
 
 @app.route("/", methods=["GET", "POST"]) #endpoint reporte
