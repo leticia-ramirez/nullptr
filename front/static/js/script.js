@@ -4,7 +4,7 @@ const selectProvincias=document.getElementById('provincia');
 const selectMunicipios= document.getElementById('municipio');
 const selectLocalidades=document.getElementById('localidad');
 function provincia(){
-    fetch("https://apis.datos.gob.ar/georef/api/provincias")
+    fetch("https://apis.datos.gob.ar/georef/api/provincias?orden=nombre")
     .then(res=> res.ok ? res.json() : Promise.reject(res))
     .then(json=>{
         let options=`<option value="Elige una provincia">Elige una provincia</option>`;
@@ -17,10 +17,11 @@ function provincia(){
 document.addEventListener("DOMContentLoaded", provincia)
 
 function municipio(provincia){
-    fetch(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${provincia}`)
+    fetch(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${provincia}&orden=nombre&max=200`)
     .then(res=> res.ok ? res.json() : Promise.reject(res))
     .then(json=>{
         let options=`<option value="Elige un municipio">Elige un municipio</option>`;
+        console.log(json.municipios)
         json.municipios.forEach(el => options +=`<option value="${el.nombre}">${el.nombre}</option>`);
         selectMunicipios.innerHTML= options;
     })
@@ -31,13 +32,13 @@ selectProvincias.addEventListener("change", el=>{
 })
 
 function localidad(municipio){
-    fetch(`https://apis.datos.gob.ar/georef/api/localidades?municipio=${municipio}`)
+    fetch(`https://apis.datos.gob.ar/georef/api/localidades?municipio=${municipio}&orden=nombre&max=200`)
     .then(res=> res.ok ? res.json() : Promise.reject(res))
     .then(json=>{
         let options=`<option value="Elige una localidad">Elige una localidad</option>`;
         
         json.localidades.forEach(el => options +=`<option value="${el.nombre}">${el.nombre}</option>`);
-        selectLocalidades.innerHTML= options;
+        selectLocalidades.innerHTML = options;
     })
 }
 selectMunicipios.addEventListener("change", el=>{

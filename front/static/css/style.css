@@ -869,3 +869,14 @@ legend {
     border-radius: 10px;
     border: 2px solid #ddd;
 }
+
+.texto_flotante{
+    align-self: center;
+    flex-grow: 2;
+}
+
+.button_link{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}

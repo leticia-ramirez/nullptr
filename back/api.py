@@ -48,7 +48,19 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE I.tipo_reporte = :tipo_reporte """
 
 
-QUERY_INGRESAR_REPORTE = "INSERT INTO reportes (ID_reporte, direccion_reporte, descripcion, tipo_reporte, fecha_reporte, ID_usuario) VALUES (:ID_reporte, :direccion_reporte, :descripcion, :tipo_reporte, :fecha_reporte, :ID_usuario)"
+QUERY_INGRESAR_REPORTE = "INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario) VALUES (:provincia, :departamento, :localidad, :fecha_reporte, :horario_reporte, :ID_incidente, :ID_usuario)"
+
+QUERY_INGRESAR_INCIDENTE = """
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion) 
+VALUES (:tipo_reporte, :direccion_reporte, :descripcion)
+"""
+
+QUERY_ULTIMO_INCIDENTE = """
+SELECT R.ID_incidente, R.tipo_reporte, R.direccion_reporte, R.descripcion
+FROM incidentes R
+ORDER BY R.ID_incidente DESC
+LIMIT 1
+"""
 
 QUERY_ACTUALIZAR_REPORTE = """
 UPDATE reportes R
@@ -88,7 +100,7 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.localidad=:localidad"""
 
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
-engine = create_engine("mysql+mysqlconnector://root:tupassword@localhost:3306/TP_IDS")
+engine = create_engine("mysql+mysqlconnector://root:root@localhost:3306/TP_IDS")
 
 Session = scoped_session(sessionmaker(bind=engine)) #para empezar a tomar consultas
 
@@ -203,16 +215,13 @@ def reporte_tipo(tipo_reporte):    #metodo reporte_tipo
 def ingresar_reporte():    #metodo ingresar
     nuevo_reporte = request.get_json()
 
-    keys = ('ID', 'direccion_reporte', 'descripcion', 'tipo_reporte', 'fecha_reporte', 'ID_usuario')
+    keys = ('provincia', 'departamento', 'localidad', 'fecha_reporte', 'horario_reporte', 'ID_incidente', 'ID_usuario')
     for key in keys:
         if key not in nuevo_reporte:
             return jsonify({'message': f"Falta el dato {key}"}), 400
 
     try:
         conn = Session()
-        result = conn.execute(text(QUERY_REPORTE), params={'ID': nuevo_reporte['ID']}).fetchone()
-        if result is not None:
-            return jsonify({'error': 'Ya existe un reporte con ese ID'}), 400
         conn.execute(text(QUERY_INGRESAR_REPORTE), params=nuevo_reporte)
         conn.commit()
     except Exception as e:
@@ -222,6 +231,27 @@ def ingresar_reporte():    #metodo ingresar
 
     return jsonify(nuevo_reporte), 201
 
+@app.route('/api/v1/incidentes', methods=['POST'])   #Endpoint: /incidentes
+def ingresar_incidente():    #metodo ingresar
+    nuevo_reporte = request.get_json()
+
+    keys = ('tipo_reporte', 'direccion_reporte', 'descripcion')
+    for key in keys:
+        if key not in nuevo_reporte:
+            return jsonify({'message': f"Falta el dato {key}"}), 400
+
+    try:
+        conn = Session()
+        conn.execute(text(QUERY_INGRESAR_INCIDENTE), params = nuevo_reporte)
+        nashei = conn.execute(text(QUERY_ULTIMO_INCIDENTE)).fetchall()
+        nashei = nashei[0][0]
+        conn.commit()
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    conn.close()
+
+    return jsonify(str(nashei)), 201
 
 @app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['PUT'])   #Endpoint: /reportes
 def actualizar_reporte(ID_reporte):    #metodo actualizar

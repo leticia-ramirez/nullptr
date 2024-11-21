@@ -29,9 +29,7 @@
             <option value="" >Selecciona</option>
         </select>
     </div>
-    <!-- Las ciudades y localidades disponibles hay que hardcorearlas o 
- pasarlas como parametro usando flask, por ahora lo deje vacio. -->
-    <div class="seccion_reporte"><label for="incidencia">Tipo de incidencia</label><select name="incidencia" id="incidencia" required>
+    <div class="seccion_reporte"><label for="tipo_reporte">Tipo de incidencia</label><select name="tipo_reporte" id="tipo_reporte" required>
             <option value="">Eliga un tipo de incidente.</option>
             <option value="robo">Robo</option>
             <option value="secuestro">Secuestro</option>
@@ -43,7 +41,7 @@
     <div class="seccion_reporte"><label for="imagen">Imagen (Opcional)</label><input type="file" accept="image/*" name="imagen" id="imagen"></div>
     <div class="seccion_reporte"><label for="fecha">Fecha</label><input type="date" name="fecha" id="fecha" required></div>
     <div class="seccion_reporte"><label for="hora">Horario estimado</label><input type="time" name="hora" id="hora" required></div>
-    <div class="seccion_reporte"><label for="mensaje">Mensaje</label><textarea rows="5" name="mensaje" id="mensaje" placeholder="Detallenos el incidente..." required></textarea></div>
+    <div class="seccion_reporte"><label for="descripcion">Mensaje</label><textarea rows="5" name="descripcion" id="descripcion" placeholder="Detallenos el incidente..." required></textarea></div>
     </fieldset>
     <div id="seccion_submit">
         <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">

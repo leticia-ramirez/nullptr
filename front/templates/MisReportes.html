@@ -10,13 +10,13 @@
             <img src="{{url_for('static', filename = 'img/advertencia.png')}}" alt="" width="100" height="100">
             
                 <div>
-                    <h6>Tipo incidente: {{reporte.tipo_reporte}}</h6>
-                    <p>direccion: {{reporte.direccion_reporte}}</p>
-                    <p>horario estimado: {{reporte.fecha_reporte}}</p>
-                    <p class="text-justify">descripcion: {{reporte.descripcion}}</p>
+                    <h6><b>Incidente:</b> {{reporte.tipo_reporte}}</h6>
+                    <p><b>Direccion:</b> {{reporte.direccion_reporte}}</p>
+                    <p><b>Fecha estimada:</b> {{reporte.fecha_reporte}}</p>
+                    <p class="text-justify"><b>Descripcion:</b> {{reporte.descripcion}}</p>
                     <div class="flex-inline">
-                        <button class="btn btn-success borde-size" type="submit"><a href="{{ url_for('modificar',id=reporte.ID,_external=True) }}">Modificar</a></button>
-                        <button class="btn btn-danger borde-size" type="submit"><a href="{{ url_for('eliminar_reporte',id=reporte.ID,_external=True) }}">Eliminar</a></button>    
+                        <button class="btn btn-success borde-size" type="submit"><a class="button_link" href="{{ url_for('modificar',id=reporte.ID,_external=True) }}">Modificar</a></button>
+                        <button class="btn btn-danger borde-size" type="submit"><a class="button_link" href="{{ url_for('eliminar_reporte',id=reporte.ID,_external=True) }}">Eliminar</a></button>    
     
                     </div>
                 </div>

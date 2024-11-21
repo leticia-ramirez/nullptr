@@ -24,6 +24,8 @@ CREATE TABLE usuarios (
 -- TABLA DE REPORTES - Se comunica con la tabla INCIDETES y la tabla USUARIOS
 CREATE TABLE reportes (
 	ID_reporte INT NOT NULL AUTO_INCREMENT,
+    provincia VARCHAR(100) NOT NULL,
+    departamento VARCHAR(100) NOT NULL,
     localidad VARCHAR(100) NOT NULL,
     fecha_reporte DATE NOT NULL,
     horario_reporte TIME NOT NULL,
@@ -82,3 +84,25 @@ VALUES('Mia345', 'Maricielo', 'Camargo', 'camargomaricielo@hotmail.com', '114132
 
 INSERT INTO usuarios(nombre_usuario, nombre, apellido, email,telefono)
 VALUES('paks12', 'Priscila', 'Guzman', 'guzmanpriscila@hotmail.com', '1132132143');
+
+
+-- HARDCODEO DE DATOS - INCIDENTES
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+VALUES ("Robo", "Paseo Colon 850", "Robo de Apuntes");
+
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+VALUES ("Secuestro", "Paseo Colon 851", "Secuestro de vacaciones");
+
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+VALUES ("Asesinato", "Paseo Colon 852", "Asesinato de neuronas");
+
+
+-- HARDCODEO DE DATOS - REPORTES
+INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+VALUES ("Ciuadad Autonoma de Buenos Aires", "Comuna 10", "Floresta", "2024-03-27", "03:15", 1, 1);
+
+INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+VALUES ("Ciuadad Autonoma de Buenos Aires", "Comuna 12", "Saavedra", "2022-03-27", "02:15", 1, 1);
+
+INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+VALUES ("Ciuadad Autonoma de Buenos Aires", "Comuna 4", "Barracas", "2021-01-27", "04:15", 1, 1);
