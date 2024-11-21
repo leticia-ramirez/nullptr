@@ -82,3 +82,25 @@ VALUES('Mia345', 'Maricielo', 'Camargo', 'camargomaricielo@hotmail.com', '114132
 
 INSERT INTO usuarios(nombre_usuario, nombre, apellido, email,telefono)
 VALUES('paks12', 'Priscila', 'Guzman', 'guzmanpriscila@hotmail.com', '1132132143');
+
+
+-- HARDCODEO DE DATOS - INCIDENTES
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+VALUES ("Robo", "Paseo Colon 850", "Robo de Apuntes");
+
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+("Secuestro", "Paseo Colon 851", "Secuestro de vacaciones");
+
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+("Asesinato", "Paseo Colon 852", "Asesinato de neuronas");
+
+
+-- HARDCODEO DE DATOS - REPORTES
+INSERT INTO reportes (ciudad, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+VALUES ("CABA", "Comuna 10", "2024-01-01", "01:01:01", 1, 1);
+
+INSERT INTO reportes (ciudad, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+("CABA", "Comuna 12", "2024-02-02", "02:02:02", 2, 2);
+
+INSERT INTO reportes (ciudad, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+("CABA", "Comuna 4", "2024-05-05", "03:03:03", 3, 1);
