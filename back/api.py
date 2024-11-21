@@ -23,7 +23,7 @@ SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
-ORDER BY R.fecha_reporte ASC
+ORDER BY R.fecha_reporte DESC
 LIMIT 3
 """
 
@@ -33,6 +33,7 @@ FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.ID_reporte = :ID_reporte"""
+
 QUERY_REPORTE_FECHA = """
 SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
 FROM reportes R
@@ -150,7 +151,7 @@ def reporte_ID(ID_reporte):    #metodo reporte_ID
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/localidades
+@app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/todaslocalidades
 def reporte_localidad():    #metodo reporte_todas_localidad
     try: 
         conn = Session()
@@ -164,8 +165,8 @@ def reporte_localidad():    #metodo reporte_todas_localidad
         response.append({'ID': row[0], 'localidad':row[1], 'direccion_reporte': row[2], 'descripcion': row[3], 'tipo_reporte': row[4], 'fecha_reporte': row[5], 'ID_usuario': row[6]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/localidad/<localidad>', methods=['GET'])   #Endpoint: /reportes/localidades
-def reporte_by_localidad(localidad):    #metodo reporte_todas_localidad
+@app.route('/api/v1/reportes/localidad/<localidad>', methods=['GET'])   #Endpoint: /filtro por localidades
+def reporte_by_localidad(localidad):    
     try: 
         conn = Session()
         result = conn.execute(text(QUERY_BY_LOCALIDAD), {'localidad':localidad}).fetchall()
@@ -188,11 +189,10 @@ def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
 
     conn.close()
 
-    if len(result) == 0:
-        return jsonify({'message': f"No se encontró el reporte con fecha {fecha_reporte}"}), 404
-    
-    result = result[0]
-    return jsonify({'ID': result[0], 'direccion_reporte': result[1], 'descripcion': result[2], 'tipo_reporte': result[3], 'fecha_reporte': result[4], 'ID_usuario': result[5]}), 200
+    response = []
+    for row in result:
+        response.append({'ID': row [0], 'direccion_reporte': row [1], 'descripcion': row [2], 'tipo_reporte': row [3], 'fecha_reporte': row [4], 'ID_usuario': row [5]})
+    return jsonify(response), 200
 
 @app.route('/api/v1/reportes/tipo/<tipo_reporte>', methods=['GET'])   #Endpoint: /reportes/porTipoDeReporte
 def reporte_tipo(tipo_reporte):    #metodo reporte_tipo
@@ -204,11 +204,10 @@ def reporte_tipo(tipo_reporte):    #metodo reporte_tipo
 
     conn.close()
 
-    if len(result) == 0:
-        return jsonify({'message': f"No se encontro reporte con el tipo de reporte {tipo_reporte}"}), 404
-    
-    result = result[0]
-    return jsonify({'ID': result[0], 'direccion_reporte': result[1], 'descripcion': result[2], 'tipo_reporte': result[3], 'fecha_reporte': result[4], 'ID_usuario': result[5]}), 200
+    response = []
+    for row in result:
+        response.append({'ID': row [0], 'direccion_reporte': row [1], 'descripcion': row [2], 'tipo_reporte': row [3], 'fecha_reporte': row [4], 'ID_usuario': row [5]})
+    return jsonify(response), 200
 
 
 @app.route('/api/v1/reportes', methods=['POST'])   #Endpoint: /reportes
@@ -218,7 +217,7 @@ def ingresar_reporte():    #metodo ingresar
     keys = ('provincia', 'departamento', 'localidad', 'fecha_reporte', 'horario_reporte', 'ID_incidente', 'ID_usuario')
     for key in keys:
         if key not in nuevo_reporte:
-            return jsonify({'message': f"Falta el dato {key}"}), 400
+            return jsonify({'message': f"Falta el dato {key}"}), 400    
 
     try:
         conn = Session()

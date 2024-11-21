@@ -5,10 +5,11 @@
 <div id="content">
 <h2>Nuevo Reporte</h2>
 <form action="{{url_for('reporte')}}" method="post" class="reporte">
-    <fieldset><legend>Contacto</legend>
-    <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
-    <div class="seccion_reporte"><label for="email">Mail</label><input type="email" name="email" id="email" required></div>
-    <div class="seccion_reporte"><label for="telefono">Telefono</label><input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" required></div>
+    <fieldset>
+        <legend>Contacto</legend>
+        <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
+        <div class="seccion_reporte"><label for="email">Mail</label><input type="email" name="email" id="email" required></div>
+        <div class="seccion_reporte"><label for="telefono">Telefono</label><input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" required></div>
     </fieldset>
     <fieldset><legend>Reporte</legend>
     <div class="seccion_reporte">
