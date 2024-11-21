@@ -101,7 +101,7 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.localidad=:localidad"""
 
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
-engine = create_engine("mysql+mysqlconnector://root:tucontraseña@localhost:3306/TP_IDS")
+engine = create_engine("mysql+mysqlconnector://root:tupassword@localhost:3306/TP_IDS")
 
 Session = scoped_session(sessionmaker(bind=engine)) #para empezar a tomar consultas
 
