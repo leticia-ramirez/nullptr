@@ -12,7 +12,7 @@ INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario"""
 
 QUERY_TODOS_LOS_REPORTES_BY_ID="""
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, U.nombre, U.apellido, R.provincia, R.departamento, R.localidad, R.horario_reporte, R.ID_usuario
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
@@ -148,7 +148,7 @@ def reporte_ID(ID_reporte):    #metodo reporte_ID
 
     response = []
     for row in result:
-        response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
+        response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'nombre': row[5], 'apellido': row[6], 'provincia': row[7], 'departamento': row[8], 'localidad': row[9], "horario_reporte": str(row[10]), "ID_usuario": row[11]})
     return jsonify(response), 200
 
 @app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/todaslocalidades
@@ -266,7 +266,7 @@ def actualizar_reporte(ID_reporte):    #metodo actualizar
         result = conn.execute(text(QUERY_REPORTE), {'ID_reporte': ID_reporte}).fetchall()
         if not result:
             return jsonify({'error': 'No se encontro el usuario'}), 400
-        conn.execute(text(QUERY_ACTUALIZAR_REPORTE), params={'ID_reporte': ID_reporte, **data})
+        conn.execute(text(QUERY_ACTUALIZAR_REPORTE), params = data)
         conn.commit()
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -389,4 +389,4 @@ def eliminar_usuario(ID_usuario):    #metodo eliminar
     return jsonify({'nombre_usuario': result[0], 'nombre': result[1], 'apellido': result[2], 'email': result[3], 'telefono': result[4], 'ID_usuario': result[5]}), 200
 
 if __name__ == "__main__":
-    app.run("127.0.0.1", port="5000", debug=True)
+    app.run("127.0.0.1", port="5002", debug=True)

@@ -4,11 +4,13 @@
 
 <div id="content">
 <h2>Modificacion Reporte</h2>
-<form action="{{url_for('modificar', id= datos.ID)}}" method="post" class="reporte">
+<form action="{{url_for('modificar', id= datos.ID_reporte)}}" method="post" class="reporte">
     <fieldset><legend>Reporte</legend>
     <div class="seccion_reporte">
         <label for="id_reporte">ID Reporte</label>
-        <input type="text" name="id_reporte" id="id_reporte" value="{{datos.ID}}" disabled>
+        <select type="text" name="id_reporte" id="id_reporte">
+            <option value="{{datos.ID_reporte}}">{{datos.ID_reporte}}</option>
+        </select>
     </div>
     <div class="seccion_reporte">
         <label for="id_usuario">ID Usuario</label>

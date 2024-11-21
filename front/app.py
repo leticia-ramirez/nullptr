@@ -99,38 +99,26 @@ def mreporte():
 
 @app.route('/modificar/<int:id>', methods=['GET','POST', 'PUT'])#endpoint modificar reporte (aun no funciona)
 def modificar(id):
-    datos=requests.get(API_URL+'reportes/id/'+str(id)).json()
+    datos = requests.get(API_URL+'reportes/id/'+str(id)).json()
 
-    if request.method=='POST':
-        ID = request.form['id_reporte']
-        ID_usuario= request.form['ID_usuario']
-        localidad= request.form['localidad']
-        direccion_reporte= request.form['direccion_reporte']
-        descripcion = request.form['descripcion']
-        tipo_reporte = request.form['tipo_reporte']
-        fecha_reporte = request.form['fecha_reporte']
-    
-        response = f"{API_URL}reportes/id/{id}"
-        params = None
-
-        if localidad is not None:
-            params = { 
-                'ID_reporte' :ID,
-                'ID_usuario':ID_usuario,
-                'localidad': localidad,
-                'direccion_reporte': direccion_reporte,
-                'descripcion' : descripcion,
-                'tipo_reporte' : tipo_reporte,
-                'fecha_reporte' : fecha_reporte
-            }
-            try:
-                response = requests.put(response, data=params) #url?name:character_name la funcion agrega el ?
-                response.raise_for_status()
-                if response:
-                    return redirect(url_for('mreporte'))
-                    
-            except requests.exceptions.RequestException as e:
-                print(f"Error pushing data: {e}")
+    if request.method == 'POST':
+        data = {
+            "ID_reporte": request.form.get('id_reporte'),
+            "descripcion": request.form.get('descripcion'),
+            "direccion_reporte": request.form.get('direccion_reporte'),
+            "fecha_reporte": request.form.get('fecha_reporte'),
+            "tipo_reporte": request.form.get('incidencia'),
+            "ID_usuario" : 1
+        }
+        print(data)
+        try:
+            response = requests.put(API_URL+"reportes/id/"+str(id), json = data) #url?name:character_name la funcion agrega el ?
+            response.raise_for_status()
+            if response:
+                return redirect(url_for('mreporte'))
+                
+        except requests.exceptions.RequestException as e:
+            print(f"Error pushing data: {e}")
                 
     return render_template('modificar.html', datos=datos[0], id=id)
 
@@ -148,12 +136,12 @@ def mreporte_id(id): #endpoint para mostrar todos los reportes
     try:
         response = requests.get(API_URL+'reportes/id/'+id)
         response.raise_for_status()
-        datos = response.json()
+        datos_reporte = response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data: {e}")
-        datos = []
+        datos_reporte = []
 
-        return render_template("MisReportes.html", datos = datos)
+    return render_template("masinformacion.html", datos = datos_reporte)
 
 @app.route("/download")
 def download():

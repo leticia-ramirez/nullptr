@@ -640,6 +640,10 @@ legend {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 0.5em;
+    justify-content: center;
+}
+.seccion_reporte > p {
+    line-height: normal;
 }
 .seccion_reporte > input,select {
     max-width: 70%;

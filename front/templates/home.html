@@ -15,11 +15,12 @@
 
         {% for reporte in reportes %}
             <div class="tarjetas">
+                <p>{{reporte}}</p>
                 <h5>Incidencia: {{reporte.tipo_reporte}}</h5>
                 <p>Fecha de reporte: {{reporte.fecha_reporte}}</p>
                 <p>Dirección: {{reporte.direccion_reporte}}</p>
                 <p>Descripción: {{reporte.descripcion}}</p>
-                <button class="btn btn-outline-success borde-size">Mas información</button>
+                <a href="{{url_for('mreporte_id', id = reporte.ID)}}"><button class="btn btn-outline-success borde-size">Mas información</button></a>
             </div>
         {% endfor %}
         </div>
