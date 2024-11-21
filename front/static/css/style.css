@@ -868,4 +868,36 @@ legend {
 .btn-int{
     border-radius: 10px;
     border: 2px solid #ddd;
+    font-size: 200;
+}
+.container{
+    margin-top: 10vh;
+    background-color: #00000022;
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+}
+.button_slide {
+  border: 2px solid rgb(216, 2, 134);
+  border-radius: 20px;
+  padding: 10px 30px;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #D80286;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+  color: black;
+}
+  
+.slide_right:hover {
+  box-shadow: inset 400px 0 0 0 #D80286;
+  color: white;
+}
+  
+#outer {
+  width: 364px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }

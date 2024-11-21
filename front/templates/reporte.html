@@ -5,45 +5,53 @@
 <div id="content">
 <h2>Nuevo Reporte</h2>
 <form action="{{url_for('reporte')}}" method="post" class="reporte">
-    <fieldset><legend>Contacto</legend>
-    <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
-    <div class="seccion_reporte"><label for="email">Mail</label><input type="email" name="email" id="email" required></div>
-    <div class="seccion_reporte"><label for="telefono">Telefono</label><input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" required></div>
+    <fieldset>
+        <legend>Contacto</legend>
+        <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
+        <div class="seccion_reporte"><label for="email">Mail</label><input type="email" name="email" id="email" required></div>
+        <div class="seccion_reporte"><label for="telefono">Telefono</label><input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" required></div>
     </fieldset>
-    <fieldset><legend>Reporte</legend>
-    <div class="seccion_reporte">
-        <label for="provincia">Provincia</label>
-        <select name="provincia" id="provincia" required>
-            <option value="">Eliga una ciudad. </option>
-        </select>
-    </div>
-    <div class="seccion_reporte">
-        <label for="municipio">Municipio</label>
-        <select name="municipio" id="municipio">
-            <option value="">Selecciona</option>       
-        </select>
-    </div>
-    <div class="seccion_reporte">
-        <label for="localidad">Localidad</label>
-        <select name="localidad" id="localidad" required>
-            <option value="" >Selecciona</option>
-        </select>
-    </div>
+    <fieldset>
+        <legend>Reporte</legend>
+        <div class="seccion_reporte">
+            <label for="provincia">Provincia</label>
+            <select name="provincia" id="provincia" required>
+                <option value="">Eliga una ciudad. </option>
+            </select>
+        </div>
+        <div class="seccion_reporte">
+            <label for="municipio">Municipio</label>
+            <select name="municipio" id="municipio">
+                <option value="">Selecciona</option>       
+            </select>
+        </div>
+        <div class="seccion_reporte">
+            <label for="localidad">Localidad</label>
+            <select name="localidad" id="localidad" required>
+                <option value="" >Selecciona</option>
+            </select>
+        </div>
     <!-- Las ciudades y localidades disponibles hay que hardcorearlas o 
  pasarlas como parametro usando flask, por ahora lo deje vacio. -->
-    <div class="seccion_reporte"><label for="incidencia">Tipo de incidencia</label><select name="incidencia" id="incidencia" required>
+        <div class="seccion_reporte">
+            <label for="incidencia">Tipo de incidencia</label>
+            <select name="incidencia" id="incidencia" required>
             <option value="">Eliga un tipo de incidente.</option>
             <option value="robo">Robo</option>
             <option value="secuestro">Secuestro</option>
             <option value="violencia">Violencia</option>
             <option value="homicidio">Asesinato</option>
-        </select></div>
-    <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
-    <div class="seccion_reporte"><label for="direccion">Direccion del reporte</label><input type="text" name="direccion" id="direccion" required></div>
-    <div class="seccion_reporte"><label for="imagen">Imagen (Opcional)</label><input type="file" accept="image/*" name="imagen" id="imagen"></div>
-    <div class="seccion_reporte"><label for="fecha">Fecha</label><input type="date" name="fecha" id="fecha" required></div>
-    <div class="seccion_reporte"><label for="hora">Horario estimado</label><input type="time" name="hora" id="hora" required></div>
-    <div class="seccion_reporte"><label for="mensaje">Mensaje</label><textarea rows="5" name="mensaje" id="mensaje" placeholder="Detallenos el incidente..." required></textarea></div>
+        </select>
+        </div>
+        <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
+        <div class="seccion_reporte">
+            <label for="direccion">Direccion del reporte</label>
+            <input type="text" name="direccion" id="direccion" required>
+        </div>
+        <div class="seccion_reporte"><label for="imagen">Imagen (Opcional)</label><input type="file" accept="image/*" name="imagen" id="imagen"></div>
+        <div class="seccion_reporte"><label for="fecha">Fecha</label><input type="date" name="fecha" id="fecha" required></div>
+        <div class="seccion_reporte"><label for="hora">Horario estimado</label><input type="time" name="hora" id="hora" required></div>
+        <div class="seccion_reporte"><label for="mensaje">Mensaje</label><textarea rows="5" name="mensaje" id="mensaje" placeholder="Detallenos el incidente..." required></textarea></div>
     </fieldset>
     <div id="seccion_submit">
         <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
