@@ -5,23 +5,7 @@
         <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
         <form action="{{url_for('buscar')}}" method="get" class="busqueda">
             <div id="filtrar-zona">
-                <select class="filtrar-items" name="provincia" id="provincia">
-                    <option disabled selected>Elige una provincia</option>
-                </select>
-                <select class="filtrar-items" name="municipio" id="municipio">
-                    <option disabled selected>Elige un municipio</option>
-                </select>
-                <select class="filtrar-items" name="localidad" id="localidad">
-                    <option disabled selected>localidad</option>
-                </select>
-                <select class="filtrar-items" name="incidencia">
-                    <option disabled selected>Tipo de incidente</option>
-                    <option value="robo">Robo</option>
-                    <option value="secuestro">Secuestro</option>
-                    <option value="violencia">Violencia</option>
-                    <option value="homicidio">Asesinato</option>
-                </select>
-                <input type="text" name="busqueda" placeholder="Buscar" class="filtrar-items">
+                <input type="text" name="busqueda" placeholder="Busca por localidad" class="filtrar-items">
                 <input class="btn btn-outline-success borde-size" type="submit" value="Buscar">
             </div>
         </form>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block tab %}Mas informacion{% endblock %}
+{% block body %}
+        <section class="ReportesNovedades info">
+            <div>
+                <h3 class="text-center">Reportes</h3>
+                <div id="tarjetas-horizontales">
+                {% for reporte in datos %}
+                    <div class="tarjetas targeta-info">
+                        <p class="fw-bold">Incidencia: {{reporte.tipo_reporte}}</p>
+                        <p>Nombre de Usuario: {{reporte.nombre_usuario}}</p>
+                        <p>Fecha de reporte: {{reporte.fecha_reporte[0:17]}}</p>
+                        <p>Provincia: {{reporte.provincia}}</p>
+                        <p>Departamento: {{reporte.departamento}}</p>
+                        <p>Localidad: {{reporte.localidad}}</p>
+                        <p>Dirección: {{reporte.direccion_reporte}}</p>
+                        <p>Descripción: {{reporte.descripcion}}</p>
+                        <div id="outer">
+                            <div class="fw-bold button_slide slide_right">
+                              <a href="{{url_for('home')}}">HOME</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
+{% endblock %}

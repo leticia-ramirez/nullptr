@@ -134,7 +134,7 @@ def eliminar_reporte(id):
 @app.route("/misreportes/<id>")
 def mreporte_id(id): #endpoint para mostrar todos los reportes
     try:
-        response = requests.get(API_URL+'reportes/id/'+id)
+        response = requests.get(API_URL+'reportes/id/'+str(id))
         response.raise_for_status()
         datos_reporte = response.json()
     except requests.exceptions.RequestException as e:
