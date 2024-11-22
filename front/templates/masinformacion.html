@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block tab %}Reporte{% endblock %}
+{% block body %}
+
+<div id="content">
+<h2>Incidente #{{ datos[0]["ID_reporte"] }}</h2>
+<form action="{{url_for('reporte')}}" method="post" class="reporte">
+    <fieldset><legend>Reporte</legend>
+    <div class="seccion_reporte"><label for="nombre">Nombre:</label><p>{{ datos[0]["nombre"] }} {{ datos[0]["apellido"]}}</p></div>
+    <div class="seccion_reporte">
+        <label for="provincia">Provincia</label>
+        <p>{{ datos[0]["provincia"] }}</p>
+    </div>
+    <div class="seccion_reporte">
+        <label for="municipio">Municipio</label>
+        <p>{{ datos[0]["departamento"] }}</p>
+    </div>
+    <div class="seccion_reporte">
+        <label for="localidad">Localidad</label>
+        <p>{{ datos[0]["localidad"] }}</p>
+    </div>
+    <div class="seccion_reporte"><label for="tipo_reporte">Tipo de incidencia</label><p>{{ datos[0]["tipo_reporte"] }}</p></div>
+    <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
+    <div class="seccion_reporte"><label for="direccion">Direccion del reporte</label><p>{{ datos[0]["provincia"] }}</p></div>
+    <div class="seccion_reporte"><label for="imagen">Imagen (Opcional)</label><input type="file" accept="image/*" name="imagen" id="imagen"></div>
+    <div class="seccion_reporte"><label for="fecha">Fecha</label><p>{{ datos[0]["fecha_reporte"] }}</p></div>
+    <div class="seccion_reporte"><label for="hora">Horario estimado</label><p>{{ datos[0]["horario_reporte"] }}</p></div>
+    <div class="seccion_reporte"><label for="descripcion">Mensaje</label><p>{{ datos[0]["descripcion"] }}</p></div>
+    </fieldset>
+    <div id="seccion_submit"></div>
+</form>
+</div>
+
+{% endblock %}
