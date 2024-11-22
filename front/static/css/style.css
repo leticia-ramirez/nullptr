@@ -974,3 +974,11 @@ legend {
     font-size: 150%;
     padding: 5vh;
 }
+
+.borde-size a{
+    text-decoration: none;
+}
+
+.borde-size a:hover{
+    color: aliceblue;
+}

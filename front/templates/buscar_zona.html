@@ -14,14 +14,17 @@
         <div class="Reportes">
             <div class="listado-tarjetas">
                 {% for value in data %}
-                <div class="tarjetas">
-                    <h5>Incidencia :{{value.tipo_reporte}}</h5>
-                    <p>Localidad {{value.localidad}}</p>
-                    <p>Dirección: {{value.direccion_reporte}}</p>
-                    <p>Horario estimado: {{value.fecha_reporte}}</p>
-                    <p class="text-justify">Descripción: {{value.descripcion}}</p>
-                    <button class="btn btn-outline-success borde-size">Mas información</button>
-                </div>
+                        <div class="tarjetas">
+                            <h5>Incidencia :{{value.tipo_reporte}}</h5>
+                            <p>Localidad {{value.localidad}}</p>
+                            <p>Dirección: {{value.direccion_reporte}}</p>
+                            <p>Horario estimado: {{value.fecha_reporte}}</p>
+                            <p class="text-justify">Descripción: {{value.descripcion}}</p>
+                            <button class="btn btn-outline-success borde-size">
+                                <a href="{{url_for('mreporte_id', id = value.ID)}}">Mas información</a>
+                            </button>
+                        </div>
+                 
                 {% endfor %}
             </div>
         </div>
