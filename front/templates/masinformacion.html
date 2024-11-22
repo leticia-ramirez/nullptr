@@ -1,33 +1,28 @@
 {% extends "base.html" %}
-{% block tab %}Reporte{% endblock %}
+{% block tab %}Mas informacion{% endblock %}
 {% block body %}
-
-<div id="content">
-<h2>Incidente #{{ datos[0]["ID_reporte"] }}</h2>
-<form action="{{url_for('reporte')}}" method="post" class="reporte">
-    <fieldset><legend>Reporte</legend>
-    <div class="seccion_reporte"><label for="nombre"><b>Nombre:</b></label><p>{{ datos[0]["nombre"] }} {{ datos[0]["apellido"]}}</p></div>
-    <div class="seccion_reporte">
-        <label for="provincia"><b>Provincia:</b></label>
-        <p>{{ datos[0]["provincia"] }}</p>
-    </div>
-    <div class="seccion_reporte">
-        <label for="municipio"><b>Municipio:</b></label>
-        <p>{{ datos[0]["departamento"] }}</p>
-    </div>
-    <div class="seccion_reporte">
-        <label for="localidad"><b>Localidad:</b></label>
-        <p>{{ datos[0]["localidad"] }}</p>
-    </div>
-    <div class="seccion_reporte"><label for="tipo_reporte"><b>Tipo de incidencia</b></label><p>{{ datos[0]["tipo_reporte"] }}</p></div>
-    <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
-    <div class="seccion_reporte"><label for="direccion"><b>Direccion del reporte:</b></label><p>{{ datos[0]["provincia"] }}</p></div>
-    <div class="seccion_reporte"><label for="fecha"><b>Fecha:</b></label><p>{{ datos[0]["fecha_reporte"] }}</p></div>
-    <div class="seccion_reporte"><label for="hora"><b>Horario estimado:</b></label><p>{{ datos[0]["horario_reporte"] }}</p></div>
-    <div class="seccion_reporte"><label for="descripcion"><b>Mensaje:</b></label><p>{{ datos[0]["descripcion"] }}</p></div>
-    </fieldset>
-    <div id="seccion_submit"></div>
-</form>
-</div>
-
+        <section class="ReportesNovedades info">
+            <div>
+                <h3 class="text-center">Reportes</h3>
+                <div id="tarjetas-horizontales">
+                {% for reporte in datos %}
+                    <div class="tarjetas targeta-info">
+                        <p class="fw-bold">Incidencia: {{reporte.tipo_reporte}}</p>
+                        <p>Nombre de Usuario: {{reporte.nombre_usuario}}</p>
+                        <p>Fecha de reporte: {{reporte.fecha_reporte[0:17]}}</p>
+                        <p>Provincia: {{reporte.provincia}}</p>
+                        <p>Departamento: {{reporte.departamento}}</p>
+                        <p>Localidad: {{reporte.localidad}}</p>
+                        <p>Dirección: {{reporte.direccion_reporte}}</p>
+                        <p>Descripción: {{reporte.descripcion}}</p>
+                        <div id="outer">
+                            <div class="fw-bold button_slide slide_right">
+                              <a href="{{url_for('home')}}">HOME</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
 {% endblock %}

@@ -20,30 +20,20 @@ def home():
 
 @app.route("/buscarzona", methods=["GET", "POST"])
 def buscar():
-    # response = f"{API_URL}reportes/localidad"
-    # busqueda=request.args.get('busqueda')
-    # if busqueda:
-    #     url = f"{response}/{busqueda}"
-    #     response = requests.get(url)
+    if request.method == 'GET':
+        busqueda = request.args.get('busqueda')
+        try:
+            response = requests.get(API_URL+"reportes/localidad/"+str(busqueda))
+            response.raise_for_status()
+            data=response.json()
+            if response:
+                return render_template('buscar_zona.html', data=data)
+                
+        except requests.exceptions.RequestException as e:
+            print(f"Error pushing data: {e}")
+            data=[]
 
-    # if response.status_code != 200:
-    #     return 400
-    
-    # if request.method =="GET":
-    #     data = {
-    #         "tipo_reporte" : request.form.get("incidencia"),
-    #     }
-    #     try:
-    #         response = requests.get(API_URL+'reportes/tipo/' + data["tipo_reporte"])
-    #         response.raise_for_status()
-          
-    #     except requests.exceptions.RequestException as e:
-    #         print(f"Error pushing data: {e}")
-
-    #         return render_template("buscar_zona.html")
-
-    return render_template("buscar_zona.html")
-
+    return render_template('buscar_zona.html')
 
 @app.route("/reporte", methods=['GET','POST'])
 def reporte():
@@ -112,7 +102,7 @@ def modificar(id):
         }
         print(data)
         try:
-            response = requests.put(API_URL+"reportes/id/"+str(id), json = data) #url?name:character_name la funcion agrega el ?
+            response = requests.put(API_URL+"reportes/id/"+str(id), json = data)
             response.raise_for_status()
             if response:
                 return redirect(url_for('mreporte'))
@@ -134,7 +124,7 @@ def eliminar_reporte(id):
 @app.route("/misreportes/<id>")
 def mreporte_id(id): #endpoint para mostrar todos los reportes
     try:
-        response = requests.get(API_URL+'reportes/id/'+id)
+        response = requests.get(API_URL+'reportes/id/'+str(id))
         response.raise_for_status()
         datos_reporte = response.json()
     except requests.exceptions.RequestException as e:

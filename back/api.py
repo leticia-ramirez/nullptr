@@ -7,20 +7,20 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 #QUERY REPORTES
 QUERY_TODOS_LOS_REPORTES = """
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario, R.horario_reporte 
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, DATE_FORMAT(R.fecha_reporte, '%d %M %Y'), R.ID_usuario, R.horario_reporte 
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario"""
 
 QUERY_TODOS_LOS_REPORTES_BY_ID="""
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, U.nombre, U.apellido, R.provincia, R.departamento, R.localidad, R.horario_reporte, R.ID_usuario
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, U.nombre_usuario, R.provincia, R.departamento, R.localidad, R.horario_reporte, R.ID_usuario
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.ID_reporte= :ID_reporte"""
 
 QUERY_TODOS_LOS_REPORTESNOVEDADES = """
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, DATE_FORMAT(R.fecha_reporte, '%d %M %Y'), R.ID_usuario, R.horario_reporte 
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
@@ -102,7 +102,7 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.localidad=:localidad"""
 
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
-engine = create_engine("mysql+mysqlconnector://root:root@localhost:3306/TP_IDS")
+engine = create_engine("mysql+mysqlconnector://root:tucontrasenia@localhost:3306/TP_IDS")
 
 Session = scoped_session(sessionmaker(bind=engine)) #para empezar a tomar consultas
 
@@ -135,7 +135,7 @@ def reportesNovedades():
 
     response = []
     for row in result:
-        response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5]})
+        response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5], 'horario_reporte': str(row[6])})
     return jsonify(response), 200
 
 @app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['GET'])   #Endpoint: /reportes/porID
@@ -149,7 +149,7 @@ def reporte_ID(ID_reporte):    #metodo reporte_ID
 
     response = []
     for row in result:
-        response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'nombre': row[5], 'apellido': row[6], 'provincia': row[7], 'departamento': row[8], 'localidad': row[9], "horario_reporte": str(row[10]), "ID_usuario": row[11]})
+        response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'nombre_usuario': row[5], 'provincia': row[6], 'departamento': row[7], 'localidad': row[8], "horario_reporte": str(row[9]), "ID_usuario": row[10]})
     return jsonify(response), 200
 
 @app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/todaslocalidades
