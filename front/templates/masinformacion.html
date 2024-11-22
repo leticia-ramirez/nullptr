@@ -6,26 +6,25 @@
 <h2>Incidente #{{ datos[0]["ID_reporte"] }}</h2>
 <form action="{{url_for('reporte')}}" method="post" class="reporte">
     <fieldset><legend>Reporte</legend>
-    <div class="seccion_reporte"><label for="nombre">Nombre:</label><p>{{ datos[0]["nombre"] }} {{ datos[0]["apellido"]}}</p></div>
+    <div class="seccion_reporte"><label for="nombre"><b>Nombre:</b></label><p>{{ datos[0]["nombre"] }} {{ datos[0]["apellido"]}}</p></div>
     <div class="seccion_reporte">
-        <label for="provincia">Provincia</label>
+        <label for="provincia"><b>Provincia:</b></label>
         <p>{{ datos[0]["provincia"] }}</p>
     </div>
     <div class="seccion_reporte">
-        <label for="municipio">Municipio</label>
+        <label for="municipio"><b>Municipio:</b></label>
         <p>{{ datos[0]["departamento"] }}</p>
     </div>
     <div class="seccion_reporte">
-        <label for="localidad">Localidad</label>
+        <label for="localidad"><b>Localidad:</b></label>
         <p>{{ datos[0]["localidad"] }}</p>
     </div>
-    <div class="seccion_reporte"><label for="tipo_reporte">Tipo de incidencia</label><p>{{ datos[0]["tipo_reporte"] }}</p></div>
+    <div class="seccion_reporte"><label for="tipo_reporte"><b>Tipo de incidencia</b></label><p>{{ datos[0]["tipo_reporte"] }}</p></div>
     <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
-    <div class="seccion_reporte"><label for="direccion">Direccion del reporte</label><p>{{ datos[0]["provincia"] }}</p></div>
-    <div class="seccion_reporte"><label for="imagen">Imagen (Opcional)</label><input type="file" accept="image/*" name="imagen" id="imagen"></div>
-    <div class="seccion_reporte"><label for="fecha">Fecha</label><p>{{ datos[0]["fecha_reporte"] }}</p></div>
-    <div class="seccion_reporte"><label for="hora">Horario estimado</label><p>{{ datos[0]["horario_reporte"] }}</p></div>
-    <div class="seccion_reporte"><label for="descripcion">Mensaje</label><p>{{ datos[0]["descripcion"] }}</p></div>
+    <div class="seccion_reporte"><label for="direccion"><b>Direccion del reporte:</b></label><p>{{ datos[0]["provincia"] }}</p></div>
+    <div class="seccion_reporte"><label for="fecha"><b>Fecha:</b></label><p>{{ datos[0]["fecha_reporte"] }}</p></div>
+    <div class="seccion_reporte"><label for="hora"><b>Horario estimado:</b></label><p>{{ datos[0]["horario_reporte"] }}</p></div>
+    <div class="seccion_reporte"><label for="descripcion"><b>Mensaje:</b></label><p>{{ datos[0]["descripcion"] }}</p></div>
     </fieldset>
     <div id="seccion_submit"></div>
 </form>
