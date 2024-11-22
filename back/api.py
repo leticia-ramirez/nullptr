@@ -13,7 +13,7 @@ INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario"""
 
 QUERY_TODOS_LOS_REPORTES_BY_ID="""
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, U.nombre, U.apellido, R.provincia, R.departamento, R.localidad, R.horario_reporte, R.ID_usuario
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, U.nombre_usuario, R.provincia, R.departamento, R.localidad, R.horario_reporte, R.ID_usuario
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
@@ -149,7 +149,7 @@ def reporte_ID(ID_reporte):    #metodo reporte_ID
 
     response = []
     for row in result:
-        response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'nombre': row[5], 'apellido': row[6], 'provincia': row[7], 'departamento': row[8], 'localidad': row[9], "horario_reporte": str(row[10]), "ID_usuario": row[11]})
+        response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'nombre_usuario': row[5], 'provincia': row[6], 'departamento': row[7], 'localidad': row[8], "horario_reporte": str(row[9]), "ID_usuario": row[10]})
     return jsonify(response), 200
 
 @app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/todaslocalidades
