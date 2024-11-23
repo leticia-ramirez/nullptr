@@ -95,7 +95,7 @@ INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 """
 
-QUERY_BY_LOCALIDAD="""SELECT R.ID_reporte, R.localidad, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
+QUERY_BY_LOCALIDAD="""SELECT R.ID_reporte, I.direccion_reporte, R.provincia, R.departamento, R.localidad, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
@@ -177,7 +177,7 @@ def reporte_by_localidad(localidad):
 
     response = []
     for row in result:
-        response.append({'ID': row[0], 'localidad':row[1], 'direccion_reporte': row[2], 'descripcion': row[3], 'tipo_reporte': row[4], 'fecha_reporte': row[5], 'ID_usuario': row[6]})
+        response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'provincia': row[2], 'departamento': row[3], 'localidad': row[4], 'descripcion': row[5], 'tipo_reporte': row[6], 'fecha_reporte': row[7], 'ID_usuario': row[8]})
     return jsonify(response), 200
 
 @app.route('/api/v1/reportes/fecha/<fecha_reporte>', methods=['GET'])   #Endpoint: /reportes/porFecha

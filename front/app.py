@@ -21,20 +21,39 @@ def home():
 
 @app.route("/buscarzona", methods=["GET", "POST"])
 def buscar():
-    if request.method == 'GET':
-        busqueda = request.args.get('busqueda')
+    if request.method == "GET":
+        busqueda = request.args.get("busqueda")
         try:
-            response = requests.get(API_URL+"reportes/localidad/"+str(busqueda))
+            response = requests.get(API_URL + "reportes/localidad/" + str(busqueda))
             response.raise_for_status()
-            data=response.json()
+            reportes = response.json()
+
+            coordenadas = []
+            for reporte in reportes:
+                direccion = reporte["direccion_reporte"]
+                provincia = reporte["provincia"]
+                departamento = reporte["departamento"]
+
+                ubicacion_response = requests.get(
+                    f"{API_ARG}direcciones?direccion={direccion}&provincia={provincia}&departamento={departamento}&localidad={busqueda}",
+                    timeout=5,
+                )
+                ubicacion_response.raise_for_status()
+                ubicacion = ubicacion_response.json()
+
+                latitud = float(ubicacion["direcciones"][0]["ubicacion"]["lat"])
+                longitud = float(ubicacion["direcciones"][0]["ubicacion"]["lon"])
+                coordenadas.append({"lat": latitud, "lng": longitud})
+
             if response:
-                return render_template('buscar_zona.html', data=data)
+                return render_template("buscar_zona.html", reportes=reportes, coordenadas=coordenadas)
                 
         except requests.exceptions.RequestException as e:
-            print(f"Error pushing data: {e}")
-            data=[]
+            print(f"Error al obtener datos: {e}")
+            return render_template("buscar_zona.html", reportes=[], coordenadas=[])
 
-    return render_template('buscar_zona.html')
+    return render_template("buscar_zona.html")
+
 
 @app.route("/reporte", methods=['GET','POST'])
 def reporte():

@@ -91,17 +91,24 @@ INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
 VALUES ('Robo', 'Paseo Colon 850', 'Robo de Apuntes');
 
 INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
-VALUES ('Secuestro', 'Paseo Colon 851', 'Secuestro de vacaciones');
+VALUES ('Secuestro', 'Av. Juan de Garay 125', 'Secuestro de vacaciones');
 
 INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
-VALUES ('Asesinato', 'Paseo Colon 852', 'Asesinato de neuronas');
+VALUES ('Asesinato', 'Paseo Colon 750', 'Asesinato de neuronas');
+
+INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
+VALUES ('Asesinato', 'Av. Brasil 800', 'Asesinato de neuronas');
 
 
 -- HARDCODEO DE DATOS - REPORTES
 INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
-VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 10', 'Floresta', '2024-03-27', '03:15', 1, 1);
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 1', 'San Telmo', '2024-04-12', '03:15', 1, 1);
 
 INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
-VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 12', 'Saavedra', '2022-03-27', '12:15', 1, 1);
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 1', 'San Telmo', '2022-03-27', '12:15', 2, 1);
+
 INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
-VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 4', 'Barracas', '2021-01-27', '04:15', 1, 1);
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 1', 'San Telmo', '2021-01-27', '04:15', 3, 1);
+
+INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 1', 'San Telmo', '2021-01-30', '06:44', 4, 1);

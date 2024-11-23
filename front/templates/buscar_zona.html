@@ -1,35 +1,46 @@
 {% extends "base.html" %}
 {% block tab %}Buscar Zona{% endblock %}
 {% block body %}
-    <section class="seccionBusqueda">
-        <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
-        <form action="{{url_for('buscar')}}" method="get" class="busqueda">
-            <div id="filtrar-zona">
-                <input type="text" name="busqueda" placeholder="Busca por localidad" class="filtrar-items">
-                <input class="btn btn-outline-success borde-size" type="submit" value="Buscar">
-            </div>
-        </form>
+<section class="seccionBusqueda">
+    <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
+    <form action="{{url_for('buscar')}}" method="get" class="busqueda">
+        <div id="filtrar-zona">
+            <input type="text" name="busqueda" placeholder="Busca por localidad" class="filtrar-items">
+            <input class="btn btn-outline-success borde-size" type="submit" value="Buscar">
+        </div>
+    </form>
 
-        <!-- PASAR A BLOQUE PARA REUTILIZAR -->
-        <div class="Reportes">
-            <div class="listado-tarjetas">
-                {% for value in data %}
-                        <div class="tarjetas">
-                            <h5>Incidencia :{{value.tipo_reporte}}</h5>
-                            <p>Localidad {{value.localidad}}</p>
-                            <p>Dirección: {{value.direccion_reporte}}</p>
-                            <p>Horario estimado: {{value.fecha_reporte}}</p>
-                            <p class="text-justify">Descripción: {{value.descripcion}}</p>
-                            <button class="btn btn-outline-success borde-size">
-                                <a href="{{url_for('mreporte_id', id = value.ID)}}">Mas información</a>
-                            </button>
-                        </div>
-                 
+    <!-- Listado de reportes -->
+    <div class="Reportes">
+        <div class="listado-tarjetas">
+            {% if reportes %}
+                {% for value in reportes %}
+                <div class="tarjetas">
+                    <h5>Incidencia: {{ value.tipo_reporte }}</h5>
+                    <p>Localidad: {{ value.localidad }}</p>
+                    <p>Dirección: {{ value.direccion_reporte }}</p>
+                    <p>Horario estimado: {{ value.fecha_reporte }}</p>
+                    <p class="text-justify">Descripción: {{ value.descripcion }}</p>
+                    <button class="btn btn-outline-success borde-size">
+                        <a href="{{url_for('mreporte_id', id=value.ID)}}">Más información</a>
+                    </button>
+                </div>
                 {% endfor %}
-            </div>
+            {% else %}
+                <p>No se encontraron reportes para esta localidad.</p>
+            {% endif %}
         </div>
-        <div class="mapa-section">
-            <div class="map" id="map"></div>
-        </div>
-    </section>
+    </div>
+
+    <!-- Mapa -->
+    <div class="mapa-section">
+        <div class="map" id="map"></div>
+    </div>
+</section>
+
+<script>
+    const coordenadas = {{ coordenadas|default([])|tojson }};
+    console.log("Coordenadas recibidas:", coordenadas);
+</script>
+
 {% endblock %}
