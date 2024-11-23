@@ -88,21 +88,20 @@ VALUES('paks12', 'Priscila', 'Guzman', 'guzmanpriscila@hotmail.com', '1132132143
 
 -- HARDCODEO DE DATOS - INCIDENTES
 INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
-VALUES ("Robo", "Paseo Colon 850", "Robo de Apuntes");
+VALUES ('Robo', 'Paseo Colon 850', 'Robo de Apuntes');
 
 INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
-VALUES ("Secuestro", "Paseo Colon 851", "Secuestro de vacaciones");
+VALUES ('Secuestro', 'Paseo Colon 851', 'Secuestro de vacaciones');
 
 INSERT INTO incidentes (tipo_reporte, direccion_reporte, descripcion)
-VALUES ("Asesinato", "Paseo Colon 852", "Asesinato de neuronas");
+VALUES ('Asesinato', 'Paseo Colon 852', 'Asesinato de neuronas');
 
 
 -- HARDCODEO DE DATOS - REPORTES
 INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
-VALUES ("Ciuadad Autonoma de Buenos Aires", "Comuna 10", "Floresta", "2024-03-27", "03:15", 1, 1);
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 10', 'Floresta', '2024-03-27', '03:15', 1, 1);
 
 INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
-VALUES ("Ciuadad Autonoma de Buenos Aires", "Comuna 12", "Saavedra", "2022-03-27", "02:15", 1, 1);
-
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 12', 'Saavedra', '2022-03-27', '12:15', 1, 1);
 INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario)
-VALUES ("Ciuadad Autonoma de Buenos Aires", "Comuna 4", "Barracas", "2021-01-27", "04:15", 1, 1);
+VALUES ('Ciuadad Autonoma de Buenos Aires', 'Comuna 4', 'Barracas', '2021-01-27', '04:15', 1, 1);
