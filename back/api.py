@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 
 #QUERY REPORTES
 QUERY_TODOS_LOS_REPORTES = """
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, DATE_FORMAT(R.fecha_reporte, '%d %M %Y'), R.ID_usuario, R.horario_reporte 
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, DATE_FORMAT(R.fecha_reporte, '%d %b %Y'), R.ID_usuario, R.horario_reporte 
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario"""
@@ -20,7 +20,7 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.ID_reporte= :ID_reporte"""
 
 QUERY_TODOS_LOS_REPORTESNOVEDADES = """
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, DATE_FORMAT(R.fecha_reporte, '%d %M %Y'), R.ID_usuario, R.horario_reporte 
+SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, DATE_FORMAT(R.fecha_reporte, '%d %b %Y'), R.ID_usuario, R.horario_reporte 
 FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
