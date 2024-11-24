@@ -201,15 +201,12 @@ def usuario(ID_usuario):    #metodo usuario
 def ingresar_usuario():    #metodo ingresar
     nuevo_usuario = request.get_json()
 
-    keys = ('ID_usuario', 'nombre_usuario', 'nombre', 'apellido', 'email', 'telefono')
+    keys = ('nombre_usuario', 'nombre', 'apellido', 'email', 'telefono')
     for key in keys:
         if key not in nuevo_usuario:
             return jsonify({'message': f"Falta el dato {key}"}), 400
 
     try:
-        result = archivo_usuarios.usuarios_por_id(nuevo_usuario['ID_usuario'])
-        if result is not None:
-            return jsonify({'error': 'El usuario ya existe'}), 400
         archivo_usuarios.insert_usuario(nuevo_usuario)
 
     except Exception as e:

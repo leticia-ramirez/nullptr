@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block tab %}Registrarse{% endblock %}
+{% block body %}
+
+<div id="content">
+<h2>Registrarse</h2>
+<form action="{{url_for('signup')}}" method="post" class="reporte">
+    <fieldset><legend>Datos de Ingreso</legend>
+        <div class="seccion_reporte"><label for="usuario">Usuario</label><input type="text" name="usuario" id="usuario" required></div>
+        <div class="seccion_reporte"><label for="contraseña">Constraseña</label><input type="password" name="contraseña" id="contraseña" required></div>
+    </fieldset>
+    <fieldset><legend>Datos Personales</legend>
+        <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
+        <div class="seccion_reporte"><label for="apellido">Apellido</label><input type="text" name="apellido" id="apellido" required></div>
+        <div class="seccion_reporte"><label for="email">e-mail</label><input type="email" name="email" id="email" required></div>
+        <div class="seccion_reporte"><label for="telefono">Telefono</label><input type="tel" name="telefono" id="telefono" required></div>
+    </fieldset>
+    <div id="seccion_submit">
+        <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
+    </div>
+</form>
+</div>
+<p class="texto_flotante">Ya tenes una cuenta? <a href="{{url_for('signin')}}">Ingresa!</a></p>
+
+{% endblock %}

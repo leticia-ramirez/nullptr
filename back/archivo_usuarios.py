@@ -7,7 +7,7 @@ QUERY_TODOS_LOS_USUARIOS = "SELECT ID_usuario, nombre_usuario, nombre, apellido,
 
 QUERY_USUARIO = "SELECT ID_usuario, nombre_usuario, nombre, apellido, email, telefono FROM usuarios WHERE ID_usuario = :ID_usuario"
 
-QUERY_INGRESAR_USUARIO = "INSERT INTO usuarios (ID_usuario, nombre_usuario, nombre, apellido, email, telefono) VALUES (:ID_usuario, :nombre_usuario, :nombre, :apellido, :email, :telefono)"
+QUERY_INGRESAR_USUARIO = "INSERT INTO usuarios (nombre_usuario, nombre, apellido, email, telefono) VALUES (:nombre_usuario, :nombre, :apellido, :email, :telefono)"
 
 QUERY_ACTUALIZAR_USUARIO = "UPDATE usuarios SET nombre_usuario = :nombre_usuario, nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono WHERE ID_usuario = :ID_usuario"
 

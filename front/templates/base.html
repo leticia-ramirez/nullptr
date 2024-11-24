@@ -55,8 +55,9 @@
                         </li>
                     </ul>
                     <div class="justify-content-end">
-                        <button class="btn btn-outline-success borde-size" type="submit">Inicia Sesion</button>
-                        <button class="btn btn-outline-success borde-size" type="submit">Registrarse</button>    
+                        <a href="{{url_for('signin')}}"><button class="btn btn-outline-success borde-size" type="submit" id="isesion">Inicia Sesion</button></a>
+                        <a href="{{url_for('signup')}}"><button class="btn btn-outline-success borde-size" type="submit" id="registrarse">Registrarse</button></a>
+                        <button class="btn btn-outline-success borde-size" type="submit" id="csesion" style="display: none;">Cerrar Sesion</button>
                     </div>
                 </div>
             </div>
@@ -111,17 +112,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    
+    {% if logged %}
+    <script>
+        let logged =  '{{logged}}';
+        let usuario = '{{usuario|tojson}}'; 
+    </script>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/login_script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script_mapa.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-<<<<<<< Updated upstream
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="{{url_for('static', filename='js/owl.carousel.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/carrousel.js')}}"></script> 
-=======
     <script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciar_mapa"></script>
->>>>>>> Stashed changes
 </body>
 
 </html>

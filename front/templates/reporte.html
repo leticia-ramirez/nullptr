@@ -6,6 +6,10 @@
     <h2>Nuevo Reporte</h2>
     <form action="{{ url_for('reporte') }}" method="post" class="reporte">
         <fieldset>
+            <div class="seccion_reporte">
+                <label for="ID_usuario" hidden>ID</label>
+                <input type="number" name="ID_usuario" id="ID_usuario" hidden>
+            </div>
             <legend>Contacto</legend>
             <div class="seccion_reporte">
                 <label for="nombre">Nombre</label>

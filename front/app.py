@@ -77,11 +77,11 @@ def reporte():
             "provincia": provincia,
             "departamento" : municipio,
             "localidad" : localidad,
-           "ubicacion" : f'{ubicacion["direcciones"][0]["ubicacion"]["lat"]} {ubicacion["direcciones"][0]["ubicacion"]["lon"]}',
+            "ubicacion" : f'{ubicacion["direcciones"][0]["ubicacion"]["lat"]} {ubicacion["direcciones"][0]["ubicacion"]["lon"]}',
             "fecha_reporte" : request.form.get("fecha"),
             "horario_reporte" : request.form.get("hora"),
             "ID_incidente" : id_incidente,
-            "ID_usuario" : 1
+            "ID_usuario" : request.form.get("ID_usuario")
         }
         print(data)
         try:
@@ -142,7 +142,6 @@ def modificar(id):
             "tipo_reporte": request.form.get('incidencia'),
             "ID_usuario" : 1
         }
-        print(data)
         try:
             response = requests.put(API_URL+"reportes/id/"+str(id), json = data)
             response.raise_for_status()
@@ -174,6 +173,44 @@ def mreporte_id(id): #endpoint para mostrar todos los reportes
         datos_reporte = []
 
     return render_template("masinformacion.html", datos = datos_reporte)
+
+@app.route("/signin", methods=["GET", "POST"])
+def signin():
+    if request.method == 'POST':
+        nombre_usuario = request.form.get('usuario')
+        try:
+            response = requests.get(API_URL+"usuarios")
+            response.raise_for_status()
+            usuarios = response.json()
+            intento = {}
+            for usuario in usuarios:
+                if nombre_usuario == usuario["nombre_usuario"]:
+                    intento = usuario
+            if intento:
+                return render_template("home.html", logged = True, usuario = intento)
+            else:
+                return render_template("signin.html", logged = False)
+        except requests.exceptions.RequestException as e:
+            print(f"Error pushing data: {e}")
+
+    return render_template('signin.html')
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        data = {
+            "nombre_usuario" : request.form.get('usuario'),
+            "nombre" : request.form.get('usuario'),
+            "apellido" : request.form.get('apellido'),
+            "email" : request.form.get('email'),
+            "telefono" : request.form.get('telefono')
+        }
+        try:
+            requests.post(API_URL+"usuarios", json = data)
+        except requests.exceptions.RequestException as e:
+            print(f"Error pushing data: {e}")
+
+    return render_template("signup.html")
 
 @app.route("/download")
 def download():
