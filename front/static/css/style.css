@@ -1097,3 +1097,41 @@ legend {
     margin-left: 4vh;
     margin-right: 1vh;
 }
+
+
+/* Añadido al final de tu style.css */
+.mapa-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#map {
+    height: 300px;
+    width: 100%;
+    border: 2px solid #1a8f54;
+    border-radius: 5px;
+}
+
+/* Botones */
+.map-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.map-buttons button {
+    background-color: #1a8f54;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.map-buttons button:hover {
+    background-color: #147a44;
+}

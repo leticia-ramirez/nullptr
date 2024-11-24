@@ -55,7 +55,7 @@ def buscar():
     return render_template("buscar_zona.html")
 
 
-@app.route("/reporte", methods=['GET','POST'])
+@app.route("/reporte", methods=["GET", "POST"])
 def reporte():
     if request.method == "POST":
         provincia = request.form.get("provincia")
@@ -63,9 +63,9 @@ def reporte():
         localidad = request.form.get("localidad")
         direccion = request.form.get("direccion")
 #       Lo vamos a necesitar para el mapa, no borrar
-#       ubicacion = requests.get(f"{API_ARG}direcciones?direccion={direccion}&provincia={provincia}&departamento={municipio}&localidad={localidad}", timeout = 5)
-#        ubicacion.raise_for_status()
-#        ubicacion = ubicacion.json()
+        ubicacion = requests.get(f"{API_ARG}direcciones?direccion={direccion}&provincia={provincia}&departamento={municipio}&localidad={localidad}", timeout = 5)
+        ubicacion.raise_for_status()
+        ubicacion = ubicacion.json()
         incidente = {
             "tipo_reporte" : request.form.get("tipo_reporte"),
             "direccion_reporte" : direccion,
@@ -78,7 +78,7 @@ def reporte():
             "provincia": provincia,
             "departamento" : municipio,
             "localidad" : localidad,
-#           "ubicacion" : f'{ubicacion["direcciones"][0]["ubicacion"]["lat"]} {ubicacion["direcciones"][0]["ubicacion"]["lon"]}',
+           "ubicacion" : f'{ubicacion["direcciones"][0]["ubicacion"]["lat"]} {ubicacion["direcciones"][0]["ubicacion"]["lon"]}',
             "fecha_reporte" : request.form.get("fecha"),
             "horario_reporte" : request.form.get("hora"),
             "ID_incidente" : id_incidente,
@@ -95,6 +95,29 @@ def reporte():
             datos = []
             return render_template("reporte.html", datos = datos)
     return render_template("reporte.html")
+
+@app.route("/get_coordinates", methods=["GET"])
+def get_coordinates():
+    provincia = request.args.get("provincia")
+    municipio = request.args.get("municipio")
+    localidad = request.args.get("localidad")
+    direccion = request.args.get("direccion")
+
+    try:
+        response = requests.get(
+            f"{API_ARG}direcciones?direccion={direccion}&provincia={provincia}&departamento={municipio}&localidad={localidad}",
+            timeout=5
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        if data and data.get("direcciones"):
+            ubicacion = data["direcciones"][0]["ubicacion"]
+            return jsonify({"lat": ubicacion["lat"], "lon": ubicacion["lon"]})
+        else:
+            return jsonify({"error": "No se encontraron coordenadas"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/misreportes") 
 def mreporte():
