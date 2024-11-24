@@ -218,7 +218,9 @@ def download():
 
 @app.route("/contacto", methods=['POST','GET'])
 def contacto():
-    return render_template("contacto.html")
+    if request.method == 'POST':
+        return redirect(url_for('home'))
+    return render_template('contacto.html')
 
 @app.errorhandler(404)
 def error(e):
