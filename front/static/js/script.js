@@ -1,3 +1,72 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const direccionInput = document.getElementById("direccion");
+    const modal = document.getElementById("confirmationModal");
+    const closeModal = document.getElementById("closeModal");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    direccionInput.addEventListener("change", async () => {
+        const provincia = document.getElementById("provincia").value;
+        const municipio = document.getElementById("municipio").value;
+        const localidad = document.getElementById("localidad").value;
+        const direccion = direccionInput.value;
+
+        if (direccion && provincia && localidad) {
+            try {
+                const response = await fetch(`/get_coordinates?provincia=${provincia}&municipio=${municipio}&localidad=${localidad}&direccion=${direccion}`);
+                if (!response.ok) {
+                    throw new Error("Error al obtener las coordenadas. Verifique los datos ingresados.");
+                }
+                const data = await response.json();
+                if (data.lat && data.lon) {
+                    showMap(data.lat, data.lon);
+                    modal.style.display = "block";
+                } else {
+                    alert("No se encontraron coordenadas para esta dirección. Verifique los datos.");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Error al obtener las coordenadas. Intente nuevamente.");
+            }
+        } else {
+            alert("Por favor, complete todos los campos antes de continuar.");
+        }
+    });
+
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    cancelBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        alert("Por favor, corrija la dirección ingresada.");
+        direccionInput.focus();
+    });
+
+    confirmBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        alert("Dirección confirmada.");
+    });
+
+    function showMap(lat, lon) {
+        const mapElement = document.getElementById("map");
+        if (!mapElement) {
+            console.error("El elemento del mapa no existe.");
+            return;
+        }
+        const map = new google.maps.Map(mapElement, {
+            center: { lat: lat, lng: lon },
+            zoom: 15,
+        });
+        new google.maps.Marker({
+            position: { lat: lat, lng: lon },
+            map: map,
+        });
+    }
+});
+
+
+
 // select relacionados
 
 const selectProvincias=document.getElementById('provincia');

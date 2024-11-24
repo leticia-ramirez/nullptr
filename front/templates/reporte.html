@@ -1,53 +1,154 @@
 {% extends "base.html" %}
-{% block tab %}Mas Informacion{% endblock %}
+{% block tab %}Más Información{% endblock %}
 {% block body %}
 
 <div id="content">
-<h2>Nuevo Reporte</h2>
-<form action="{{url_for('reporte')}}" method="post" class="reporte">
-    <fieldset>
-        <legend>Contacto</legend>
-        <div class="seccion_reporte"><label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" required></div>
-        <div class="seccion_reporte"><label for="email">Mail</label><input type="email" name="email" id="email" required></div>
-        <div class="seccion_reporte"><label for="telefono">Telefono</label><input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" required></div>
-    </fieldset>
-    <fieldset><legend>Reporte</legend>
-    <div class="seccion_reporte">
-        <label for="provincia">Provincia</label>
-        <select name="provincia" id="provincia" required>
-            <option value="">Eliga una ciudad. </option>
-        </select>
-    </div>
-    <div class="seccion_reporte">
-        <label for="municipio">Municipio</label>
-        <select name="municipio" id="municipio">
-            <option value="">Selecciona</option>       
-        </select>
-    </div>
-    <div class="seccion_reporte">
-        <label for="localidad">Localidad</label>
-        <select name="localidad" id="localidad" required>
-            <option value="" >Selecciona</option>
-        </select>
-    </div>
-    <div class="seccion_reporte"><label for="tipo_reporte">Tipo de incidencia</label><select name="tipo_reporte" id="tipo_reporte" required>
-            <option value="">Eliga un tipo de incidente.</option>
-            <option value="robo">Robo</option>
-            <option value="secuestro">Secuestro</option>
-            <option value="violencia">Violencia</option>
-            <option value="homicidio">Asesinato</option>
-        </select></div>
-    <!-- hay que elegir los tipos de incidencia, por ahora puse unos placeholders. -->
-    <div class="seccion_reporte"><label for="direccion">Direccion del reporte</label><input type="text" name="direccion" id="direccion" required></div>
-    <div class="seccion_reporte"><label for="imagen">Imagen (Opcional)</label><input type="file" accept="image/*" name="imagen" id="imagen"></div>
-    <div class="seccion_reporte"><label for="fecha">Fecha</label><input type="date" name="fecha" id="fecha" required></div>
-    <div class="seccion_reporte"><label for="hora">Horario estimado</label><input type="time" name="hora" id="hora" required></div>
-    <div class="seccion_reporte"><label for="descripcion">Mensaje</label><textarea rows="5" name="descripcion" id="descripcion" placeholder="Detallenos el incidente..." required></textarea></div>
-    </fieldset>
-    <div id="seccion_submit">
-        <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
-    </div>
-</form>
+    <h2>Nuevo Reporte</h2>
+    <form action="{{ url_for('reporte') }}" method="post" class="reporte">
+        <fieldset>
+            <legend>Contacto</legend>
+            <div class="seccion_reporte">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" required>
+            </div>
+            <div class="seccion_reporte">
+                <label for="email">Mail</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="seccion_reporte">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Reporte</legend>
+            <div class="seccion_reporte">
+                <label for="provincia">Provincia</label>
+                <select name="provincia" id="provincia" required>
+                    <option value="">Elige una provincia</option>
+                </select>
+            </div>
+            <div class="seccion_reporte">
+                <label for="municipio">Municipio</label>
+                <select name="municipio" id="municipio">
+                    <option value="">Selecciona</option>
+                </select>
+            </div>
+            <div class="seccion_reporte">
+                <label for="localidad">Localidad</label>
+                <select name="localidad" id="localidad" required>
+                    <option value="">Selecciona</option>
+                </select>
+            </div>
+            <div class="seccion_reporte">
+                <label for="tipo_reporte">Tipo de incidencia</label>
+                <select name="tipo_reporte" id="tipo_reporte" required>
+                    <option value="">Elige un tipo de incidente</option>
+                    <option value="Robo">Robo</option>
+                    <option value="Secuestro">Secuestro</option>
+                    <option value="Violencia">Violencia</option>
+                    <option value="Homicidio">Homicidio</option>
+                </select>
+            </div>
+            <div class="seccion_reporte">
+                <label for="direccion">Dirección del reporte</label>
+                <input type="text" name="direccion" id="direccion" required>
+            </div>
+            <div class="seccion_reporte">
+                <label for="imagen">Imagen (Opcional)</label>
+                <input type="file" accept="image/*" name="imagen" id="imagen">
+            </div>
+            <div class="seccion_reporte">
+                <label for="fecha">Fecha</label>
+                <input type="date" name="fecha" id="fecha" required>
+            </div>
+            <div class="seccion_reporte">
+                <label for="hora">Horario estimado</label>
+                <input type="time" name="hora" id="hora" required>
+            </div>
+            <div class="seccion_reporte">
+                <label for="descripcion">Mensaje</label>
+                <textarea rows="5" name="descripcion" id="descripcion" placeholder="Detállenos el incidente..." required></textarea>
+            </div>
+        </fieldset>
+        <div id="seccion_submit">
+            <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
+        </div>
+    </form>
 </div>
 
+<!-- Modal -->
+<div id="confirmationModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <h2>¿Es esta la dirección correcta?</h2>
+        <div id="map" style="width: 100%; height: 300px;"></div>
+        <div class="map-buttons">
+            <button id="confirmBtn" class="btn btn-success">Confirmar</button>
+            <button id="cancelBtn" class="btn btn-danger">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const direccionInput = document.getElementById("direccion");
+    const modal = document.getElementById("confirmationModal");
+    const closeModal = document.getElementById("closeModal");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    direccionInput.addEventListener("change", async () => {
+        const provincia = document.getElementById("provincia").value;
+        const municipio = document.getElementById("municipio").value;
+        const localidad = document.getElementById("localidad").value;
+        const direccion = direccionInput.value;
+
+        if (direccion && provincia && localidad) {
+            try {
+                const response = await fetch(`/get_coordinates?provincia=${provincia}&municipio=${municipio}&localidad=${localidad}&direccion=${direccion}`);
+                const data = await response.json();
+                if (data.lat && data.lon) {
+                    showMap(data.lat, data.lon);
+                    modal.style.display = "block";
+                } else {
+                    alert("No se encontraron coordenadas para esta dirección. Verifique los datos.");
+                }
+            } catch (error) {
+                alert("Error al obtener las coordenadas. Intente nuevamente.");
+            }
+        } else {
+            alert("Por favor, complete todos los campos antes de continuar.");
+        }
+    });
+
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    cancelBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        alert("Por favor, corrija la dirección ingresada.");
+        direccionInput.focus();
+    });
+
+    confirmBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        alert("Dirección confirmada.");
+    });
+
+    function showMap(lat, lon) {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: lat, lng: lon },
+            zoom: 15,
+        });
+        new google.maps.Marker({
+            position: { lat: lat, lng: lon },
+            map: map,
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
 {% endblock %}
+
+
