@@ -5,7 +5,7 @@
 
 <div id="formulario-centrado">
     <h2>Contactanos</h2>
-    <form action="" method="post" class="reporte">
+    <form action="{{ url_for('contacto') }}" method="post" class="reporte">
         <div>
             <p class="text-justify">Gracias por mostrar interes en querer contactarnos, por desgracia, para atender tu
                 consulta, necesitamos que completes el siguiente formulario. Pronto nos pondremos en contacto contigo :)
@@ -42,10 +42,10 @@
                     required></textarea>
             </div>
         </fieldset>
-    </form>
-    <div id="seccion_submit">
+        <div id="seccion_submit">
             <input id="submit" class="btn btn-outline-success borde-size" type="submit" value="Enviar">
-    </div>
+        </div>
+    </form>
 </div>
 
 {% endblock %}
