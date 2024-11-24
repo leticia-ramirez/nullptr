@@ -4,6 +4,11 @@
 
 <div id="content">
     <h2>Nuevo Reporte</h2>
+    <div>
+        <p> -> ¿Sufriste de alguna situacion de incidencia y quieres reportarla?</p>
+        <p>Completa el siguiente formulario con el mayor detalle que puedas ofrecernos para que podamos tomar tu reporte de incidencia y podamos notificarle a las autoridades y a otos usuarios.</p>
+        <p>Gracias por reportar :)</p>
+    </div>
     <form action="{{ url_for('reporte') }}" method="post" class="reporte">
         <fieldset>
             <legend>Contacto</legend>
@@ -47,7 +52,7 @@
                     <option value="Robo">Robo</option>
                     <option value="Secuestro">Secuestro</option>
                     <option value="Violencia">Violencia</option>
-                    <option value="Homicidio">Homicidio</option>
+                    <option value="Asesinato">Asesinato</option>
                 </select>
             </div>
             <div class="seccion_reporte">

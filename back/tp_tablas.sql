@@ -39,7 +39,7 @@ CREATE TABLE reportes (
 
 -- HARDCODEO DE DATOS - USUARIOS
 INSERT INTO usuarios(nombre_usuario, nombre, apellido, email,telefono)
-VALUES('lore142', 'Lorena', 'Sanz', 'lorena1@gmail.com', '1234512345');
+VALUES('lore142', 'Lorena', 'Sanz', 'lorena1@gmail.com', '1134512345');
 
 INSERT INTO usuarios(nombre_usuario, nombre, apellido, email,telefono)
 VALUES('mari42l', 'Mariela Raina', 'Marciel', 'mari@hotmail.com', '1131425365');
