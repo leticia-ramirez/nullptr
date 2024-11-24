@@ -8,7 +8,6 @@ API_ARG = "https://apis.datos.gob.ar/georef/api/"
 
 @app.route("/", methods=["GET", "POST"]) #endpoint reporte
 def home():
-    lista=['hide', 'prev', 'act', 'next', 'next new-next']
     try:
         response = requests.get(API_URL+'reportesNovedades', timeout=3)
         response.raise_for_status()
@@ -17,7 +16,7 @@ def home():
         print(f"Error traer data: {e}")
         reportes = []
 
-    return render_template("home.html", reportes = reportes, lista=lista)
+    return render_template("home.html", reportes = reportes)
 
 @app.route("/buscarzona", methods=["GET", "POST"])
 def buscar():

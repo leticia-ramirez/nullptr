@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 {% block tab %}Buscar Zona{% endblock %}
 {% block body %}
+
     <section class="seccionBusqueda">
         <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
-        <form action="{{url_for('buscar')}}" method="get" class="busqueda">
-            <div id="filtrar-zona">
-                <input type="text" name="busqueda" placeholder="Busca por localidad" class="filtrar-items">
-                <input class="btn btn-outline-success borde-size" type="submit" value="Buscar">
-            </div>
-        </form>
+        <div class="form-container busqueda">
+            <form action="{{url_for('buscar')}}" method="get" class="form" id="user-form">
+                    <div class="form-box">
+                        <input type="text" name="busqueda" placeholder="Busca por localidad" class="filtrar-items">
+                        <small class="error-text">Introduce una localidad</small>
+                    </div>
+                   
+                    <button class="btn btn-outline-success borde-size" id="submit-btn" type="submit" disabled>buscar</button>
+                        <!-- <input class="btn btn-outline-success borde-size" id="submit-btn" type="submit" value="Buscar" disabled> -->
+                   
+            </form>
+    
+        </div>
 
         <!-- PASAR A BLOQUE PARA REUTILIZAR -->
         <div class="Reportes">
@@ -32,4 +40,55 @@
             <div class="map" id="map"></div>
         </div>
     </section>
+    <script>
+        const form=document.getElementById('user-form');
+        const submit=document.getElementById('submit-btn');
+        let timeout=null;
+        let errors= {
+            busqueda:true
+        };
+        document.querySelectorAll('.form-box').forEach((box)=>{
+            const boxInput=box.querySelector('input');
+            boxInput.addEventListener('keydown', (event)=>{
+                clearTimeout(timeout)
+                timeout=setTimeout(()=>{
+                    console.log(`input ${boxInput.name} value:`, boxInput.value);
+                    validation(box,boxInput);
+                },300);
+            });
+        });
+        validation=(box, boxInput)=>{
+            if(boxInput.name=='busqueda'){
+                if (boxInput.value==''){
+                    showError(true,box, boxInput);
+                }else{
+                    showError(false,box, boxInput);
+                }
+            }
+            submitController()
+        }
+
+        showError= (check,box, boxInput)=>{
+            if (check){
+                box.classList.remove('form-success');
+                box.classList.add('form-error');
+                errors[boxInput.name] =true;
+            }else{
+                box.classList.remove('form-error');
+                box.classList.add('form-success');
+                errors[boxInput.name] =false;
+            }
+        }
+
+        submitController=()=>{
+            if (errors.busqueda){
+                submit.toggleAttribute('disabled', true);
+            }else{
+                submit.toggleAttribute('disabled', false);
+            }
+        };
+        form.addEventListener('submit', (ev)=>{
+            even.preventDefault();
+        })
+    </script>
 {% endblock %}
