@@ -232,18 +232,18 @@ section .grids .hijo img{
     color: red;
     visibility: hidden;
 }
-.form .btn{
+.form #submit-btn{
     background-color: #72df0d;
     color: black;
     border: 1px solid green;
     font-weight: bold;
     font-size: 16px;
     font-family: inherit;
-    margin-right: 15%;
-    margin-left: 15%;
     text-transform: uppercase;
+    width: 70%;
+    margin-left: 15%;
 }
-.form .btn:disabled{
+.form #submit-btn:disabled{
     background-color: #73df0d44;
     border: 1px solid #73df0d44;
     color: rgb(124, 124, 124);
