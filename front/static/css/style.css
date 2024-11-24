@@ -684,7 +684,7 @@ footer .padding .footer-primera a:hover, footer .padding .footer-segunda a:hover
 /*
  *
  *
- * CSS para reporte.html
+ * CSS para reporte.html y contacto.html
  *
  *
  */
@@ -709,6 +709,17 @@ footer .padding .footer-primera a:hover, footer .padding .footer-segunda a:hover
     background-color: rgba(25, 135, 84, 0.05);
     padding: 0.8em 0.5em;
     border-bottom: 1px solid rgb(25, 135, 84);
+}
+
+#content > div, #formulario-centrado > div {
+    text-align: justify-center;
+    margin: 1em auto;
+    width: 80%;
+    padding: 1em;
+    border: 2px solid rgba(72, 202, 122, 0.8);
+    background-color: rgba(200, 255, 200, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 fieldset {
@@ -813,102 +824,6 @@ legend {
     color: black;
 }
 
-
-/*
- *
- *
- * CSS para contacto.html
- *
- *
- */
-
-#formulario-centrado {
-    margin-top: 10vh;
-    width: 90%;
-    max-width: 800px;
-    background-color: white;
-    border: 1px solid rgb(25, 135, 84);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#formulario-centrado > h2 {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: rgb(25, 135, 84);
-    background-color: rgba(25, 135, 84, 0.05);
-    padding: 1em;
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid rgb(25, 135, 84);
-    margin: 0;
-}
-
-#formulario-centrado form {
-    width: 90%;
-    max-width: 100%;
-}
-
-fieldset {
-    border: 2px groove black;
-    padding: 1em 2em;
-    font-size: 1em;
-    margin: 0 0.8em 0.5em 0.8em;
-}
-
-fieldset > div {
-    padding: 0.3em 0;
-}
-
-legend {
-    font-size: 1.2em;
-    margin-left: 0;
-    padding: 0 0.5em;
-}
-
-.seccion_contacto {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 0.5em;
-}
-
-.seccion_contacto > input,
-.seccion_contacto > select,
-.seccion_contacto > textarea {
-    width: 100%;
-    padding: 0.5em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.seccion_contacto > label {
-    text-align: left;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-#seccion_submit {
-    background-color: rgba(25, 135, 84, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.8em 0.5em;
-    border-top: 1px solid rgb(25, 135, 84);
-    width: 100%;
-}
-
-#seccion_submit > input {
-    background-color: white;
-}
-
-#seccion_submit > input:hover {
-    background-color: rgb(25, 135, 84);
-}
 
 /*
  *

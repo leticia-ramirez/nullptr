@@ -3,43 +3,41 @@
 
 {% block body %}
 
-<div id="formulario-centrado">
+<div id="content">
     <h2>Contactanos</h2>
+    <div>
+        <p> -> ¿Quieres comunicarte con alguno de nuestros agentes?</p>
+        <p>Gracias por mostrar interés en querer contactarnos, por desgracia, para atender tu consulta, necesitamos que completes el siguiente formulario.</p>
+        <p>Pronto nos pondremos en contacto contigo :)</p>
+    </div>
     <form action="{{ url_for('contacto') }}" method="post" class="reporte">
-        <div>
-            <p class="text-justify">Gracias por mostrar interes en querer contactarnos, por desgracia, para atender tu
-                consulta, necesitamos que completes el siguiente formulario. Pronto nos pondremos en contacto contigo :)
-            </p>
-        </div>
         <fieldset>
-            <legend> Formulario de contacto </legend>
-            <div class="seccion_contacto">
+            <legend>Formulario de contacto</legend>
+            <div class="seccion_reporte">
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Escriba aqui ..." required>
+                <input type="text" name="nombre" id="nombre" placeholder="Escriba aquí ..." required>
             </div>
-            <div class="seccion_contacto">
+            <div class="seccion_reporte">
                 <label for="correo">Mail</label>
-                <input type="correo" name="correo" id="correo" placeholder="Escriba aqui ..." required>
+                <input type="email" name="correo" id="correo" placeholder="Escriba aquí ..." required>
             </div>
-            <div class="seccion_contacto">
-                <label for="telefono">Telefono</label>
-                <input type="telefono" name="telefono" pattern="11[0-9]{8}" id="telefono" placeholder="Escriba aqui ..."
-                    required>
+            <div class="seccion_reporte">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" name="telefono" pattern="11[0-9]{8}" id="telefono" placeholder="Escriba aquí ..." required>
             </div>
-            <div class="seccion_contacto">
+            <div class="seccion_reporte">
                 <label for="incidencia">Motivo de contacto</label>
                 <select name="incidencia" id="incidencia" required>
-                    <option value="">Elegir opciones aqui ... </option>
-                    <option value="">Reporte mal cargado</option>
-                    <option value="">La aplicacion no funciona</option>
-                    <option value="">No puedo ver el mapa en mi zona</option>
-                    <option value="">Otros</option>
+                    <option value="">Elegir opciones aquí...</option>
+                    <option value="1">Reporte mal cargado</option>
+                    <option value="2">La aplicación no funciona</option>
+                    <option value="3">No puedo ver el mapa en mi zona</option>
+                    <option value="4">Otros</option>
                 </select>
             </div>
-            <div class="seccion_contacto">
+            <div class="seccion_reporte">
                 <label for="mensaje">Mensaje</label>
-                <textarea rows="5" name="mensaje" id="mensaje" placeholder="Escriba aqui ... [opcional]"
-                    required></textarea>
+                <textarea rows="5" name="mensaje" id="mensaje" placeholder="Escriba aquí... [opcional]" required></textarea>
             </div>
         </fieldset>
         <div id="seccion_submit">

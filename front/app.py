@@ -183,7 +183,7 @@ def download():
 def contacto():
     if request.method == 'POST':
         return redirect(url_for('home'))
-    return render_template("contacto.html")
+    return render_template('contacto.html')
 
 @app.errorhandler(404)
 def error(e):
