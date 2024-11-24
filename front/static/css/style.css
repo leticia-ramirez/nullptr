@@ -262,8 +262,6 @@ section .grids .hijo img{
 
 .seccionBusqueda .Reportes{
     grid-area: reportes;
-    width: 100% !important;
-    overflow-y: scroll;
 }
 
 .seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
@@ -1147,7 +1145,28 @@ legend {
     margin-right: 1vh;
 }
 
+#img-planet{
+    animation-name: up-down;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-duration: 5s;
+}
 
+@keyframes up-down{
+    0%{
+        transform: scale(1.2);
+    }
+    50%{
+
+        transform: scale(0.9);
+    }
+
+    100%{
+        transform: scale(1.2);
+    }
+}
 /* Añadido al final de tu style.css */
 .mapa-wrapper {
     display: flex;
