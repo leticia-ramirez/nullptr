@@ -33,7 +33,7 @@
 </section>
 <script>
     function redireccion(id){
-        const url= "{{url_for('mreporte_id', id = '')}}" + id;
+        const url= "{{url_for('mreporte_info', id = '')}}" + id;
         console.log(url)
         window.location.href=url;
     }

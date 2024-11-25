@@ -276,17 +276,4 @@
       </div>
     </div>
   </main>
-  <script>
-    const error=document.getElementById('error-img');
-    function changeColor(event) {
-      if (event.type === 'mouseover') {
-        error.style.backgroundColor = 'red'; // Color amarillo
-      } else if (event.type === 'mouseout') {
-        error.style.backgroundColor = ''; // Color blanco
-      }
-    }
-
-    error.addEventListener('mouseover', changeColor);
-    error.addEventListener('mouseout', changeColor);
-  </script>
 {% endblock %}

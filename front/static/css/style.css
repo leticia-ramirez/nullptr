@@ -126,6 +126,11 @@ section .grids .hijo{
     cursor: pointer;
 }
 
+section .grids .hijo:hover{
+    filter: drop-shadow(1px 1px 20px rgb(207, 188, 16));
+
+}
+
 section .grids .hijo img{
     padding-right: 30px;
     width: fit-content;
@@ -302,6 +307,11 @@ section .grids .hijo img{
 
 .section-app #content_jumbotron {
     padding-left: 5%;
+    box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
+}
+
+.img{
+    cursor: pointer;
 }
 
 .sectionFAQ{
@@ -1084,27 +1094,38 @@ legend {
     font-size: 16px;
 }
 
-#img-planet{
+#error-img:hover{
+    animation: gradiente-error 2s infinite;
+}
+
+@keyframes gradiente-error {
+    0% {
+      background: linear-gradient(to right, rgba(255, 0, 0, 0.486), rgb(255, 0, 0));
+    }
+    100% {
+        background: linear-gradient(to left, rgba(255, 0, 0, 0.486), rgb(255, 0, 0));
+    }
+  }
+
+#img-planet:hover{
     animation-name: up-down;
     animation-iteration-count: infinite;
     animation-timing-function: ease;
     animation-direction: normal;
     animation-delay: 0s;
-    animation-duration: 5s;
+    animation-duration: 1.5s;
 }
 
 @keyframes up-down{
     0%{
-        transform: scale(1.2);
-    }
-    50%{
-
-        transform: scale(0.9);
+        transform: rotate(0deg);
     }
 
     100%{
-        transform: scale(1.2);
+        transform: rotate(-360deg);
+
     }
+
 }
 /* Añadido al final de tu style.css */
 .mapa-wrapper {
