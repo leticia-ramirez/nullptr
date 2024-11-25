@@ -7,14 +7,14 @@
                 <div id="tarjetas-horizontales">
                 {% for reporte in datos %}
                     <div class="tarjetas targeta-info">
-                        <p class="fw-bold">Incidencia: {{reporte.tipo_reporte}}</p>
-                        <p>Nombre de Usuario: {{reporte.nombre_usuario}}</p>
-                        <p>Fecha de reporte: {{reporte.fecha_reporte[0:17]}}</p>
-                        <p>Provincia: {{reporte.provincia}}</p>
-                        <p>Departamento: {{reporte.departamento}}</p>
-                        <p>Localidad: {{reporte.localidad}}</p>
-                        <p>Dirección: {{reporte.direccion_reporte}}</p>
-                        <p>Descripción: {{reporte.descripcion}}</p>
+                        <p class="fw-bold text-center">Incidencia: {{reporte.tipo_reporte}}</p>
+                        <p><b>Nombre de Usuario:</b> {{reporte.nombre_usuario}}</p>
+                        <p><b>Fecha de reporte:</b> {{reporte.fecha_reporte[0:17]}}</p>
+                        <p><b>Provincia:</b> {{reporte.provincia}}</p>
+                        <p><b>Departamento:</b> {{reporte.departamento}}</p>
+                        <p><b>Localidad:</b> {{reporte.localidad}}</p>
+                        <p><b>Dirección:</b> {{reporte.direccion_reporte}}</p>
+                        <p><b>Descripción:</b> {{reporte.descripcion}}</p>
                         <div id="outer">
                             <div class="fw-bold button_slide slide_right">
                               <a href="{{url_for('home')}}">HOME</a>

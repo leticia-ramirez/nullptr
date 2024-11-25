@@ -120,6 +120,10 @@ section .grids .hijo{
     border-radius: 20px;
     padding: 30px;
     background-color: aliceblue;
+    width: 80%;
+    word-wrap:break-word;
+    box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
+    cursor: pointer;
 }
 
 section .grids .hijo img{
@@ -978,8 +982,23 @@ legend {
     margin-top: 2vh;
     font-size: 150%;
     padding: 5vh;
+    box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
 }
 
+.targeta-info:hover{
+    animation: gradiente 2s infinite;
+
+}
+
+@keyframes gradiente {
+    0% {
+      background: linear-gradient(to right, rgba(255, 0, 0, 0.267), rgba(255, 0, 0, 0.61));
+    }
+    100% {
+      background: linear-gradient(to right, rgba(0, 247, 255, 0.384), rgba(0, 255, 242, 0.849));
+    }
+  }
+  
 .borde-size a{
     text-decoration: none;
 }
@@ -1058,6 +1077,11 @@ legend {
     margin-top: 2vh;
     margin-left: 4vh;
     margin-right: 1vh;
+}
+.noReportes{
+    text-transform: uppercase;
+    color: red;
+    font-size: 16px;
 }
 
 #img-planet{

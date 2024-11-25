@@ -22,7 +22,7 @@ FROM reportes R
 INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 ORDER BY R.fecha_reporte DESC
-LIMIT 3
+LIMIT 5
 """
 
 QUERY_REPORTE = """
