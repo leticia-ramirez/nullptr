@@ -994,21 +994,8 @@ legend {
     font-size: 150%;
     padding: 5vh;
     box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
+    background-color: #63e4a3d8;
 }
-
-.targeta-info:hover{
-    animation: gradiente 2s infinite;
-
-}
-
-@keyframes gradiente {
-    0% {
-      background: linear-gradient(to right, rgba(255, 0, 0, 0.267), rgba(255, 0, 0, 0.61));
-    }
-    100% {
-      background: linear-gradient(to right, rgba(0, 247, 255, 0.384), rgba(0, 255, 242, 0.849));
-    }
-  }
   
 .borde-size a{
     text-decoration: none;
@@ -1026,7 +1013,7 @@ legend {
     transform: scale(1.15);
     opacity: 1;
     font-size: 20px;
-    background: linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(45,139,253,1) 100%);    color: black;
+    background-color: #63e4a3d8;
 }
  
 .slider-card {
