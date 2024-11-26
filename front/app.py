@@ -198,7 +198,7 @@ def signup():
     if request.method == "POST":
         data = {
             "nombre_usuario" : request.form.get('usuario'),
-            "nombre" : request.form.get('usuario'),
+            "nombre" : request.form.get('nombre'),
             "apellido" : request.form.get('apellido'),
             "email" : request.form.get('email'),
             "telefono" : request.form.get('telefono')
