@@ -32,6 +32,14 @@ INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
 INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.ID_reporte = :ID_reporte"""
 
+QUERY_REPORTE_POR_USUARIO = """SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario, R.horario_reporte
+FROM reportes R
+INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
+INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
+WHERE R.ID_usuario = :ID_usuario
+"""
+
+
 QUERY_REPORTE_FECHA = """
 SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
 FROM reportes R
@@ -104,6 +112,9 @@ def reporte_por_localidad(localidad):
 
 def reporte_por_fecha(fecha_reporte):
     return run_query(QUERY_REPORTE_FECHA, {'fecha_reporte': fecha_reporte}).fetchall()
+
+def reporte_por_usuario(ID_usuario):
+    return run_query(QUERY_REPORTE_POR_USUARIO, {'ID_usuario': ID_usuario}).fetchall()
 
 def reporte_por_tipo(tipo_reporte):
     return run_query(QUERY_REPORTE_TIPO, {'tipo_reporte': tipo_reporte}).fetchall()

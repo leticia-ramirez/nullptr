@@ -120,8 +120,12 @@ def get_coordinates():
 
 @app.route("/misreportes") 
 def mreporte():
+    return render_template("MisReportes.html")
+
+@app.route("/misreportes/usuario/<int:id>")
+def mereporteu(id):
     try:
-        response = requests.get(API_URL+'reportes')
+        response = requests.get(API_URL + 'reportes/usuario/' + str(id))
         response.raise_for_status()
         reportes = response.json()
     except requests.exceptions.RequestException as e:

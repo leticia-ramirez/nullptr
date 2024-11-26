@@ -82,6 +82,18 @@ def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
         response.append({'ID': row [0], 'direccion_reporte': row [1], 'descripcion': row [2], 'tipo_reporte': row [3], 'fecha_reporte': row [4], 'ID_usuario': row [5]})
     return jsonify(response), 200
 
+@app.route('/api/v1/reportes/usuario/<ID_usuario>', methods=['GET'])   #Endpoint: /reportes/porFecha
+def reporte_usuario(ID_usuario):    #metodo reporte_fecha
+    try:
+        result = archivo_reportes.reporte_por_usuario(ID_usuario)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    response = []
+    for row in result:
+        response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5], 'horario_reporte': str(row[6])})
+    return jsonify(response), 200
+
 @app.route('/api/v1/reportes/tipo/<tipo_reporte>', methods=['GET'])   #Endpoint: /reportes/porTipoDeReporte
 def reporte_tipo(tipo_reporte):    #metodo reporte_tipo
     try:
@@ -105,7 +117,7 @@ def ingresar_reporte():    #metodo ingresar
             return jsonify({'message': f"Falta el dato {key}"}), 400    
 
     try:
-        result = archivo_reportes.insert_reporte(nuevo_reporte)
+        archivo_reportes.insert_reporte(nuevo_reporte)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -158,7 +170,7 @@ def ingresar_incidente():    #metodo ingresar
             return jsonify({'message': f"Falta el dato {key}"}), 400
 
     try:
-        result = archivo_incidentes.insert_incidente(nuevo_incidente)
+        archivo_incidentes.insert_incidente(nuevo_incidente)
         nashei = archivo_incidentes.ultimo_incidente()
         nashei = nashei[0][0]
 

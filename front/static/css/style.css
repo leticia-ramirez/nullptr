@@ -1099,3 +1099,10 @@ legend {
 .map-buttons button:hover {
     background-color: #147a44;
 }
+
+#login-alert {
+    color: red;
+}
+h4#login-alert {
+    margin-top: 10vh;
+}
