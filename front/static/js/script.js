@@ -1,3 +1,8 @@
+/*
+ *  Pre: Escucha que se lleno las direcciones del formulario.
+ *  Post: Muestra un Pop-Up con un mapa esperando la confirmacion de que la
+ *       ubicacion ingresada es la correcta.
+ */
 document.addEventListener("DOMContentLoaded", () => {
     const direccionInput = document.getElementById("direccion");
     const modal = document.getElementById("confirmationModal");
@@ -65,6 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+/*
+ *  Pre: Escucha que se quiso enviar el formulario.
+ *  Post: Muestra un alert y despues envia el formulario.
+ */
+document.getElementById('mi_formulario').addEventListener('submit', function(event) {
+    alert('Formulario enviado con éxito');
+    this.submit();
+});
 
 
 // select relacionados

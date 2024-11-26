@@ -1,9 +1,14 @@
 let mapa, ubicacion_actual;
 
+/*
+ *  Pre: Recibe las variables mapa y ubicacion_actual.
+ *  Post: Despliega el mapa con la ubicacion actual del dispositivo y los reportes de la
+ *       base de datos.
+ */
 function iniciar_mapa() {
 	let coordenadas_centrales = { lat: -34.595657, lng: -58.451228 };
     mapa = new google.maps.Map(document.getElementById("map"), {zoom: 15, center: coordenadas_centrales});
-     
+    
     let icono_customizado = {
         path: google.maps.SymbolPath.CIRCLE,
         scale: 10,
@@ -50,6 +55,11 @@ function iniciar_mapa() {
     });
 }
 
+
+/*
+ *  Pre: Recibe la posicion recibida del dispositivo.
+ *  Post: Cambia la posicion por default a la recibida por parametro.
+ */
 function actualizar_posicion(position) {
     let { latitude, longitude } = position.coords;
     let nueva_posicion = { lat: latitude, lng: longitude };
@@ -58,6 +68,11 @@ function actualizar_posicion(position) {
     mapa.setCenter(nueva_posicion);
 }
 
+
+/*
+ *  Pre: Recibe el codigo de error ocasionado.
+ *  Post: Devuelve una alerta dependiendo del error que sea.
+ */
 function recibir_error(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
