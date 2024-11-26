@@ -39,24 +39,7 @@ INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
 WHERE R.ID_usuario = :ID_usuario
 """
 
-
-QUERY_REPORTE_FECHA = """
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
-FROM reportes R
-INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
-INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
-WHERE R.fecha_reporte = :fecha_reporte"""
-
-QUERY_REPORTE_TIPO = """
-SELECT R.ID_reporte, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
-FROM reportes R
-INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
-INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
-WHERE I.tipo_reporte = :tipo_reporte """
-
-
 QUERY_INGRESAR_REPORTE = "INSERT INTO reportes (provincia, departamento, localidad, fecha_reporte, horario_reporte, ID_incidente, ID_usuario) VALUES (:provincia, :departamento, :localidad, :fecha_reporte, :horario_reporte, :ID_incidente, :ID_usuario)"
-
 
 QUERY_ACTUALIZAR_REPORTE = """
 UPDATE reportes R
@@ -70,13 +53,8 @@ I.descripcion = :descripcion,
 I.tipo_reporte = :tipo_reporte
 WHERE R.ID_reporte = :ID_reporte
 """
-QUERY_ELIMINAR_REPORTE = "DELETE FROM reportes WHERE ID_reporte = :ID_reporte"
 
-QUERY_LOCALIDAD="""SELECT R.ID_reporte, R.localidad, I.direccion_reporte, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
-FROM reportes R
-INNER JOIN incidentes I on I.ID_incidente = R.ID_incidente
-INNER JOIN usuarios U on U.ID_usuario = R.ID_usuario
-"""
+QUERY_ELIMINAR_REPORTE = "DELETE FROM reportes WHERE ID_reporte = :ID_reporte"
 
 QUERY_BY_LOCALIDAD="""SELECT R.ID_reporte, I.direccion_reporte, R.provincia, R.departamento, R.localidad, I.descripcion, I.tipo_reporte, R.fecha_reporte, R.ID_usuario 
 FROM reportes R
@@ -103,9 +81,6 @@ def reportes_novedades():
 
 def reporte_por_id(ID_reporte):
     return run_query(QUERY_TODOS_LOS_REPORTES_BY_ID, {'ID_reporte': ID_reporte}).fetchall()
-
-def reporte_localidades():
-    return run_query(QUERY_LOCALIDAD).fetchall()
 
 def reporte_por_localidad(localidad):
     return run_query(QUERY_BY_LOCALIDAD, {'localidad':localidad}).fetchall()

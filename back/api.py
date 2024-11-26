@@ -4,13 +4,18 @@ import archivo_reportes
 import archivo_incidentes
 import archivo_usuarios
 
-#NO OLVIDAR las pre y post
-
 app = Flask(__name__)
 
 
-#ENDPOINTS REPORTES
-@app.route('/api/v1/reportes', methods=['GET'])     #Endpoint: /reportes
+"""----------------------------------"""
+"""------- ENDPOINTS REPORTES -------"""
+"""----------------------------------"""
+
+#
+# Pre: Recibe desde la base de datos todos los reportes existentes.
+# Post: Devuelve los reportes con sus elementos en formato JSON.
+#
+@app.route('/api/v1/reportes', methods=['GET'])                                  
 def reportes():
     try: 
         result = archivo_reportes.todos_los_reportes()
@@ -22,7 +27,11 @@ def reportes():
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5], 'horario_reporte': str(row[6])})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportesNovedades', methods=['GET'])     #Endpoint: /reportes Novedades
+#
+# Pre: Recibe desde la base de datos los ultimos cinco reportes ordenados por fecha descendiente.
+# Post: Devuelve los reportes con sus elementos en formato JSON.
+#
+@app.route('/api/v1/reportesNovedades', methods=['GET'])                         
 def reportesNovedades():
     try: 
         result = archivo_reportes.reportes_novedades()
@@ -34,8 +43,12 @@ def reportesNovedades():
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5], 'horario_reporte': str(row[6])})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['GET'])   #Endpoint: /reportes/porID
-def reporte_ID(ID_reporte):    #metodo reporte_ID
+#
+# Pre: Recibe por parametro el ID del reporte y toma desde la base el reporte que coincida con ese ID.
+# Post: Devuelve el reporte, que coincidió, con sus elementos en formato JSON.
+#
+@app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['GET'])             
+def reporte_ID(ID_reporte):    
     try: 
         result = archivo_reportes.reporte_por_id(ID_reporte)
     except Exception as e:
@@ -46,19 +59,12 @@ def reporte_ID(ID_reporte):    #metodo reporte_ID
         response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'nombre_usuario': row[5], 'provincia': row[6], 'departamento': row[7], 'localidad': row[8], "horario_reporte": str(row[9]), "ID_usuario": row[10]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/localidad', methods=['GET'])   #Endpoint: /reportes/todaslocalidades
-def reporte_localidad():    #metodo reporte_todas_localidad
-    try: 
-        result = archivo_reportes.reporte_localidades()
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 
-    response = []
-    for row in result:
-        response.append({'ID': row[0], 'localidad':row[1], 'direccion_reporte': row[2], 'descripcion': row[3], 'tipo_reporte': row[4], 'fecha_reporte': row[5], 'ID_usuario': row[6]})
-    return jsonify(response), 200
-
-@app.route('/api/v1/reportes/localidad/<localidad>', methods=['GET'])   #Endpoint: /filtro por localidades
+#
+# Pre: Recibe por parametro la localidad del reporte y toma desde la base todos los reportes que coincidan con esa localidad.
+# Post: Devuelve los reportes, que coincidieron, con sus elementos en formato JSON.
+#
+@app.route('/api/v1/reportes/localidad/<localidad>', methods=['GET'])         
 def reporte_by_localidad(localidad):    
     try: 
         result = archivo_reportes.reporte_por_localidad(localidad)
@@ -70,20 +76,12 @@ def reporte_by_localidad(localidad):
         response.append({'ID_reporte': row[0], 'direccion_reporte': row[1], 'provincia': row[2], 'departamento': row[3], 'localidad': row[4], 'descripcion': row[5], 'tipo_reporte': row[6], 'fecha_reporte': row[7], 'ID_usuario': row[8]})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/fecha/<fecha_reporte>', methods=['GET'])   #Endpoint: /reportes/porFecha
-def reporte_fecha(fecha_reporte):    #metodo reporte_fecha
-    try:
-        result = archivo_reportes.reporte_por_fecha(fecha_reporte)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-    response = []
-    for row in result:
-        response.append({'ID': row [0], 'direccion_reporte': row [1], 'descripcion': row [2], 'tipo_reporte': row [3], 'fecha_reporte': row [4], 'ID_usuario': row [5]})
-    return jsonify(response), 200
-
-@app.route('/api/v1/reportes/usuario/<ID_usuario>', methods=['GET'])   #Endpoint: /reportes/porFecha
-def reporte_usuario(ID_usuario):    #metodo reporte_fecha
+#
+# Pre: Recibe por parametro el ID del usuario y toma desde la base todos los reportes que coincidan con ese ID de usuario.
+# Post: Devuelve los reportes, que coincidieron, con sus elementos en formato JSON.
+#
+@app.route('/api/v1/reportes/usuario/<ID_usuario>', methods=['GET'])                     
+def reporte_usuario(ID_usuario):    
     try:
         result = archivo_reportes.reporte_por_usuario(ID_usuario)
     except Exception as e:
@@ -94,21 +92,12 @@ def reporte_usuario(ID_usuario):    #metodo reporte_fecha
         response.append({'ID': row[0], 'direccion_reporte': row[1], 'descripcion': row[2], 'tipo_reporte': row[3], 'fecha_reporte': row[4], 'ID_usuario': row[5], 'horario_reporte': str(row[6])})
     return jsonify(response), 200
 
-@app.route('/api/v1/reportes/tipo/<tipo_reporte>', methods=['GET'])   #Endpoint: /reportes/porTipoDeReporte
-def reporte_tipo(tipo_reporte):    #metodo reporte_tipo
-    try:
-        result = archivo_reportes.reporte_por_tipo(tipo_reporte)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-    response = []
-    for row in result:
-        response.append({'ID': row [0], 'direccion_reporte': row [1], 'descripcion': row [2], 'tipo_reporte': row [3], 'fecha_reporte': row [4], 'ID_usuario': row [5]})
-    return jsonify(response), 200
-
-
-@app.route('/api/v1/reportes', methods=['POST'])   #Endpoint: /reportes
-def ingresar_reporte():    #metodo ingresar
+#
+# Pre: Recibe desde un formulario los datos de las keys solicitadas.
+# Post: Devuelve los reportes con sus elementos en formato JSON al metodo insert_reporte y genera un codigo 201 si fue exitoso.
+#
+@app.route('/api/v1/reportes', methods=['POST'])   
+def ingresar_reporte():    
     nuevo_reporte = request.get_json()
 
     keys = ('provincia', 'departamento', 'localidad', 'fecha_reporte', 'horario_reporte', 'ID_incidente', 'ID_usuario')
@@ -123,9 +112,13 @@ def ingresar_reporte():    #metodo ingresar
 
     return jsonify(nuevo_reporte), 201
 
-
-@app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['PUT'])   #Endpoint: /reportes
-def actualizar_reporte(ID_reporte):    #metodo actualizar
+#
+# Pre: Recibe por parametro el ID del reporte y toma desde un formulario los datos de las keys solicitadas, a su vez busca en 
+#      la base de datos los reportes que coincida con el ID.
+# Post: Devuelve los reportes con sus elementos en formato JSON al metodo cambiar_reporte y genera un codigo 200 si fue exitoso.
+#
+@app.route('/api/v1/reportes/id/<int:ID_reporte>', methods=['PUT'])   
+def actualizar_reporte(ID_reporte):    
     data = request.get_json()
 
     keys = ('ID_reporte', 'ID_usuario', 'descripcion', 'direccion_reporte', 'fecha_reporte', 'tipo_reporte')
@@ -144,8 +137,12 @@ def actualizar_reporte(ID_reporte):    #metodo actualizar
 
     return jsonify({'ID_reporte': ID_reporte, **data}), 200
 
-@app.route('/api/v1/reportes/<int:ID_reporte>', methods=['DELETE'])   #Endpoint: /reportes/porID
-def eliminar_reporte(ID_reporte):    #metodo eliminar
+#
+# Pre: Recibe por parametro el ID del reporte y toma desde la base el reporte que coincidan con ese ID.
+# Post: Elimina en la base de datos el reporte que coincidió.
+#
+@app.route('/api/v1/reportes/<int:ID_reporte>', methods=['DELETE'])  
+def eliminar_reporte(ID_reporte):   
     try:
         result = archivo_reportes.reporte_por_id(ID_reporte)
         if not result:
@@ -159,9 +156,16 @@ def eliminar_reporte(ID_reporte):    #metodo eliminar
     return jsonify({'ID_reporte': result[0], 'direccion_reporte': result[1], 'descripcion': result[2], 'tipo_reporte': result[3], 'fecha_reporte': result[4], 'ID_usuario': result[5]}), 200
 
 
-#ENDPOINTS INCIDENTES
-@app.route('/api/v1/incidentes', methods=['POST'])   #Endpoint: /incidentes
-def ingresar_incidente():    #metodo ingresar
+"""----------------------------------"""
+"""------ ENDPOINTS INCIDENTES ------"""
+"""----------------------------------"""
+
+#
+# Pre: Recibe desde un formulario los datos de las keys solicitadas.
+# Post: Devuelve los incidentes con sus elementos en formato JSON al metodo insert_incidente y genera un codigo 201 si fue exitoso.
+#
+@app.route('/api/v1/incidentes', methods=['POST'])                              
+def ingresar_incidente():    
     nuevo_incidente = request.get_json()
 
     keys = ('tipo_reporte', 'direccion_reporte', 'descripcion')
@@ -180,8 +184,15 @@ def ingresar_incidente():    #metodo ingresar
     return jsonify(str(nashei)), 201
 
 
-#ENDPOINTS USUARIOS
-@app.route('/api/v1/usuarios', methods=['GET'])     #Endpoint: /usuarios
+"""----------------------------------"""
+"""------- ENDPOINTS USUARIOS -------"""
+"""----------------------------------"""
+
+#
+# Pre: Recibe desde la base de datos todos los usuarios existentes.
+# Post: Devuelve los usuarios con sus elementos en formato JSON.
+#
+@app.route('/api/v1/usuarios', methods=['GET'])                                            
 def usuarios():
     try: 
         result = archivo_usuarios.todos_los_usuarios()
@@ -193,9 +204,12 @@ def usuarios():
         response.append({'ID_usuario': row[0],'nombre_usuario': row[1], 'nombre': row[2], 'apellido': row[3], 'email': row[4], 'telefono': row[5]})
     return jsonify(response), 200
 
-
-@app.route('/api/v1/usuarios/<int:ID_usuario>', methods=['GET'])   #Endpoint: /usuarios/porID
-def usuario(ID_usuario):    #metodo usuario
+#
+# Pre: Recibe por parametro el ID del usuario y toma desde la base de datos al usuario que coincida con ese ID.
+# Post: Devuelve el usuario, que coincide, con sus elementos en formato JSON.
+#
+@app.route('/api/v1/usuarios/<int:ID_usuario>', methods=['GET'])                    
+def usuario(ID_usuario):    
     try:
         result = archivo_usuarios.usuarios_por_id(ID_usuario)
     except Exception as e:
@@ -209,8 +223,12 @@ def usuario(ID_usuario):    #metodo usuario
         response.append({'ID_usuario': row[0],'nombre_usuario': row[1], 'nombre': row[2], 'apellido': row[3], 'email': row[4], 'telefono': row[5]})
     return jsonify(response), 200
 
-@app.route('/api/v1/usuarios', methods=['POST'])   #Endpoint: /usuarios
-def ingresar_usuario():    #metodo ingresar
+#
+# Pre: Recibe desde un formulario los datos de las keys solicitadas.
+# Post: Devuelve los usuarios con sus elementos en formato JSON al metodo insert_usuario y genera un codigo 201 si fue exitoso.
+#
+@app.route('/api/v1/usuarios', methods=['POST'])  
+def ingresar_usuario():    
     nuevo_usuario = request.get_json()
 
     keys = ('nombre_usuario', 'nombre', 'apellido', 'email', 'telefono')
@@ -226,8 +244,13 @@ def ingresar_usuario():    #metodo ingresar
 
     return jsonify(nuevo_usuario), 201
 
-@app.route('/api/v1/usuarios/<int:ID_usuario>', methods=['PUT'])   #Endpoint: /usuarios/porID
-def actualizar_usuario(ID_usuario):    #metodo actualizar
+#
+# Pre: Recibe por parametro el ID del usuario y toma desde un formulario los datos de las keys solicitadas, a su vez busca en 
+#      la base de datos el usuario que coincida con el ID.
+# Post: Devuelve el usuario con sus elementos en formato JSON al metodo cambiar_usuario y genera un codigo 200 si fue exitoso.
+#
+@app.route('/api/v1/usuarios/<int:ID_usuario>', methods=['PUT']) 
+def actualizar_usuario(ID_usuario):    
     data = request.get_json()
 
     keys = ('nombre_usuario', 'nombre', 'apellido', 'email', 'telefono')
@@ -246,9 +269,12 @@ def actualizar_usuario(ID_usuario):    #metodo actualizar
 
     return jsonify({'ID_usuario': ID_usuario, **data}), 200
 
-
-@app.route('/api/v1/usuarios/<int:ID_usuario>', methods=['DELETE'])   #Endpoint: /usuarios/porID
-def eliminar_usuario(ID_usuario):    #metodo eliminar
+#
+# Pre: Recibe por parametro el ID del usuario y toma desde la base el usuario que coincidan con ese ID.
+# Post: Elimina en la base de datos el usuario que coincidió.
+#
+@app.route('/api/v1/usuarios/<int:ID_usuario>', methods=['DELETE'])  
+def eliminar_usuario(ID_usuario):    
     try:
         result = archivo_usuarios.usuarios_por_id(ID_usuario)
         if not result:
