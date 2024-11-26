@@ -1032,7 +1032,7 @@ legend {
     background-color: aliceblue;
     margin: 50px 15px 90px 15px;
     border-radius: 10px;
-    border: 1px solid rgb(69, 135, 173);
+    border: 5px solid rgb(16, 107, 62);
     -webkit-box-shadow: 15px 13px 33px -6px rgba(0,0,0,1);
     -moz-box-shadow: 15px 13px 33px -6px rgba(0,0,0,1);
     box-shadow: 15px 13px 33px -6px rgba(0,0,0,1);
@@ -1127,7 +1127,15 @@ legend {
     }
 
 }
-/* Añadido al final de tu style.css */
+
+
+/*
+ *
+ *
+ * CSS para Mapa en reporte.html
+ *
+ *
+ */
 .mapa-wrapper {
     display: flex;
     flex-direction: column;
@@ -1138,28 +1146,40 @@ legend {
 #map {
     height: 300px;
     width: 100%;
-    border: 2px solid #1a8f54;
+    border: 5px solid #1a8f54;
     border-radius: 5px;
 }
 
-/* Botones */
 .map-buttons {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .map-buttons button {
-    background-color: #1a8f54;
+    flex: 1;
+    max-width: 50%;
+    padding: 15px;
+    font-size: 1.2rem;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.map-buttons button:hover {
+#confirmBtn {
+    background-color: #1a8f54;
+}
+
+#confirmBtn:hover {
     background-color: #147a44;
+}
+
+#cancelBtn {
+    background-color: #d9534f;
+}
+
+#cancelBtn:hover {
+    background-color: #c9302c;
 }
