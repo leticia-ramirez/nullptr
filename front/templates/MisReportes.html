@@ -14,7 +14,7 @@
             <div>
                 <h6><b>Incidente:</b> {{reporte.tipo_reporte}}</h6>
                 <p><b>Direccion:</b> {{reporte.direccion_reporte}}</p>
-                <p><b>Fecha estimada:</b> {{reporte.fecha_reporte}}  {{reporte.horario_reporte}} hs</p>
+                <p><b>Fecha estimada:</b> {{" ".join(reporte.fecha_reporte.split(" ")[0:3])}}  {{reporte.horario_reporte}} hs</p>
                 <p class="text-justify"><b>Descripcion:</b> {{reporte.descripcion}}</p>
                 <div class="flex-inline">
                     <button class="btn btn-success borde-size" type="submit"><a class="button_link" href="{{ url_for('modificar',id=reporte.ID,_external=True) }}">Modificar</a></button>

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 import requests
-import pprint
+
 app = Flask(__name__)
 
 API_URL = "http://127.0.0.1:5000/api/v1/"
@@ -61,10 +61,6 @@ def reporte():
         municipio = request.form.get("municipio")
         localidad = request.form.get("localidad")
         direccion = request.form.get("direccion")
-#       Lo vamos a necesitar para el mapa, no borrar
-        ubicacion = requests.get(f"{API_ARG}direcciones?direccion={direccion}&provincia={provincia}&departamento={municipio}&localidad={localidad}", timeout = 5)
-        ubicacion.raise_for_status()
-        ubicacion = ubicacion.json()
         incidente = {
             "tipo_reporte" : request.form.get("tipo_reporte"),
             "direccion_reporte" : direccion,
@@ -77,7 +73,6 @@ def reporte():
             "provincia": provincia,
             "departamento" : municipio,
             "localidad" : localidad,
-            "ubicacion" : f'{ubicacion["direcciones"][0]["ubicacion"]["lat"]} {ubicacion["direcciones"][0]["ubicacion"]["lon"]}',
             "fecha_reporte" : request.form.get("fecha"),
             "horario_reporte" : request.form.get("hora"),
             "ID_incidente" : id_incidente,
@@ -88,11 +83,10 @@ def reporte():
             response = requests.post(API_URL+'reportes', json = data, timeout = 5)
             response.raise_for_status()
             datos = response.json()
-            print(datos)
         except requests.exceptions.RequestException as e:
             print(f"Error pushing data: {e}")
             datos = []
-            return render_template("reporte.html", datos = datos)
+        return render_template("reporte.html", datos = datos)
     return render_template("reporte.html")
 
 @app.route("/get_coordinates", methods=["GET"])
@@ -133,7 +127,7 @@ def mereporteu(id):
         reportes = []
     return render_template("MisReportes.html", reportes = reportes)
 
-@app.route('/modificar/<int:id>', methods=['GET','POST', 'PUT'])#endpoint modificar reporte (aun no funciona)
+@app.route('/modificar/<int:id>', methods=['GET','POST', 'PUT'])
 def modificar(id):
     datos = requests.get(API_URL+'reportes/id/'+str(id)).json()
 
@@ -144,7 +138,7 @@ def modificar(id):
             "direccion_reporte": request.form.get('direccion_reporte'),
             "fecha_reporte": request.form.get('fecha_reporte'),
             "tipo_reporte": request.form.get('incidencia'),
-            "ID_usuario" : 1
+            "ID_usuario" : request.form.get('id_usuario')
         }
         try:
             response = requests.put(API_URL+"reportes/id/"+str(id), json = data)

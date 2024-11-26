@@ -5,6 +5,9 @@
 <div id="content">
 <h2>Iniciar Sesion</h2>
 <form action="{{url_for('signin')}}" method="post" class="reporte" id="signin">
+    {% if(logged == False) %}
+        <h6 class="text-center" style="color: red">¡Los datos ingresados son incorrectos!</h6>
+    {% endif %}
     <fieldset>
     <div class="seccion_reporte"><label for="usuario">Usuario</label><input type="text" name="usuario" id="usuario" required></div>
     <div class="seccion_reporte"><label for="contraseña">Constraseña</label><input type="password" name="contraseña" id="contraseña" required></div>

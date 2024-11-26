@@ -7,14 +7,12 @@
 <form action="{{url_for('modificar', id= datos.ID_reporte)}}" method="post" class="reporte">
     <fieldset><legend>Reporte</legend>
     <div class="seccion_reporte">
-        <label for="id_reporte">ID Reporte</label>
-        <select type="text" name="id_reporte" id="id_reporte">
-            <option value="{{datos.ID_reporte}}">{{datos.ID_reporte}}</option>
-        </select>
+        <label for="id_reporte" hidden>ID Reporte</label>
+        <input type="text" name="id_reporte" id="id_reporte" value="{{datos.ID_reporte}}" hidden>
     </div>
     <div class="seccion_reporte">
-        <label for="id_usuario">ID Usuario</label>
-        <input type="text" name="id_usuario" id="id_usuario" value="{{datos.ID_usuario}}" disabled>
+        <label for="id_usuario" hidden>ID Usuario</label>
+        <input type="text" name="id_usuario" id="id_usuario" value="{{datos.ID_usuario}}" hidden>
     </div>
     <div class="seccion_reporte">
         <label for="incidencia">Tipo de incidencia</label>
