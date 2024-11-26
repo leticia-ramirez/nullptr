@@ -1,41 +1,66 @@
-### Consigna del TP, a cambiar.
+# TP Introducción al Desarrollo de Software
 
-# Trabajo Práctico IDS - GRUPO: nullptr
+# -2do Cuatrimestre 2024-
+#Grupo: nullptr
 
-## Trabajo Práctico: Introducción al Desarrollo de Software
+## Propuesta: ZONAROJA - Sitio web de Reporte de incidencias
 
-El presente trabajo práctico de la materia **Introducción al Desarrollo de Software** integra todos los temas aprendidos. Los equipos, formados por entre 5 y 8 alumnos, deberán aplicar buenas prácticas de programación y utilizar metodologías ágiles para su resolución.
+   En el presente proyecto se abordarán las tecnologías de Bases de Datos (BBDD) mediante MySQL, Desarrollo Web tanto Front-End como Back-End a través de una aplicación web y Desarrollo Mobile con una aplicación de celular.
+   La inseguridad en Argentina está marcada por un aumento significativo de robos, violencia y asesinatos, especialmente en las grandes ciudades. Los robos a transeúntes y domicilios, así como el robo de vehículos, son comunes, a menudo con el uso de armas.
+   La violencia también se ve intensificada por el narcotráfico, especialmente en ciudades como Rosario, donde las disputas entre bandas criminales generan tiroteos y muertes. Además, los homicidios están en aumento, muchos relacionados con ajustes de cuentas o robos violentos. La falta de respuestas eficaces por parte de las autoridades y la impunidad contribuyen al sentimiento de inseguridad y desconfianza en la población.
 
-En esta oportunidad, no hay un tema específico a resolver; se presentarán varias ideas que se podrán desarrollar respetando los siguientes requerimientos. Los equipos que quieran desarrollar una idea particular podrán hacerlo con previa aprobación de la cátedra. Para esto, deberán presentar la idea dentro de los primeros 5 días a partir de la entrega de este enunciado.
 
-### Ideas de posibles desarrollos:
+### Link al sitio
 
-1. **Centro de ayuda comunitaria a personas en situación de calle**  
-   Se desea crear un sitio web y una aplicación móvil para Android. El sitio debe poder cargar información sobre paradores, lugares de asistencia social y ayuda (parroquias, centros sociales, ONGs) que brinden alimentos, duchas o camas, y debe incluir un mapa de la cantidad de personas en situación de calle (suministrado por la app móvil). La aplicación debe permitir alertar, mediante geolocalización, sobre personas en situación de calle y solicitar datos adicionales útiles.
+http://127.0.0.1:5001/
 
-2. **Mascotas perdidas**  
-   Sitio web para publicar información sobre mascotas perdidas, utilizando Google Maps. Se podrán buscar mascotas por características y geolocalizar la ubicación en un mapa. La aplicación móvil para Android permitirá cargar información, foto y ubicación del animal, la cual se sincronizará con el sitio web.
 
-3. **Sitio web de Hospedajes**  
-   Creación de un sitio web para una cadena de hoteles, mostrando disponibilidad de habitaciones y permitiendo reservas. Con el código de reserva y apellido, se podrá consultar y cancelar reservas. La aplicación móvil permitirá contratar servicios adicionales, como masajes o excursiones, con el código de reserva y apellido.
+### Lenguajes y Tecnologías Utilizadas
 
-4. **Proyecto a elección**  
-   El proyecto debe ser web y móvil, y requiere validación de la cátedra dentro de los primeros 5 días.
+El proyecto fue realizado con los siguientes lenguajes de programación y tecnologías:
 
-### Requerimientos
+- **Python** - Frontend y backend del sitio web.
 
-- **Uso obligatorio de GitHub**.
-- **Deseable el uso de Docker**.
-- **Tablero Kanban** (en Trello) con columnas para los estados de cada tarea, incluyendo ID y fecha de inicio.
-- **Tres aplicaciones**: una para el front-end, otra para móvil y otra para la API. La API debe comunicarse con una base de datos MySQL.
-- **Endpoints** correctos en formato JSON.
-- **Base de datos MySQL** con al menos 2 tablas.
-- **Commits asociados a Trello**.
-- **Hitos de entrega que aporten valor al cliente**.
-- **Deploy en PythonAnywhere**.
-- **Informe de presentación**.
-- **Usuario y roles hardcodeados** si es necesario.
-- **Archivo init.sh** para dependencias.
+- **HTML5** - Estructura y organización del contenido del sitio web.
+
+- **CSS3** - Diseño y estilo del sitio web.
+
+- **JavaScript** - Interactividad y dinamismo del sitio web.
+
+- **MySQL** - Gestión de la base de datos.
+
+- **Git** - Control y gestión de versiones, así como la ramificación del código.
+
+
+### Instrucciones de Instalación
+
+Pasos para acceder a este proyecto desde tu equipo:
+
+1. Abrir la terminal.
+
+2. Usar el comando de clonación de repositorios: `$ git clone <URLrepositorio>`
+
+3. Esto clonará/creará una carpeta con todos los archivos del proyecto en tu equipo.
+
+
+### Contribuciones
+
+Pasos para realizar una contribución al proyecto:
+
+1. Clonar el repositorio (instrucciones más arriba).
+
+2. Crear y cambiar a una rama nueva: `$ git checkout -b <NombreRama>`
+
+   Ó cambiar a una rama existente: `$ git checkout <NombreRamaExistente>`
+
+3. Realizar los cambios necesarios y agregarlos al área de preparación `$ git add .` (esto agrega todos los archivos modificados)
+
+4. Generar los correspondientes commits: `$ git commit -m "TituloCommit" `
+
+5. Subir los cambios al repositorio: `$ git push origin <NombreRama>`
+
+6. Crear un Pull Request desde GitHub.
+
 
 ### Hitos del proyecto (Entregables)
 
@@ -46,41 +71,17 @@ En esta oportunidad, no hay un tema específico a resolver; se presentarán vari
 5. **Jueves 28/11**: Primera entrega del TP Integrador.
 6. **Martes 3/12**: Segunda entrega del TP Integrador.
 
-### Defensa Oral
-
-La entrega del Trabajo Práctico estará acompañada de una defensa oral, tanto grupal como individual, evaluando la funcionalidad, herramientas y diseño del sistema.
-
-### Documentación Requerida
-
-El informe del trabajo práctico debe incluir:
-
-- Carátula
-- Integrantes
-- Resumen
-- Introducción
-- Solución propuesta
-- Tecnología utilizada
-- Conclusión final
-
-### Condiciones de Aprobación
-
-**NO** se debe:
-- Usar variables globales.
-- Usar ciclos infinitos.
-- Escribir código repetido.
-- Entregar programas con errores o que no funcionen.
-- Incumplir con las fechas de entrega.
-
-**SÍ** se debe:
-- Evitar que el programa falle en interacción con el usuario.
-- Modularizar el código.
-- Usar buenas prácticas de programación.
-- Utilizar GitHub.
-- Entregar un programa funcional.
-
 ### Fecha de Entrega
 
 - **Primera entrega**: 28/11/2024 a las 18:00 hs (con posibilidad de recuperación).
 - **Segunda entrega**: 03/12/2024 a las 18:00 hs (sin posibilidad de corrección).
 
-**Importante**: La aprobación del Trabajo Práctico es condición necesaria, junto con el parcial, para regularizar la materia.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT.
+
+Para más información visualizar el archivo [LICENSE](LICENSE)
+
+
+
