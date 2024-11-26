@@ -127,7 +127,7 @@ section .grids .hijo{
 }
 
 section .grids .hijo:hover{
-    filter: drop-shadow(1px 1px 20px rgb(207, 188, 16));
+    filter: drop-shadow(1px 1px 20px rgb(132, 206, 14));
 
 }
 
@@ -829,12 +829,24 @@ legend {
 
 .instrucciones {
     background-color: rgba(130, 130, 130, 0.2);
-    max-width: 97%;
+    max-width: 80%;
     align-self: center;
     border-radius: 1.5%;
     text-align: justify;
     font-weight: 500;
     color: black;
+}
+
+.margin_download{
+    margin-top: 7vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    align-self: center;
+}
+
+.pasos{
+    font-size: 20px;
+    text-align: justify;
 }
 
 
