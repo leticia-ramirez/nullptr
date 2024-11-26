@@ -120,6 +120,15 @@ section .grids .hijo{
     border-radius: 20px;
     padding: 30px;
     background-color: aliceblue;
+    width: 80%;
+    word-wrap:break-word;
+    box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
+    cursor: pointer;
+}
+
+section .grids .hijo:hover{
+    filter: drop-shadow(1px 1px 20px rgb(132, 206, 14));
+
 }
 
 section .grids .hijo img{
@@ -139,6 +148,7 @@ section .grids .hijo img{
 }
 
 .background-section-animated{
+    z-index: -1;
     width: 100%;
     height: 100vh;
     justify-self: flex-start;
@@ -149,6 +159,8 @@ section .grids .hijo img{
     animation-duration: 7s;
     background-color:aliceblue;
     overflow: hidden;
+    background-image: url('../img/mapa_zona_roja.png');
+    background-size: cover;
 }
 
 @keyframes BackgroundColor {
@@ -262,8 +274,6 @@ section .grids .hijo img{
 
 .seccionBusqueda .Reportes{
     grid-area: reportes;
-    width: 100% !important;
-    overflow-y: scroll;
 }
 
 .seccionBusqueda .Reportes .listado-tarjetas .tarjetas{
@@ -300,6 +310,11 @@ section .grids .hijo img{
 
 .section-app #content_jumbotron {
     padding-left: 5%;
+    box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
+}
+
+.img{
+    cursor: pointer;
 }
 
 .sectionFAQ{
@@ -816,12 +831,24 @@ legend {
 
 .instrucciones {
     background-color: rgba(130, 130, 130, 0.2);
-    max-width: 97%;
+    max-width: 80%;
     align-self: center;
     border-radius: 1.5%;
     text-align: justify;
     font-weight: 500;
     color: black;
+}
+
+.margin_download{
+    margin-top: 7vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    align-self: center;
+}
+
+.pasos{
+    font-size: 20px;
+    text-align: justify;
 }
 
 
@@ -980,8 +1007,10 @@ legend {
     margin-top: 2vh;
     font-size: 150%;
     padding: 5vh;
+    box-shadow: 0px 5px 16px 0px rgba(50,50,50,0.75);
+    background-color: #63e4a3d8;
 }
-
+  
 .borde-size a{
     text-decoration: none;
 }
@@ -998,14 +1027,14 @@ legend {
     transform: scale(1.15);
     opacity: 1;
     font-size: 20px;
-    background: linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(45,139,253,1) 100%);    color: black;
+    background-color: #63e4a3d8;
 }
  
 .slider-card {
     background-color: aliceblue;
     margin: 50px 15px 90px 15px;
     border-radius: 10px;
-    border: 1px solid rgb(69, 135, 173);
+    border: 5px solid rgb(16, 107, 62);
     -webkit-box-shadow: 15px 13px 33px -6px rgba(0,0,0,1);
     -moz-box-shadow: 15px 13px 33px -6px rgba(0,0,0,1);
     box-shadow: 15px 13px 33px -6px rgba(0,0,0,1);
@@ -1061,9 +1090,54 @@ legend {
     margin-left: 4vh;
     margin-right: 1vh;
 }
+.noReportes{
+    text-transform: uppercase;
+    color: red;
+    font-size: 16px;
+}
+
+#error-img:hover{
+    animation: gradiente-error 2s infinite;
+}
+
+@keyframes gradiente-error {
+    0% {
+      background: linear-gradient(to right, rgba(255, 0, 0, 0.486), rgb(255, 0, 0));
+    }
+    100% {
+        background: linear-gradient(to left, rgba(255, 0, 0, 0.486), rgb(255, 0, 0));
+    }
+  }
+
+#img-planet:hover{
+    animation-name: up-down;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-direction: normal;
+    animation-delay: 0s;
+    animation-duration: 1.5s;
+}
+
+@keyframes up-down{
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(-360deg);
+
+    }
+
+}
 
 
-/* Añadido al final de tu style.css */
+/*
+ *
+ *
+ * CSS para Mapa en reporte.html
+ *
+ *
+ */
 .mapa-wrapper {
     display: flex;
     flex-direction: column;
@@ -1074,29 +1148,33 @@ legend {
 #map {
     height: 300px;
     width: 100%;
-    border: 2px solid #1a8f54;
+    border: 5px solid #1a8f54;
     border-radius: 5px;
 }
 
-/* Botones */
 .map-buttons {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .map-buttons button {
-    background-color: #1a8f54;
+    flex: 1;
+    max-width: 50%;
+    padding: 15px;
+    font-size: 1.2rem;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.map-buttons button:hover {
+#confirmBtn {
+    background-color: #1a8f54;
+}
+
+#confirmBtn:hover {
     background-color: #147a44;
 }
 
@@ -1105,4 +1183,11 @@ legend {
 }
 h4#login-alert {
     margin-top: 10vh;
+}
+#cancelBtn {
+    background-color: #d9534f;
+}
+
+#cancelBtn:hover {
+    background-color: #c9302c;
 }

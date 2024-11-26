@@ -2,16 +2,16 @@
 {% block tab %}App{% endblock %}
 {% block body %}
 
-<section class="section-app margin">
+<section class="section-app margin_download">
     <div id="content_jumbotron">
         <div class="rows">
             <div>
                  <h1 class="text-center fw-bold">Descargate la app</h1>
-                 <h5 class="fw-normal text-muted mb-3">Realizá resportes y visualizá las zonas rojas de forma rápida y segura desde la aplicación.</h5> 
+                 <h5 class="fw-normal text-muted mb-3">Realizá reportes de forma rápida y segura desde la aplicación.</h5> 
                  <div class="row d-flex justify-content-left">
                     <div class="col-auto pt-1">
-                        <img src="{{url_for('static', filename = 'img/Banner_GooglePlay.png')}}" alt="icono de Google Play" width="130px" height="65px">
-                        <img src="{{url_for('static', filename = 'img/banner-app-store.png')}}" alt="icono de App Store" width="120px" height="44px">
+                        <img src="{{url_for('static', filename = 'img/Banner_GooglePlay.png')}}" alt="icono de Google Play" width="130px" height="65px" class="img">
+                        <img src="{{url_for('static', filename = 'img/banner-app-store.png')}}" alt="icono de App Store" width="120px" height="44px" class="img">
                     </div>
                  </div>
             </div>
@@ -20,60 +20,46 @@
             </div>
         </div>
     </div>
- </section>
+</section>
 <section>
     <div class="instrucciones pt-2 pb-2 container-fluid">
         <div class="row imgderecha mt-3 pe-3">
-            <div class="col-8 ms-5">
-                <p> 📢 Acá va a estar la información de como funciona la app. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="col-8 ms-3">
+                <h4 class="fw-bold"> 📢 Reportá desde cualquier lugar</h4>
+                <p class="pasos">Con la aplicación mobile podés realizar reportes en tiempo real desde donde estés y al instante.</p>
             </div>
-            <div class="col-3">
-                <img src="{{url_for('static', filename = 'img/img_celu.png')}}" class="float-end" alt="imagen de la app" width="80px" height="150px">
+            <div class="col-3 me-3">
+                <img src="{{url_for('static', filename = 'img/img_celu_primero.png')}}" class="float-end" alt="imagen de la app" width="130px" height="150px">
             </div>
         </div>
         <div class="row imgizq mt-3 ps-3">
             <div class="col-3 ms-5">
-                <img src="{{url_for('static', filename = 'img/img_celu.png')}}" class="float-start" alt="imagen de la app" width="80px" height="150px">
+                <img src="{{url_for('static', filename = 'img/img_celu_segundo.png')}}" class="float-start" alt="imagen de la app" width="130px" height="150px">
             </div>
-            <div class="col-8 ">
-                <p> ⚠️ Acá va a estar la información de como funciona la app. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="col-8">
+                <h4 class="fw-bold"> ⚠️ Iniciá tu reporte fácilmente</h4>
+                <p class="pasos">  Al final de la pantalla encontrarás un botón para comenzar con tu reporte.</p>
             </div>
         </div>
         <div class="row imgderecha mt-3 pe-3">
-            <div class="col-8 ms-5">
-                <p> 🆘 Acá va a estar la información de como funciona la app. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="col-8 ms-3">
+                <h4 class="fw-bold"> 📝 Describí lo sucedido</h4>
+                <p class="pasos"> Seleccioná los detalles del incidente, incluyendo provincia, municipio, localidad, tipo de incidencia y dirección.<br>
+                    Dejanos un mensaje describiendo lo ocurrido para que otros puedan conocer los detalles.</p>
             </div>
-            <div class="col-3">
-                <img src="{{url_for('static', filename = 'img/img_celu.png')}}" class="float-end" alt="imagen de la app" width="80px" height="150px">
+            <div class="col-3 me-3">
+                <img src="{{url_for('static', filename = 'img/img_celu_tercero.png')}}" class="float-end" alt="imagen de la app" width="130px" height="150px">
 
             </div>
         </div>
         <div class="row imgizq mt-3 ps-3">
             <div class="col-3 ms-5">
-                <img src="{{url_for('static', filename = 'img/img_celu.png')}}" class="float-start" alt="imagen de la app" width="80px" height="150px">
+                <img src="{{url_for('static', filename = 'img/img_celu_cuarto.png')}}" class="float-start" alt="imagen de la app" width="130px" height="150px">
             </div>
             <div class="col-8 ">
-                <p> 📞 Acá va a estar la información de como funciona la app. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h4 class="fw-bold"> 📫 Enviá tu reporte</h4>
+                <p class="pasos"> Una vez completado, presioná el botón <b>Enviar</b> que se encuentra al final de la pantalla ¡Y listo!<br> Tu reporte será registrado con éxito.
+                </p>
             </div>
         </div>
     </div>

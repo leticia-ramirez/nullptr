@@ -1,41 +1,43 @@
 {% extends "base.html" %}
 {% block tab %}Buscar Zona{% endblock %}
 {% block body %}
-<section class="seccionBusqueda">
-    <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
-    <div class="form-container busqueda">
-        <form action="{{url_for('buscar')}}" method="get" class="form" id="user-form">
-                <div class="form-box">
-                    <input type="text" name="busqueda" placeholder="Busca por localidad" class="filtrar-items">
-                    <small class="error-text">Introduce una localidad</small>
+    <section class="seccionBusqueda">
+        <h1 class="text-center padding-top-bottom title">Buscar Zona</h1>
+        <div class="form-container busqueda">
+            <form action="{{url_for('buscar')}}" method="get" class="form" id="user-form">
+                    <div class="form-box">
+                        <input type="text" name="busqueda" placeholder="Busca por localidad [ Por ejemplo: San Telmo ]" class="filtrar-items">
+                        <small class="error-text">Introduce una localidad</small>
+                    </div>
+                
+                    <button class="btn-outline-success borde-size" id="submit-btn" type="submit" disabled>buscar</button>
+            </form>
+        </div>
+        <div id="slider" class="pt-5 Reportes">
+            <div class="container-fluid">
+                <h3 class="text-center">Reportes</h3>
+                <div class="slider">
+                    <div class="owl-carousel owl-theme">
+                        {% if reportes %}
+                        {% for reporte in reportes %}
+                        <div class="slider-card">
+                            <h5 class="text-center fw-bold">Incidencia: {{reporte.tipo_reporte}}</h5>
+                            <p>Fecha de reporte: {{reporte.fecha_reporte[0:17]}}</p>
+                            <p>Dirección: {{reporte.direccion_reporte}}</p>
+                            <p>Descripción: {{reporte.descripcion}}</p>
+                            <button class="btn btn-outline-success borde-size">
+                                <a href="{{url_for('mreporte_id', id = reporte.ID_reporte)}}">Mas información</a>
+                            </button>                            
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="noReportes">
+                            <span><b>No se encontraron reportes para esta localidad.</b></span>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
-               
-                <button class="btn-outline-success borde-size" id="submit-btn" type="submit" disabled>buscar</button>
-                    <!-- <input class="btn btn-outline-success borde-size" id="submit-btn" type="submit" value="Buscar" disabled> -->
-               
-        </form>
-
-    </div>
-
-    <!-- Listado de reportes -->
-    <div class="Reportes">
-        <div class="listado-tarjetas">
-            {% if reportes %}
-                {% for value in reportes %}
-                <div class="tarjetas">
-                    <h5>Incidencia: {{ value.tipo_reporte }}</h5>
-                    <p>Localidad: {{ value.localidad }}</p>
-                    <p>Dirección: {{ value.direccion_reporte }}</p>
-                    <p>Horario estimado: {{ value.fecha_reporte }}</p>
-                    <p class="text-justify">Descripción: {{ value.descripcion }}</p>
-                    <button class="btn btn-outline-success borde-size">
-                        <a href="{{url_for('mreporte_id', id=value.ID)}}">Más información</a>
-                    </button>
-                </div>
-                {% endfor %}
-            {% else %}
-                <p>No se encontraron reportes para esta localidad.</p>
-            {% endif %}
+            </div>
         </div>
         <div class="mapa-section">
             <div class="map" id="map"></div>

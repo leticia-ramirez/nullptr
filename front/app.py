@@ -216,6 +216,18 @@ def signup():
 
     return render_template("signup.html")
 
+@app.route("/mireportes/<id>")
+def mreporte_info(id): #endpoint para mostrar todos los reportes
+    try:
+        response = requests.get(API_URL+'reportes/id/'+str(id))
+        response.raise_for_status()
+        datos_reporte = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        datos_reporte = []
+
+    return render_template("reportes-masinfo.html", datos = datos_reporte)
+
 @app.route("/download")
 def download():
     return render_template("/download.html")
