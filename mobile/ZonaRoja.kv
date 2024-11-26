@@ -1,0 +1,152 @@
+<PantallaBienvenida>:
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '10dp'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+        Label:
+            id: label_saludo
+            text: "¡Hola! Bienvenido a zona roja."
+            font_size: 70
+            coloring: 1 , 0 , 0 , 1
+            pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+            color: self.coloring
+            size_hint: 1, 0.3 
+        Button:
+            text: 'Llamar al 911'
+            on_release: root.call_phone()
+            background_color: 1,0,0,1
+            size_hint: 1, 0.5            
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            margin: 10
+            font_size: 100
+        Button:
+            text: 'Comenzar reporte'
+            font_size: 35
+            size_hint: 0.5, 0.2
+            height: '50dp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            background_color: 0,1,0,1
+            on_press: root.manager.current = 'reporte'
+
+
+<PantallaReporte>:
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation:'vertical'
+        spacing: '10dp'
+        padding: '10dp'
+        Label:
+            id: label_reporte
+            text: "Dejanos tu reporte"
+            font_size: 35
+            size_hint: 1, 0.3
+            color: 0 , 0 , 0 , 1
+        TextInput:
+            id: input_provincias
+            size_hint: 0.5, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            hint_text: 'Provincias'
+            multiline: False
+        TextInput:
+            id: input_municipio
+            size_hint: 0.5, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            hint_text: 'Municipio'
+            multiline: False
+        TextInput:
+            id: input_localidad
+            size_hint: 0.5, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            hint_text: 'Localidad'
+            multiline: False
+        TextInput:
+            id: input_tipoincididencia
+            size_hint: 0.5, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            hint_text: 'Tipo de incidencia'
+            multiline: False
+        TextInput:
+            id: direccion_reporte
+            size_hint: 0.5, 0.2         
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
+            hint_text: 'Dirección del reporte'
+            multiline: False
+        TextInput:
+            id: descripcion_reporte
+            size_hint: 0.8, 0.4
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            hint_text: 'Descripción'
+        Button:
+            id: button_reporte
+            text: "Enviar reporte"
+            font_size: 35
+            size_hint: 0.5, 0.3
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+            background_color: 0,1,0,1
+            on_press: root.enviar_reporte()
+        Label:
+            id: label_errores
+            text: ""
+            font_size: 35
+            size_hint: 1, 0.3
+            color: 1 , 0 , 0 , 1
+
+
+<PantallaRespuesta>:        
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'    
+        Label:
+            id: respuesta_label
+            size_hint: 0.8, 0.4
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            text: 'Incidente reportado con éxito'
+            font_size: 50
+            color: 0, 0, 0, 1
+        Button:
+            id: button_reporte
+            text: "Volver al inicio"
+            font_size: 35
+            size_hint: 1, 0.3
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5} 
+            background_color: 0,1,0,1
+            on_press: root.manager.current = 'bienvenida'
+
+
+<Manager>:
+    id: pantalla_manager
+
+    pantalla_bienvenida: pantalla_bienvenida
+    pantalla_reporte: pantalla_reporte
+    pantalla_respuesta: pantalla_respuesta
+
+    PantallaBienvenida:
+        id: pantalla_bienvenida
+        name: 'bienvenida'
+        manager: pantalla_manager
+    PantallaReporte:
+        id: pantalla_reporte
+        name: 'reporte'
+        manager: pantalla_manager
+    PantallaRespuesta:
+        id: pantalla_respuesta
+        name: 'respuesta'
+        manager: pantalla_manager
