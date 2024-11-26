@@ -159,6 +159,8 @@ section .grids .hijo img{
     animation-duration: 7s;
     background-color:aliceblue;
     overflow: hidden;
+    background-image: url('../img/mapa_zona_roja.png');
+    background-size: cover;
 }
 
 @keyframes BackgroundColor {
