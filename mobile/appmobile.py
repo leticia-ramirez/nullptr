@@ -9,6 +9,8 @@ import webbrowser #para usar otras apps del celu (app telefono)
 #string de conexión a la base de datos: mysql://usuario:password@host:puerto/nombre_schema
 engine = create_engine("mysql+mysqlconnector://root:root1204@localhost:3306/TP_IDS")
 
+URL = 'https://zonarojaapi.pythonanywhere.com/api/v1/'
+
 class PantallaBienvenida(Screen):
     def call_phone(self):
         number = "+54 9 11 5146-7001"
@@ -33,7 +35,7 @@ class PantallaReporte(Screen):
                     "descripcion": descripcion
                     } 
             json_incidente = json.dumps(data_incidente)
-            url = 'http://127.0.0.1:5000/api/v1/incidentes'
+            url = URL + 'incidentes'
             headers = {'Content-Type': 'application/json'}
             req = UrlRequest(url, req_body=json_incidente, req_headers=headers, method='POST', on_success=self.on_post_success)
             print (json_incidente)
@@ -57,14 +59,20 @@ class PantallaReporte(Screen):
                     "fecha_reporte" : "2024-04-12",
                     "horario_reporte" : "04:15:00",
                     "ID_incidente" : id_incidencia,
-                    "ID_usuario" : 1
+                    "ID_usuario" : 17
                     }     
             json_data = json.dumps(data_reporte)
-            url = 'http://127.0.0.1:5000/api/v1/reportes'
+            url = URL + 'reportes'
             headers = {'Content-Type': 'application/json'}
             req = UrlRequest(url, req_body=json_data, req_headers=headers, method='POST')
             print (json_data)
             self.manager.current = "respuesta"
+            self.ids.input_tipoincididencia.text = ""
+            self.ids.direccion_reporte.text = ""
+            self.ids.descripcion_reporte.text = ""
+            self.ids.input_provincias.text = ""
+            self.ids.input_municipio.text = ""
+            self.ids.input_localidad.text = ""
         except Exception as e:
             print(f"Error al intentar enviar reporte: {e}")
 
