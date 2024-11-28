@@ -175,13 +175,13 @@ def ingresar_incidente():
 
     try:
         archivo_incidentes.insert_incidente(nuevo_incidente)
-        nashei = archivo_incidentes.ultimo_incidente()
-        nashei = nashei[0][0]
+        incidente = archivo_incidentes.ultimo_incidente()
+        incidente = incidente[0][0]
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    return jsonify(str(nashei)), 201
+    return jsonify(str(incidente)), 201
 
 
 """----------------------------------"""
